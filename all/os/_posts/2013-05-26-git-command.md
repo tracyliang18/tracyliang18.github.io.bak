@@ -3,7 +3,7 @@ layout: post
 title: git-command
 ---
 
-
+<p>
 git 版本控制命令
 
 1. git checkout -b iss53
@@ -123,3 +123,4 @@ git 版本控制命令
                         （6） 设置完毕后，运行diff命令：
 
                              $ git diff 32d1776b1^ 32d1776b1
+</p>
