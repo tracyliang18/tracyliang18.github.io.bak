@@ -8,29 +8,40 @@ title: python attributes and methods
 最近在看python实现的design pattern代码，上述的缺点马上无所遁形。上一个visitor模式代码：
 
 {% highlight python linenos %}
-class Node(object): pass
+ass Node(object): pass
 class A(Node): pass
 class B(Node): pass
 class C(A,B): pass
 
 class Visitor(object):
-        def visit(self, node, *args, **kwargs):
-                    meth = None
-                            for cls in node.__class__.__mro__:
-                                            meth_name = 'visit_'+cls.__name__
-                                                        meth = getattr(self, meth_name, None)
-                                                                    if meth:
-                                                                                        break
+    def visit(self, node, *args, **kwargs):
+        meth = None
+        for cls in node.__class__.__mro__:
+            meth_name = 'visit_'+cls.__name__
+            meth = getattr(self, meth_name, None)
+            if meth:
+                break
 
-                                                                                            if not meth:
-                                                                                                            meth = self.generic_visit
-                                                                                                                    return meth(node, *args, **kwargs)
+        if not meth:
+            meth = self.generic_visit
+        return meth(node, *args, **kwargs)
 
-                                                                                                                    def generic_visit(self, node, *args, **kwargs):
-                                                                                                                                print('generic_visit '+node.__class__.__name__)
+    def generic_visit(self, node, *args, **kwargs):
+        print('generic_visit '+node.__class__.__name__)
 
-                                                                                                                                    def visit_B(self, node, *args, **kwargs):
-                                                                                                                                                print('visit_B '+node.__class__.__name__)
+    def visit_B(self, node, *args, **kwargs):
+        print('visit_B '+node.__class__.__name__)
+        
+
+
+
+a = A()
+b = B()
+c = C()
+visitor = Visitor()
+visitor.visit(a)
+visitor.visit(b)
+visitor.visit(c)
 {% endhighlight %}
 
 vistor 模式，举个好理解的例子：

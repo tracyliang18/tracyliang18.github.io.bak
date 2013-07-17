@@ -4,8 +4,6 @@ title: jeklly-note
 ---
 
 date
-{% highlight ruby  linenos %}
-
 {{ site.time | date_to_string }}
 
 number of words
@@ -31,6 +29,5 @@ note that linenos is optional, which will force the highlighted code to include 
 
 
 post url
-###
 [Name of Link]
-{% endhighlight %}
+

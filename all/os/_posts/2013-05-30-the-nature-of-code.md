@@ -1,6 +1,6 @@
 ---
-layout:post
-title :the nature of code learning
+layout: post
+title: the nature of code learning
 ---
 
 ###The nature of code###
