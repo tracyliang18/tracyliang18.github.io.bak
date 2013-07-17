@@ -1,0 +1,2745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>4xFlavor</title>
+ <link href="http://tracyliang.github.com/atom.xml" rel="self"/>
+ <link href="http://tracyliang.github.com/"/>
+ <updated>2013-07-17T15:34:57+08:00</updated>
+ <id>http://danhixon.github.com/</id>
+ <author>
+   <name>tracyliang-(jiajun liang)</name>
+   <email>tracyliang18@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>python attributes and methods</title>
+   <link href="http://tracyliang.github.com/all/os/2013/06/15/Python-Attributes-and-Methods.html"/>
+   <updated>2013-06-15T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/06/15/Python-Attributes-and-Methods</id>
+   <content type="html">&lt;p&gt;
+一直以来用python都是边查边用，而且都是用在日常的小脚本而已，用过写过一个计算机网络的课程设计，感觉蛮爽，但一直都是感觉处于这种不熟练、不精通的感觉。
+
+最近在看python实现的design pattern代码，上述的缺点马上无所遁形。上一个visitor模式代码：
+&lt;/P&gt;
+&lt;pre class=&quot;python&quot; name=&quot;code&quot;&gt;
+class Node(object): pass
+class A(Node): pass
+class B(Node): pass
+class C(A,B): pass
+
+class Visitor(object):
+    def visit(self, node, *args, **kwargs):
+        meth = None
+        for cls in node.__class__.__mro__:
+            meth_name = 'visit_'+cls.__name__
+            meth = getattr(self, meth_name, None)
+            if meth:
+                break
+
+        if not meth:
+            meth = self.generic_visit
+        return meth(node, *args, **kwargs)
+
+    def generic_visit(self, node, *args, **kwargs):
+        print('generic_visit '+node.__class__.__name__)
+
+    def visit_B(self, node, *args, **kwargs):
+        print('visit_B '+node.__class__.__name__)
+        
+
+
+
+a = A()
+b = B()
+c = C()
+visitor = Visitor()
+visitor.visit(a)
+visitor.visit(b)
+visitor.visit(c)
+ &lt;/pre&gt;
+
+&lt;pre class=&quot;python&quot; name=&quot;code&quot;&gt;&lt;code&gt;
+print &quot;hello&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre class=&quot;bash&quot; name=&quot;code&quot;&gt;
+cd abc
+echo avc
+diff a, v
+&lt;/pre&gt;
+vistor 模式，举个好理解的例子：
+习总要到不同国家访问，所用的外交策略肯定是不一样的，在美国面前就是小熊维尼，在日本面前就是绿巨人。不同国家有相应的一套东西迎接中国来访。
+
+从程序设计的角度去理解，习总这个对象，拥有访问不同国家的方法，而各国有一个名为accpet的方法去接待习总，当然具体实现肯定不一样啦。把各个国家对象合并到一个对象集，把习总这个对象传到这个对象集里，即实现visitor模式。
+
+其实上述的东西很好理解，（设计模式的东西都很好理解，只是在恰当的时机恰好地选择运用恰当的模式，很难），但我看到诸如node.__class__.__mro__，cls.__name__这样的设计到python自带属性和方法，就感觉自己真的一点都不懂python。。
+
+( python attributes and methods)[http://www.cafepy.com/article/python_attributes_and_methods/python_attributes_and_methods.html]
+
+看上去是个不错的教程，先看看。。稍后更新
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Prose Io</title>
+   <link href="http://tracyliang.github.com/all/rails/2013/06/13/prose-io.html"/>
+   <updated>2013-06-13T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2013/06/13/prose-io</id>
+   <content type="html">&lt;h2 id='proseio_for_static_github_sites'&gt;Prose.io for Static github Sites&lt;/h2&gt;
+
+&lt;p&gt;This is a jekyll blog. I&amp;#8217;m composing this post at &lt;a href='http://prose.io/'&gt;prose.io&lt;/a&gt;. I&amp;#8217;m not even sure if I&amp;#8217;m doing it correctly but if you are reading this I eventually figured it out.&lt;/p&gt;
+
+&lt;p&gt;Prose lets you auth with github and edit your content. It&amp;#8217;s a little bit like working in a CMS like wordpress but with all the benefits of a statically generated site. I suppose once I save and publish this post it&amp;#8217;ll get commited to my repository and the jekyll site generation will happen.&lt;/p&gt;
+
+&lt;p&gt;Here goes nothing&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;Ok, I clicked &amp;#8220;Unpublished&amp;#8221; and it changed to &amp;#8220;Published&amp;#8221; - I checked github and didn&amp;#8217;t see anything - then I clicked the icon of the floppy disk to save. It prompted me for a commit message and now I see it on github.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>the nature of code learning</title>
+   <link href="http://tracyliang.github.com/all/os/2013/05/30/the-nature-of-code.html"/>
+   <updated>2013-05-30T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/05/30/the-nature-of-code</id>
+   <content type="html">&lt;p&gt;h2. the nature of code learning p(publish_date). 17 Jul 2013&lt;/p&gt;
+
+&lt;h2 id='the_nature_of_code'&gt;The nature of code&lt;/h2&gt;
+
+&lt;p&gt;今天想动手开始动手课程论文《自然里的数据结构》，不经意间找到了这本好书&lt;/p&gt;
+
+&lt;p&gt;《the nature of code》&lt;/p&gt;
+
+&lt;p&gt;本书不是《代码的本质》，然是讲述怎样用code去实现一些自然现象，诸如force力，oscillation震动，NN神经网络等。该书免费发布于(the nature of code)&lt;span&gt;http://natureofcode.com/book/chapter-1-vectors/&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;本文讲持续更新，一共十章，希望能用python 和 C将书本的例子实现。&lt;/p&gt;
+
+&lt;p&gt;stay foolish。&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>open source game!</title>
+   <link href="http://tracyliang.github.com/all/os/2013/05/28/open-source-game.html"/>
+   <updated>2013-05-28T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/05/28/open-source-game</id>
+   <content type="html">&lt;p&gt;在hacker news上看到这个post&lt;a href='http://osgameclones.com/'&gt;open source game&lt;/a&gt;, 各种语言的开源游戏都有涉及，其中不乏经典游戏如超级玛丽、Quake3等，游戏迷&amp;amp;code farmer 实在不容错过。&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>mdtest</title>
+   <link href="http://tracyliang.github.com/all/os/2013/05/26/mdtest.html"/>
+   <updated>2013-05-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/05/26/mdtest</id>
+   <content type="html">&lt;h3 id='vim_history_config'&gt;vim history config&lt;/h3&gt;
+
+&lt;h2 id='ctrlr'&gt;相对于ctrl+r,我觉得这个命令历史配置更好用&lt;/h2&gt;
+
+&lt;p&gt;在home下创建.inputrc, 内容如下： &lt;script src='https://gist.github.com/5641543.js'&gt; &lt;/script&gt;&lt;/p&gt;
+
+&lt;h4 id='26_may_2013'&gt;26 May 2013&lt;/h4&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>jeklly-note</title>
+   <link href="http://tracyliang.github.com/all/os/2013/05/26/jeklly-note.html"/>
+   <updated>2013-05-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/05/26/jeklly-note</id>
+   <content type="html">&lt;p&gt;date 17 Jul 2013&lt;/p&gt;
+
+&lt;p&gt;number of words&lt;/p&gt;
+
+&lt;p&gt;67&lt;/p&gt;
+
+&lt;p&gt;listing tags&lt;/p&gt;
+
+&lt;p&gt;#&lt;/p&gt;
+
+&lt;h4 id='small_tags'&gt;small tags&lt;/h4&gt;
+
+&lt;p&gt;note that sig.md should be in the main_dir/_include&lt;/p&gt;
+
+&lt;p&gt;programming language highlight&lt;/p&gt;
+&lt;div&gt;
+    &lt;pre&gt;&lt;code class='ruby'&gt;def foo
+  puts 'foo'
+end&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;p&gt;note that linenos is optional, which will force the highlighted code to include line numbers&lt;/p&gt;
+
+&lt;p&gt;post url &lt;span&gt;Name of Link&lt;/span&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>你好，世界</title>
+   <link href="http://tracyliang.github.com/all/os/2013/05/26/hello-world.html"/>
+   <updated>2013-05-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/05/26/hello-world</id>
+   <content type="html">&lt;h2&gt;你好，世界&lt;/h2&gt;
+
+&lt;p&gt;我的第一篇文章&lt;/p&gt;
+
+&lt;p&gt;26 May 2013&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>git-command</title>
+   <link href="http://tracyliang.github.com/all/os/2013/05/26/git-command.html"/>
+   <updated>2013-05-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/05/26/git-command</id>
+   <content type="html">&lt;p&gt;git 版本控制命令&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;git checkout -b iss53&lt;/p&gt;
+
+&lt;p&gt;等价与两条命令：git branch iss53 //先创建分支&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            git checkout iss53 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git commit -a -m &amp;#8216;修改的说明&amp;#8217;&lt;/p&gt;
+
+&lt;p&gt;等价于两条命令：git add &lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt; //&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            git commit -m &amp;#39;修改的说明&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git branch //显示有哪些分支&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git checkout master //切换到master分支&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git merge **** //合并分支&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git status //显示信息&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git fetch origin //同步远程服务器上的数据到本地&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git push origin serverfix //将serverfix的分支上传到origin中，格式：git push （远程仓库名） （分支名）&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git push origin serverfix:serferfix //上传我本地的 serverfix 分支到远程仓库中去，仍旧称它为 serverfix 分支&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git push origin serverfix:awesomebranch //你可以把本地分支推送到某个命名不同的远程分支，可以把远程分支称之为 awesomebranch&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;上传code的步骤：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     （1） git clone jessica@githost:simplegit.git
+
+     （2） git commit -a -m ‘变化的信息’
+
+     （3） git push origin master
+
+          当push出错时：
+
+          git fetch origin //更新资源
+
+          git merge origin/master //合并分支
+
+          git push master&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;本地的分支是master，服务器的分支名是origin/master&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git log //显示提交历史&lt;/p&gt;
+
+&lt;p&gt;等价与gitk&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;git diff 13432 23hu //比较两次提交的不同&lt;/p&gt;
+
+&lt;p&gt;其中图形化安装方法： （1）下载P4Merge：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                    http://www.perforce.com/perforce/downloads/component.html&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;（2） 在/usr/local/bin/目录下新建一个extMerge的脚本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;                        $ sudo vim /usr/local/bin/extMerge
+
+                    在脚本中输入以下内容：
+
+                        #!/bin/sh
+
+                        /home/amlogic/p4v-2011.1.428988/bin/p4merge $*
+
+                (3) 在/usr/local/bin/目录下新建一个extDiff的脚本：
+
+                       $ sudo vim /usr/local/bin/extDiff 
+
+                    脚本输入以下内容：
+
+                       #!/bin/sh
+
+                       [ $# -eq 7 ] &amp;amp;&amp;amp; /usr/local/bin/extMerge &amp;quot;$2&amp;quot; &amp;quot;$5&amp;quot;
+
+                （4）确认这两个脚本是可执行的：
+
+                       $ sudo chmod +x /usr/local/bin/extMerge 
+
+                       $ sudo chmod +x /usr/local/bin/extDiff
+
+                （5）现在来配置使用你自定义的比较和合并工具吧。这需要许多自定义设置：merge.tool通知 Git 使用哪个合并工具；mergetool.*.cmd规定命令运行的方式；       
+
+                    mergetool.trustExitCode 会通知 Git 程序的退出是否指示合并操作成功；diff.external通知 Git 用什么命令做比较。因此，你能运行以下4条配置命令：
+
+                      $ git config --global merge.tool extMerge
+
+                      $ git config --global mergetool.extMerge.cmd \
+
+                        &amp;#39;extMerge &amp;quot;$BASE&amp;quot; &amp;quot;$LOCAL&amp;quot; &amp;quot;$REMOTE&amp;quot; &amp;quot;$MERGED&amp;quot;&amp;#39;
+
+                      $ git config --global mergetool.trustExitCode false
+
+                      $ git config --global diff.external extDiff
+
+                    或者直接编辑~/.gitconfig文件如下：
+
+                      [merge]
+
+                           tool = extMerge
+
+                      [mergetool &amp;quot;extMerge&amp;quot;]
+
+                       cmd = extMerge &amp;quot;$BASE&amp;quot; &amp;quot;$LOCAL&amp;quot; &amp;quot;$REMOTE&amp;quot; &amp;quot;$MERGED&amp;quot;
+
+                       trustExitCode = false
+
+                      [diff]
+
+                           external = extDiff
+
+                 （6） 设置完毕后，运行diff命令：
+
+                      $ git diff 32d1776b1^ 32d1776b1&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>How (Phone) times have changed</title>
+   <link href="http://tracyliang.github.com/all/os/2013/04/03/phone-times-have-changed.html"/>
+   <updated>2013-04-03T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2013/04/03/phone-times-have-changed</id>
+   <content type="html">&lt;h2&gt;How (Phone) times have changed&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;04 Sep 2013&lt;/p&gt;
+
+&lt;p&gt;He pulled a phone from his pocket and held it up for me to see. An iPhone. &lt;em&gt;His&lt;/em&gt; iPhone.&lt;/p&gt;
+
+&lt;p&gt;&quot;Oh no! I'm so sorry,&quot; I commiserated. My brother loved his blackberry and loved the attention he got for loving it. He loves underdogs. And the Lakers from the 80's. His wife, daughter, son all had iPhones but he would not.&lt;/p&gt;
+
+&lt;p&gt;He works at a specialized construction firm with a few hundred employees. IT wanted to pull the plug on the blackberry server. They forced the remaining two blackberry holdouts into iPhones. How times have changed.&lt;/p&gt;
+
+&lt;p&gt;We can only hope that his Zune keeps working forever. He loves it.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Updated Photography Blog</title>
+   <link href="http://tracyliang.github.com/all/life/2013/03/13/new-photo-blog.html"/>
+   <updated>2013-03-13T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2013/03/13/new-photo-blog</id>
+   <content type="html">&lt;h2&gt;Updated Photography Blog&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;13 Mar 2013&lt;/p&gt;
+
+&lt;p&gt;Decided to give squarespace a try for my new photography blog:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.shotbydan.com&quot;&gt;Dan Hixon Photography Blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;So far so good. As a web developer It's tough paying for a service like this but I'm trying to let that angst parlay into more motivation to blog.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Steep Learning Curve</title>
+   <link href="http://tracyliang.github.com/all/life/2012/03/26/steep-learning-curve-is-a-misnomer.html"/>
+   <updated>2012-03-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2012/03/26/steep-learning-curve-is-a-misnomer</id>
+   <content type="html">&lt;h2&gt;Steep Learning Curve&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;26 Mar 2012&lt;/p&gt;
+
+&lt;p&gt;Steep Hills are hard to climb. Things which are difficult to learn are often said to have a &quot;steep learning curve.&quot; This is a misnomer but I may be fighting a losing battle.&lt;/p&gt;
+
+&lt;p&gt;Learning curves are drawn with proficiency on the y-axis and time on the x-axis. Learning isn't automatic so it might help to think of time as &quot;time and effort spent on learning&quot;.&lt;/p&gt;
+
+&lt;p&gt;A good example to internalize how a learning curve works is to imagine learning a foreign langauge. At first you just learn phrases and vocabulary words. After a while you are able to use more and more of what you learn - soon you'll be recognizing patterns which will help you become more proficient faster. After a few years (or decades!) you'll run out of things to learn.&lt;/p&gt;
+
+&lt;img src=&quot;/images/learning-curves.jpg&quot; style=&quot;width:426px;height:260px;border:solid 9px #e3e3e3;&quot; /&gt;
+
+&lt;p&gt;The orange curve represents the learning curve for something that can be learned quickly. It is steeper than the other curves because proficiency increases more quickly.&lt;/p&gt;
+
+&lt;p&gt;While I consider the phrase &quot;steep learning curve&quot; to be a technical misnomer I'm afraid it's usage is so common that it is too late for a fight.  I may as well be trying to get people to use the word &quot;virtual&quot; to mean &quot;actual.&quot;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>PGError Unable to connect on port 5432</title>
+   <link href="http://tracyliang.github.com/all/rails/2011/09/16/pgerror-unable-to-connect-on-port-5432.html"/>
+   <updated>2011-09-16T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2011/09/16/pgerror-unable-to-connect-on-port-5432</id>
+   <content type="html">&lt;h2&gt;PGError Unable to connect on port 5432&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;16 Sep 2011&lt;/p&gt;
+
+&lt;p&gt;
+	I've been bit by this a few times recently and I think this time I understand it.
+&lt;/p&gt;
+&lt;p&gt;
+	I use &lt;a href=&quot;https://github.com/mxcl/homebrew&quot;&gt;homebrew&lt;/a&gt; to install postgresql and it usually just works. I think what has happened to me is sometimes when my machine is not gracefully shut down the .pid file doesn't get removed and keeps postgres from launching on its own. My .pid is located here: /usr/local/var/postgres/postmaster.pid. Just make sure postgres is not running, remove the file, and launch it again.
+&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot;&gt;$ launchctl load -w ~/Library/LaunchAgents/org.postgresql.postgres.plist
+$ rm /usr/local/var/postgres/postmaster.pid
+$ launchctl load -w ~/Library/LaunchAgents/org.postgresql.postgres.plist&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>SlideShowPro Director Ruby API Wrapper</title>
+   <link href="http://tracyliang.github.com/all/rails/2011/02/07/slideshowpro-director-ruby-wrapper.html"/>
+   <updated>2011-02-07T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2011/02/07/slideshowpro-director-ruby-wrapper</id>
+   <content type="html">&lt;h2&gt;SlideShowPro Director Ruby API Wrapper&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;07 Feb 2011&lt;/p&gt;
+
+&lt;p&gt;I just released a ruby api wrapper for SlideShowPro Director. The gem is called &lt;a href=&quot;http://github.com/danhixon/slideshowpro&quot;&gt;SlideShowPro&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Just install:
+&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot; name=&quot;code&quot;&gt;
+  $ gem install slideshowpro
+&lt;/pre&gt;
+&lt;p&gt;
+  And use
+&lt;/p&gt;
+&lt;pre class=&quot;ruby&quot; name=&quot;code&quot;&gt;
+  ssp = Slideshowpro::Director.new('http://yoururl.com/api/','your-api-key')
+  # Get a gallery:
+  albums = ssp.get_gallery(gallery_id, :preview=&gt;{:size =&gt; '123x35',:crop =&gt; 1, :quality =&gt; 90})
+  albums.each do |album|
+    puts album['name'] 
+    puts album['id']
+  end
+  # Get an album:
+  album = ssp.get_album(album_id, {:large=&gt;{:size =&gt; '225x350', :crop =&gt; 0, :quality =&gt; 95, :sharpening =&gt; 0}})
+    album.each do |image|
+      puts image[&quot;large&quot;][&quot;url&quot;]
+      puts image[&quot;thumb&quot;][&quot;url&quot;]
+      puts image[&quot;thumb&quot;][&quot;width&quot;]
+      puts image[&quot;thumb&quot;][&quot;height&quot;]
+  end
+&lt;/pre&gt;
+&lt;p&gt;
+  If you are building something in ruby which uses SlideShowPro Director in the back end then this gem is for you.
+&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Brochure: Static Pages Gem</title>
+   <link href="http://tracyliang.github.com/all/rails/2011/01/29/rails-brochure.html"/>
+   <updated>2011-01-29T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2011/01/29/rails-brochure</id>
+   <content type="html">&lt;h2&gt;Rails Brochure: Static Pages Gem&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;29 Jan 2011&lt;/p&gt;
+
+&lt;p&gt;I just extracted a pattern I have been repeating in all of my recent rails applications. The gem is called &lt;a href=&quot;http://github.com/danhixon/rails-brochure&quot;&gt;Rails Brochure&lt;/a&gt; and it's a Rails engine for brochure pages. Similar to High Voltage but with named routes.
+&lt;/p&gt;
+&lt;p&gt;
+  Brochure pages are the semi-static pages like &quot;home&quot;, &quot;about us&quot;, &quot;FAQ&quot;, &quot;pricing&quot;, &quot;contact us&quot;, etc.
+&lt;/p&gt;
+&lt;p&gt;
+  Once installed all you need to do is create template files in your app/views/home folder and it adds named routes to those views.
+&lt;/p&gt;
+&lt;h3&gt;For Example&lt;/h3&gt;
+&lt;pre&gt;
+file path                          accessible at     named route
+views/home/about.html.erb          /about            about_url
+views/home/faq.html.haml           /faq              faq_url
+views/home/about/company.html.erb  /about/company    about_company_url
+&lt;/pre&gt;
+&lt;p&gt;
+  Most of the designers I have worked with really appreciate the power and convenience this provides. They are used to creating HTML or PHP files and having the URLs just work.  This lets them do this with .erb files.  No futzing with routes, controllers etc.
+&lt;/p&gt;
+&lt;p&gt;
+  On an unrelated note I've been building a lot of sinatra apps lately. To get the functionality of the rails-brochure gem in sinatra all you need is:
+&lt;/p&gt;
+&lt;pre&gt;
+# put this at the bottom of your app to make it lowest-priority catch-all route
+get '/*' do
+  erb params[&quot;splat&quot;].to_s.to_sym
+end
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Polymorphism to the Rescue</title>
+   <link href="http://tracyliang.github.com/all/rails/2011/01/12/polymorphism-to-the-rescue.html"/>
+   <updated>2011-01-12T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2011/01/12/polymorphism-to-the-rescue</id>
+   <content type="html">&lt;h2&gt;Polymorphism to the Rescue&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;12 Jan 2011&lt;/p&gt;
+
+&lt;p&gt;The video processing service we used at &lt;a href=&quot;www.spokt.com&quot;&gt;spokt&lt;/a&gt; got acquired by another company and the API changed. I created a code branch and started hacking away.  I have a model &quot;VideoAttachment&quot; which handles sending the encoding request and dealing with the asynchronous completion notification.
+&lt;/p&gt;
+
+&lt;p&gt;
+  It took some time to get all the ducks in a row and just as I was doing some final testing I realized that if I were to deploy my new code all the previously uploaded videos would no longer work. My head started filling with all the conditional logic I'd need to add... like to every method.  Skin crawling. I pulled the previous version of &quot;VideoAttachment&quot; out of the master branch to see what would need to happen... it wasn't going to be pretty. &lt;/p&gt;
+  &lt;p&gt;
+    Luckily I had a crazy idea that turned out to be a very good one: use polymorphism to handle the conditional logic.  I saved the old video_attachment.rb file as legacy_video_attachment.rb, changed the class name then updated the 'type' attribute in the database to LegacyVideoAttachment. And done!
+&lt;/p&gt;
+
+&lt;p&gt;Polymorphism, I think I love you! (You too STI, most of the time).&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>The iPhone Stand that You Already Have</title>
+   <link href="http://tracyliang.github.com/all/os/2010/09/19/iphone-card-stand.html"/>
+   <updated>2010-09-19T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2010/09/19/iphone-card-stand</id>
+   <content type="html">&lt;h2&gt;The iPhone Stand that You Already Have&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;19 Sep 2010&lt;/p&gt;
+
+&lt;p&gt;I've admired many an iPhone stand. I've considered buying several but I knew I wouldn't want to carry them around with me. This morning I woke up and realized that I have a stand already. I almost always have it with me—in fact you could say that I “never leave home without it.”
+&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;img src=&quot;/images/iphone_card_stand_front.jpg&quot; alt=&quot;iphone stand&quot; /&gt;
+  &lt;img src=&quot;/images/iphone_card_stand_back.jpg&quot; alt=&quot;iphone stand&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That's right! You can just shove a credit card, gift card, blood donor card, etc. up into the bumper and it stands.
+&lt;/p&gt;
+
+&lt;p&gt;Disclaimer: You need a bumper case. It's a little fragile.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>jQuery Image Comparison</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/09/09/image-comparisons.html"/>
+   <updated>2010-09-09T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/09/09/image-comparisons</id>
+   <content type="html">&lt;h2&gt;jQuery Image Comparison&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;09 Sep 2010&lt;/p&gt;
+
+&lt;p&gt;I just created a silly jQuery plugin to compare two images for my &lt;a href=&quot;/all/os/2010/09/09/hdr-image-compare.html&quot;&gt;HDR comparison post&lt;/a&gt;.  All it does is toggle which image is visible in a container on mouseover/mouseout. It's not really the most useful behavior imagined - I guess I wrote it more of a showcase of how easy it is to author jQuery plugins. You can see a working demonstration &lt;a href=&quot;/all/os/2010/09/09/hdr-image-compare.html&quot;&gt; here&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;To use it just put two images in a container and call compare() on the selector:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+  &amp;lt;div class=&amp;quot;compare&amp;quot;&amp;gt;               
+    &amp;lt;img src=&amp;quot;/images/photos/IMG_0805.JPG&amp;quot; alt=&amp;quot;Regular&amp;quot; /&amp;gt;
+    &amp;lt;img src=&amp;quot;/images/photos/IMG_0806.JPG&amp;quot; alt=&amp;quot;HDR&amp;quot; /&amp;gt;
+  &amp;lt;/div&amp;gt;
+&lt;/pre&gt;
+&lt;pre name=&quot;code&quot; class=&quot;JScript&quot;&gt;
+  $(document).ready(function(){
+    $('.compare').compare();
+  });
+&lt;/pre&gt;
+
+&lt;p&gt;Here is the plugin code:
+&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;JScript&quot;&gt;
+  (function($){ 
+  	$.fn.compare = function(options)
+  	{
+  		$(this).each(function(index, one){
+  			var first = $(one).find('img:first');
+  			var other = $(one).find('img:last');
+
+  			//Hide all but the first:
+  			$(one).find('img').hide();
+  			first.show();
+
+  			$(one).mouseover(function(){
+  				first.hide();
+  				other.show();
+  			}).mouseout(function(){
+  				other.hide();
+  				first.show();
+  			});
+  		});
+
+  	}
+  })(jQuery);
+&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&quot;/javascripts/jquery.compare.js&quot;&gt;Download Code&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>iPhone HDR Photo Comparison</title>
+   <link href="http://tracyliang.github.com/all/os/2010/09/09/hdr-image-compare.html"/>
+   <updated>2010-09-09T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2010/09/09/hdr-image-compare</id>
+   <content type="html">&lt;h2&gt;iPhone HDR Photo Comparison&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;09 Sep 2010&lt;/p&gt;
+
+&lt;p&gt;I upgraded my phone to iOS 4.1 yesterday excited to check out the HDR performance.  Here are some terribly boring comparative shots. Move your mouse over to compare.
+&lt;/p&gt;
+
+&lt;div class=&quot;compare&quot;&gt;
+  &lt;img src=&quot;/images/photos/IMG_0803.JPG&quot; alt=&quot;Regular&quot; /&gt;
+  &lt;img src=&quot;/images/photos/IMG_0804.JPG&quot; alt=&quot;HDR&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+  There is more detail in both the shadows and the highlights. Above the text is sharper in the regular photo.
+&lt;/p&gt;       
+&lt;div class=&quot;compare&quot;&gt;               
+  &lt;img src=&quot;/images/photos/IMG_0805.JPG&quot; alt=&quot;Regular&quot; /&gt;
+  &lt;img src=&quot;/images/photos/IMG_0806.JPG&quot; alt=&quot;HDR&quot; /&gt;
+&lt;/div&gt;                              
+&lt;div class=&quot;compare&quot;&gt;               
+  &lt;img src=&quot;/images/photos/IMG_0807.JPG&quot; alt=&quot;Regular&quot; /&gt;
+  &lt;img src=&quot;/images/photos/IMG_0808.JPG&quot; alt=&quot;HDR&quot; /&gt;
+&lt;/div&gt;                              
+&lt;div class=&quot;compare&quot;&gt;               
+  &lt;img src=&quot;/images/photos/IMG_0809.JPG&quot; alt=&quot;Regular&quot; /&gt;
+  &lt;img src=&quot;/images/photos/IMG_0810.JPG&quot; alt=&quot;HDR&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+  It's not perfect but pretty impressive and very cool. I think comparing the HDR versions to the regular version is cool but I'll post some comparisons with my wife's Powershot to see how HDR on the iPhone stacks up to a dedicated compact camera.
+&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/javascripts/jquery.compare.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(document).ready(function(){
+    $('.compare').compare();
+  });
+&lt;/script&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Bundler Exec Tip</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/07/22/bundler-exec-tip.html"/>
+   <updated>2010-07-22T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/07/22/bundler-exec-tip</id>
+   <content type="html">&lt;h2&gt;Bundler Exec Tip&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;22 Jul 2010&lt;/p&gt;
+
+&lt;p&gt;Bundler is very cool. The only drawback is that for executable gems like cucumber you need to type in &quot;bundle exec cucumber.&quot; So I added this alias to my ~/.bash_login file:
+&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot; name=&quot;code&quot;&gt;
+  alias cuc='bundle exec cucumber -r features $1'
+&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Cropping with Paperclip and the S3</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/07/15/crop-paperclip-s3.html"/>
+   <updated>2010-07-15T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/07/15/crop-paperclip-s3</id>
+   <content type="html">&lt;h2&gt;Cropping with Paperclip and the S3&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;15 Jul 2010&lt;/p&gt;
+
+&lt;p&gt;Paperclip is good. I pulled my hair out for several hours over this issue though.  I had successfully implemented the custom cropping technique as demonstrated in &lt;a href=&quot;http://railscasts.com/episodes/182-cropping-images&quot;&gt;railscast #182&lt;/a&gt; but when I tried storing my images on the s3 I ran into a couple issues.  The first was retrieving the image geometry. Instead of reading the geometry from the file I chose to read it out of the data we declare :styles option of the has_attached_file macro. This works for all but the original image - for that I use open-uri. It is probably pre-optimization but I didn't want to download every version just to find out their dimensions.  My geometry methods look like this:
+&lt;/p&gt;
+
+&lt;pre class=&quot;ruby&quot; name=&quot;code&quot;&gt;
+  require 'open-uri'
+  
+  def avatar_geometry(style=:large)
+    return file_geometry if style == :original
+    w, h = avatar.options[:styles][style].gsub(&quot;#&quot;,&quot;&quot;).split(&quot;x&quot;)
+    Paperclip::Geometry.new(w, h)
+  end
+  def file_geometry
+    @geometry ||= {}
+    @geometry[avatar.url] ||= Paperclip::Geometry.from_file(open(avatar.url))
+  end
+&lt;/pre&gt;
+&lt;p&gt;
+  My next issue manifested itself by not working and this error message appearing in my logs.
+&lt;/p&gt;
+&lt;pre&gt;
+  paperclip No such file or directory @ blob.c/OpenBlob
+&lt;/pre&gt;
+&lt;p&gt;
+  I spent several hours searching for solutions but nothing came up. I started brute-force debugging where you start changing things just to see what makes a difference. It turns out I don't understand why the change I made that fixed the problem but for now I'm happy with a solution.
+&lt;/p&gt;
+
+&lt;p&gt;
+  As I was messing with the transformation_command method of the Cropper processor I noticed that the super class implementation returns an array. The version from railscasts joins the array then substitutes the crop dimensions for our new dimensions. Returning a string works when the files are stored locally but I tried splitting it back into an array and it totally works. I don't know why!
+&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  def transformation_command
+    if crop_command
+      cmd = crop_command + super.join(&quot; &quot;).sub(/ -crop \S+/, '')
+      cmd.split(&quot; &quot;)
+    else
+      super
+    end
+  end
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Old Spice Success Explained</title>
+   <link href="http://tracyliang.github.com/all/life/2010/07/14/old-spice-success.html"/>
+   <updated>2010-07-14T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2010/07/14/old-spice-success</id>
+   <content type="html">&lt;h2&gt;Old Spice Success Explained&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;14 Jul 2010&lt;/p&gt;
+&lt;p&gt;I, like everyone, love the new spicy Old Spice commercials and the old and new kinds of spice they commercialize into my life.&lt;/p&gt;
+&lt;p&gt;What makes these short videos so delightful?&lt;/p&gt;
+&lt;p&gt;To help explain the success of this successful phenomenal phenomenon I&amp;#8217;ve helpfully created this helpful &lt;span class=&quot;caps&quot;&gt;EXPLODED&lt;/span&gt; &lt;span class=&quot;caps&quot;&gt;PIE&lt;/span&gt; &lt;span class=&quot;caps&quot;&gt;CHART&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/old_spice_success.jpg&quot; title=&quot;Old Spice Success Explained&quot; alt=&quot;Old Spice Success Explained&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Here is the breakdown:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;10% effects&lt;/li&gt;
+	&lt;li&gt;5% props&lt;/li&gt;
+	&lt;li&gt;20% script&lt;/li&gt;
+	&lt;li&gt;35% delivery&lt;/li&gt;
+	&lt;li&gt;46% abs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&amp;#8217;s right: 116% awesome!&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Hintify: A small jQuery Plugin</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/07/13/hintify-a-small-jquery-plugin.html"/>
+   <updated>2010-07-13T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/07/13/hintify-a-small-jquery-plugin</id>
+   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/javascripts/jquery.hintify.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+  $(document).ready(function(){
+    $('input[data-hint-text]').addClass('hinter');
+    $('.hinter').hintify();
+    $('form').submit(function(){
+      alert('Any fields that had hint text are now empty. I will put the hints back in now.');
+      // normally you wouldn't fill the fields back in 
+      // but it seems appropriate for the demo
+      $('.hinter').blur();
+      return false
+    });
+  });
+&lt;/script&gt;
+
+&lt;style&gt;
+  input.hinter { color: #666; }
+  input.hinter.filled { color:#000; }
+&lt;/style&gt;
+
+&lt;h2&gt;Hintify: A small jQuery Plugin&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;13 Jul 2010&lt;/p&gt;
+
+&lt;div&gt;I just published a jQuery plugin to github called &lt;a href=&quot;http://github.com/danhixon/hintify&quot;&gt;hintify.&lt;/a&gt;
+&lt;/div&gt;
+&lt;p&gt;
+Hintify is a simple jQuery plugin that makes it easy to add helper texts inside of form inputs. When the user clicks into the field the text disappears and allows the user to type whatever he or she wants. If nothing is typed and the user leaves the field by clicking somewhere else the hint text reappears.
+&lt;/p&gt;
+&lt;h3&gt;Demo&lt;/h3&gt;
+&lt;div&gt;
+  &lt;form&gt;
+    &lt;div&gt;
+      &lt;label for=&quot;city_name&quot;&gt;City:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;city[name]&quot; data-hint-text=&quot;Phoenix&quot; id=&quot;city_name&quot; /&gt;
+      &lt;label for=&quot;city_population&quot;&gt;Population:&lt;/label&gt; &lt;input type=&quot;text&quot; name=&quot;city[population]&quot; data-hint-text=&quot;20 million&quot; id=&quot;city_population&quot; /&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;Test Form&quot;&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;div&gt;
+  Stuff to try:
+  &lt;ul&gt;
+    &lt;li&gt;On focus: Hint disappears and the &quot;hint&quot; class is removed.&lt;/li&gt;
+    &lt;li&gt;Leave and it comes back.&lt;/li&gt; 
+    &lt;li&gt;Type and the text is black instead of gray.&lt;/li&gt;
+    &lt;li&gt;Leave the field and what you typed stays there.&lt;/li&gt;
+    &lt;li&gt;Delete it all and leave then the hint text comes back.&lt;/li&gt;
+    &lt;li&gt;Submit the form and the hints are cleared out first.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;Once you've got the scripts included and the styles to your liking it is super easy to add hints to any text inputs. The biggest limitation I've found with this approach is that it won't work on password fields.&lt;/p&gt;
+&lt;h3&gt;Code for Demo&lt;/h3&gt;
+&lt;pre&gt;
+  &amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+  &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src=&amp;quot;/javascripts/jquery.hintify.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+    $(document).ready(function(){
+      $(&amp;#x27;input[data-hint-text]&amp;#x27;).addClass(&amp;#x27;hinter&amp;#x27;);
+      $(&amp;#x27;.hinter&amp;#x27;).hintify();
+      $(&amp;#x27;form&amp;#x27;).submit(function(){
+        alert(&amp;#x27;Any fields that had hint text are now empty&amp;#x27;);
+        // normally you wouldn&amp;#x27;t fill the fields back in 
+        // but it seems appropriate for the demo
+        $(&amp;#x27;.hinter&amp;#x27;).blur();
+        return false
+      });
+    });
+  &amp;lt;/script&amp;gt;
+  &amp;lt;style&amp;gt;
+    input.hinter { color: #666; }
+    input.hinter.filled { color:#000; }
+  &amp;lt;/style&amp;gt;
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+  &amp;lt;form&amp;gt;
+    &amp;lt;div&amp;gt;
+      City: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;city[name]&amp;quot; data-hint-text=&amp;quot;Phoenix&amp;quot; /&amp;gt;
+      Population: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;city[population]&amp;quot; data-hint-text=&amp;quot;20 million&amp;quot; /&amp;gt;
+      &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Test Form&amp;quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/form&amp;gt;
+  &amp;lt;/body&amp;gt;
+  &amp;lt;/html&amp;gt;
+&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Pass variable from template to view</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/06/30/pass-variable-from-template-to-view.html"/>
+   <updated>2010-06-30T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/06/30/pass-variable-from-template-to-view</id>
+   <content type="html">&lt;h2&gt;Pass variable from template to view&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;30 Jun 2010&lt;/p&gt;
+
+&lt;p&gt;Maybe I'm missing a code smell but I needed to pass a variable from my template to my view.  The template renders a very generic form and I wanted to add a field to it from my view.  I wanted the code to look something like this:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  &amp;lt;% render :layout =&amp;gt; &amp;#x27;/layouts/confirm&amp;#x27;,
+            :locals =&amp;gt; { :entity =&amp;gt; @voucher } do |f| %&amp;gt;
+      &amp;lt;%= f.input :redeemed_by, :label=&amp;gt;&amp;quot;Voucher Used By&amp;quot;  %&amp;gt;
+  &amp;lt;% end %&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;I'm using formtastic and the |f| coming down the chute is meant to be the formtastic form builder object.&lt;/p&gt;
+
+&lt;p&gt;I tried adding a yield to my layout file like this:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  &amp;lt;% semantic_form_for(entity) do |f| %&amp;gt;
+    &amp;lt;%= yield f %&amp;gt;
+    &amp;lt;% f.buttons do %&amp;gt;
+      &amp;lt;%= submit_tag &amp;quot;Confirm&amp;quot; %&amp;gt;
+      &amp;lt;%= submit_tag &amp;quot;Cancel&amp;quot;, :name =&amp;gt; &amp;quot;cancel&amp;quot;, :class=&amp;gt;&amp;quot;submit-other&amp;quot; %&amp;gt;
+    &amp;lt;% end  %&amp;gt;
+  &amp;lt;% end %&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;That resulted in this error message:&lt;/p&gt;
+&lt;pre&gt;
+  `@content_for_#&amp;lt;Formtastic::SemanticFormBuilder:0x10ae6b490&amp;gt;' is not allowed as an instance variable name
+&lt;/pre&gt;
+&lt;p&gt;So, after about an hour of searching and reading I tried to figure out how to turn the entire layout file into a helper method.  That didn't look like something I wanted to do.  Then I started, as I said to my boss, &quot;typing in random crap&quot; and found something that worked:&lt;/p&gt;
+&lt;h3&gt;Layout:&lt;/h3&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  &amp;lt;% semantic_form_for(entity) do |f| %&amp;gt;
+    &amp;lt;%= yield :ignore, f %&amp;gt;
+    &amp;lt;% f.buttons do %&amp;gt;
+      &amp;lt;%= submit_tag &amp;quot;Confirm&amp;quot; %&amp;gt;
+      &amp;lt;%= submit_tag &amp;quot;Cancel&amp;quot;, :name =&amp;gt; &amp;quot;cancel&amp;quot;, :class=&amp;gt;&amp;quot;submit-other&amp;quot; %&amp;gt;
+    &amp;lt;% end  %&amp;gt;
+  &amp;lt;% end %&amp;gt;
+&lt;/pre&gt;
+&lt;h3&gt;View:&lt;/h3&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  &amp;lt;% render :layout =&amp;gt; &amp;#x27;/layouts/confirm&amp;#x27;,
+            :locals =&amp;gt; { :entity =&amp;gt; @voucher } do |ignore, f| %&amp;gt;
+      &amp;lt;%= f.input :redeemed_by, :label=&amp;gt;&amp;quot;Voucher Used By&amp;quot;  %&amp;gt;
+  &amp;lt;% end %&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;TADA!&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Find large files on your linux server</title>
+   <link href="http://tracyliang.github.com/all/os/2010/04/10/find-disk-usage-in-linux.html"/>
+   <updated>2010-04-10T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2010/04/10/find-disk-usage-in-linux</id>
+   <content type="html">&lt;h2&gt;Find large files on your linux server&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;10 Apr 2010&lt;/p&gt;
+
+&lt;p&gt;If you want to know which directories are using up your disk space try this command:&lt;/p&gt;
+&lt;pre&gt;
+  $ cd /
+  $ du -s -m *
+  6	bin
+  5	sbin
+  1	srv
+  5	tmp
+  461	usr
+  3407	var
+&lt;/pre&gt;
+
+&lt;p&gt;It will list the number of megabytes reside in each directory (including all sub-directories recursively). You can run the command from anywhere. Thanks to: &lt;a href=&quot;http://www.howtogeek.com/howto/ubuntu/check-your-disk-usage-on-ubuntu-from-the-command-line/&quot;&gt;howtogeek.com&lt;/a&gt;
+&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Cucumber.yml was found, but could not be parsed.</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/04/07/cucumber-yml-could-not-be-parsed.html"/>
+   <updated>2010-04-07T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/04/07/cucumber-yml-could-not-be-parsed</id>
+   <content type="html">&lt;h2&gt;Cucumber.yml was found, but could not be parsed.&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;07 Apr 2010&lt;/p&gt;
+
+&lt;p&gt;Cucumber suddenly stopped working today with this error message:&lt;/p&gt;
+&lt;pre&gt;
+  cucumber.yml was found, but could not be parsed. 
+  Please refer to cucumber's documentation on correct profile usage. 
+&lt;/pre&gt;
+&lt;p&gt;I hadn't changed that file and I couldn't understand what could have caused it to stop working. To troubleshoot I tried parsing the file manually:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+  $ script/console
+  &gt;&gt; e = ERB.new(File.read('config/cucumber.yml'))
+  &gt;&gt; pp e.result
+  &quot;\ndefault: --format pretty features/search.feature:14\nted/features/search.feature:16\n --format rerun --out rerun.txt --strict --tags ~@wip\nwip: --tags @wip:3 --wip features\n&quot;
+&lt;/pre&gt;
+&lt;p&gt;See that extra stuff? That is in the rerun.txt - so I removed it and now I'm back in business.&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+  $ rm rerun.txt
+&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Datetime Stamp for File name in Bash</title>
+   <link href="http://tracyliang.github.com/all/rails/linux/2010/03/31/date-time-stamp-file-name-in-bash.html"/>
+   <updated>2010-03-31T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/linux/2010/03/31/date-time-stamp-file-name-in-bash</id>
+   <content type="html">&lt;h2&gt;Datetime Stamp for File name in Bash&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;31 Mar 2010&lt;/p&gt;
+
+&lt;p&gt;I don't like this entry's title but I was searching for this and it took me a while to find something this simple.&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;bash&quot;&gt;
+#!/usr/bin/env bash
+NOW=`date '+%Y%m%d%H%M%S'`
+cp production.sqlite3 production-backup-$NOW.sqlite3
+echo &quot;production database backed up to db/production-backup-$NOW.sqlite3&quot;
+&lt;/pre&gt;
+
+&lt;p&gt;This simple script will copy the &quot;production.sqlite3&quot; and create a copy named production-backup-20100331074423.sqlite3 or YYYYmmDDHHMMSS.  You can format the date anyway you like.  Read &lt;a href=&quot;http://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/&quot;&gt;here for more info.&lt;/a&gt;
+&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Debugging in Cucumber</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/03/30/debug-in-cucumber.html"/>
+   <updated>2010-03-30T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/03/30/debug-in-cucumber</id>
+   <content type="html">&lt;h2&gt;Debugging in Cucumber&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;30 Mar 2010&lt;/p&gt;
+
+&lt;p&gt;I never used the ruby debugger until today. It is pretty handy in cucumber.&lt;/p&gt;
+
+&lt;p&gt;Step 1: in environments/cucumber.rb&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  config.gem &quot;ruby-debug&quot;
+&lt;/pre&gt;
+&lt;p&gt;Step 2: Install Gem:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+  $ RAILS_ENV=cucumber sudo rake gems:install
+&lt;/pre&gt;
+
+&lt;p&gt;Step 3: Add this step to one of your step files (&lt;a href=&quot;http://technicalpickles.com/posts/debugging-cucumber/&quot;&gt;see technical pickles for more information)&lt;/a&gt;:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  Then 'I debug' do
+    breakpoint
+    0
+  end
+&lt;/pre&gt;
+&lt;p&gt; And then add that step wherever you want:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  Scenario: A Provider should be able to post feedback
+    Given a contract exists
+    And I am on the list contracts page
+    Then I debug
+&lt;/pre&gt;
+
+
+&lt;p&gt;Step 4: Run the step that is giving you grief:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+  $ cucumber features/providers.feature:133
+  Using the default profile...
+  ......[30, 39] in /Users/me/listz/features/step_definitions/contracts_steps.rb
+     30    @another_auction.save
+     31  end
+     32  
+     33  Then /^I debug$/ do
+     34    breakpoint
+  =&gt; 35    0
+     36  end
+  /Users/me/listz/features/step_definitions/contracts_steps.rb:35
+  0
+  (rdb:1) @provider.id
+  1243
+  (rdb:1) continue
+  .......
+
+  1 scenario (1 passed)
+  11 steps (11 passed)
+  0m3.521s
+&lt;/pre&gt;
+
+&lt;p&gt;You have access to everything.  You might want to run a tail -f log/cucumber.log to watch your queries as well.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Brinkster: Get A Clue!</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/03/26/brinkster-mistakes.html"/>
+   <updated>2010-03-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/03/26/brinkster-mistakes</id>
+   <content type="html">&lt;style&gt;
+  .me { color: #FBA919 ;}
+  .him { color: #23AF4C ;}
+  br { padding: 3px;}
+  .me, .him { margin-left:10px;}
+&lt;/style&gt;
+&lt;h2&gt;Brinkster: Get A Clue!&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;26 Mar 2010&lt;/p&gt;
+
+&lt;p&gt;A client registered his domain with Brinkster (who resells godaddy).  I had the displeasure of trying to configure the DNS Settings.&lt;/p&gt;
+
+&lt;p&gt;I tried adding in our name servers but there wasn't really any feedback so I thought I'd try a shortcut and try adding in host records for now.  I clicked the link &quot;reset my domain to use brinkster name servers&quot;. But absolutely nothing observable happened.&lt;/p&gt;
+
+&lt;p&gt;I launched live help and after several minutes &quot;Steve&quot; came online:&lt;/p&gt;
+
+&lt;span class=&quot;him&quot;&gt;Steven:&lt;/span&gt; Hello! Thank you for contacting Brinkster. In order to help you as quickly and efficiently as possible, please provide your Brinkster user name and the password for account verification purposes.&lt;br /&gt;
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; myusername&lt;br /&gt;
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; don't most companies have a policy of NOT asking for password?&lt;br /&gt;
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; I don't want you to know my password&lt;br /&gt;
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; I'm logged into the site already&lt;br /&gt;
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; I'm unable to reset my domain to use Brinkster Name Servers, I click the link and nothing happens&lt;br /&gt;
+&lt;span class=&quot;him&quot;&gt;Steven:&lt;/span&gt; What are you trying to do?&lt;br /&gt;
+
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; I'm trying to reset my domain to use brinkster name servers for domain-x.tld&lt;br /&gt;
+
+&lt;span class=&quot;him&quot;&gt;Steven:&lt;/span&gt; domain-x.tld is already pointed to brinksters name servers&lt;br /&gt;
+
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; is there a way for me to see that? Can I add host records?&lt;br /&gt;
+
+&lt;span class=&quot;him&quot;&gt;Steven:&lt;/span&gt; I can add them for you.&lt;br /&gt;
+
+-- FACE PALM!&lt;br /&gt;
+
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; if i put in nameservers how would I know that they are changed?&lt;br /&gt;
+
+&lt;span class=&quot;him&quot;&gt;Steven:&lt;/span&gt; It can take at least 72 hours for updates to be seen&lt;br /&gt;
+
+&lt;span class=&quot;me&quot;&gt;me:&lt;/span&gt; ok, i'll take care of it&lt;br /&gt;
+&lt;p&gt;-- end of transcript --&lt;/p&gt;
+&lt;p&gt;I'm pretty sure the only way to tell which name servers are being used is by using whois. Sigh.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>JQuery: So Nice - Hint Text for Inputs</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/03/11/jquery-so-nice.html"/>
+   <updated>2010-03-11T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/03/11/jquery-so-nice</id>
+   <content type="html">&lt;h2&gt;JQuery: So Nice - Hint Text for Inputs&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;11 Mar 2010&lt;/p&gt;
+
+&lt;p&gt;I ported this code to jquery.&lt;/p&gt;
+
+&lt;p&gt;Before: &lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;javascript&quot;&gt;
+// Script written by Drew Noakes -- http://drewnoakes.com
+// 14 Dec 2006
+
+var HintClass = &quot;hintTextbox&quot;;
+var HintClass2 = &quot; searchBox&quot;;
+var HintActiveClass = &quot;hintTextboxActive&quot;;
+
+// define a custom method on the string class to trim leading and training spaces
+String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); };
+
+function initHintTextboxes() {
+  var inputs = document.getElementsByTagName('input');
+  for (i=0; i&amp;lt;inputs.length; i++) {
+    var input = inputs[i];
+    if (input.type!=&quot;text&quot;)
+      continue;
+
+    if (input.className.indexOf(HintClass)!=-1) {
+      input.hintText = input.value;
+      input.className = HintClass + HintClass2;
+      input.onfocus = onHintTextboxFocus;
+      input.onblur = onHintTextboxBlur;
+    }
+  }
+}
+
+function onHintTextboxFocus() {
+  var input = this;
+  if (input.value.trim()==input.hintText) {
+    input.value = &quot;&quot;;
+    input.className = HintActiveClass + HintClass2;
+  }
+}
+
+function onHintTextboxBlur() {
+  var input = this;
+  if (input.value.trim().length==0) {
+    input.value = input.hintText;
+    input.className = HintClass + HintClass2;
+  }
+}
+
+window.onload = initHintTextboxes;
+&lt;/pre&gt;
+
+&lt;p&gt;After:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;javascript&quot;&gt;
+// Hint Text ported to JS by Dan Hixon
+// 11 Mar 2010 - just give an input a value and a class of &quot;hinter&quot;
+$(document).ready(function(){
+	$('.hinter')
+		.each(function(){
+			$(this).attr(&quot;hintText&quot;,$(this).val());
+		})
+		.focus(function(){
+			if($(this).val()==$(this).attr(&quot;hintText&quot;))
+				$(this).val('');
+		})
+		.blur(function(){
+		  if($(this).val()==&quot;&quot;)
+			  $(this).val($(this).attr(&quot;hintText&quot;));
+		});
+
+});
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Webhooks and Hookpress</title>
+   <link href="http://tracyliang.github.com/all/rails/2010/01/05/webhooks-and-hookpress.html"/>
+   <updated>2010-01-05T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2010/01/05/webhooks-and-hookpress</id>
+   <content type="html">&lt;h2&gt;Webhooks and Hookpress&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;05 Jan 2010&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Webhooks: so simple you&amp;#8217;ll think they&amp;#8217;re stupid.&lt;br /&gt;
+&lt;span class=&quot;attributed&quot;&gt;&amp;#8212; Jeff Lindsay&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A couple weeks ago we launched blog.spokt.com and we wanted to have links to recent blog posts in the footer at spokt.com (hosted on different servers):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts-in-footer.png&quot; title=&quot;recent blog posts listed in spokt.com footer&quot; alt=&quot;recent blog posts listed in spokt.com footer&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;To accomplish this I created a url at spokt which when accessed would download the blog&amp;#8217;s rss feed, parse it, and store it for later listing.  I then used my nearly-zero wordpress &amp;amp; php experience to create plugin that just curl&amp;#8217;d the url.  Here&amp;#8217;s the plugin code:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;php&quot;&gt;
+	&amp;lt;?php
+
+	function notify_spokt() {
+		$ch = curl_init('http://spokt.com/blog_update');
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt( $ch, CURLOPT_HEADER, 0 );
+		$page = curl_exec($ch);
+		curl_close($ch);
+	}
+
+	add_filter('publish_post','notify_spokt');
+
+	?&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;I thought that this kind of functionality might be useful and considered investigating how to make the url configurable.&lt;/p&gt;
+&lt;p&gt;Yesterday I learned about &lt;a href=&quot;http://www.webhooks.org/&quot;&gt;webhooks&lt;/a&gt; and thought about how I might go about creating a wordpress plugin using the &amp;#8220;hooks&amp;#8221; already built in and exposing them as webhooks. I figured someone probably already had and sure enough: the &lt;a href=&quot;http://wordpress.org/extend/plugins/hookpress/&quot;&gt;hookpress plugin&lt;/a&gt; by Michael 芳貴 Erlewine&lt;/p&gt;
+&lt;p&gt;Once installed Click &amp;#8220;Settings&amp;#8221; in the wp admin then the &amp;#8220;Webhooks&amp;#8221; link. That will bring up an easy-to-use admin interface. Click &amp;#8220;Add webhook&amp;#8221; then choose your action, any fields you want to pass, and enter the url.&lt;/p&gt;
+&lt;p&gt;See Also: &lt;a href=&quot;http://mitcho.com/code/hookpress/&quot;&gt;Useful hookpress screencast by Michael 芳貴 Erlewine&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/hookpress-screenshot.png&quot; title=&quot;easy to use admin interface&quot; alt=&quot;easy to use admin interface&quot; /&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Convert any POP mailbox to IMAP</title>
+   <link href="http://tracyliang.github.com/all/os/2010/01/05/pop-to-imap.html"/>
+   <updated>2010-01-05T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2010/01/05/pop-to-imap</id>
+   <content type="html">&lt;h2&gt;Convert any &lt;span class=&quot;caps&quot;&gt;POP&lt;/span&gt; mailbox to &lt;span class=&quot;caps&quot;&gt;IMAP&lt;/span&gt;&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;05 Jan 2010&lt;/p&gt;
+&lt;p&gt;I have multiple computers and an iPhone.  I use Apple Mail and I want all my email to be synchronized.  I don&amp;#8217;t want to read the same message twice.  My primary account is a gmail account but I have a few other accounts at spokt.com.  The secret to this simple hack is to use wrap your pop mailbox with a gmail account and enable &lt;span class=&quot;caps&quot;&gt;IMAP&lt;/span&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 1: Create a Gmail proxy account.&lt;/h3&gt;
+&lt;p&gt;Invite your &lt;span class=&quot;caps&quot;&gt;POP&lt;/span&gt; account to gmail (or open a new account from scratch)  If you address is bill@lambier.com you could set up bill_lambier@gmail.com.  We&amp;#8217;ll call this the gmail proxy account.&lt;/p&gt;
+&lt;h3&gt;Step 2: Configure Gmail Ready&lt;/h3&gt;
+&lt;ul&gt;
+	&lt;li&gt;Log into gmail account and do the following under &amp;#8220;Settings&amp;#8221;:&lt;/li&gt;
+	&lt;li&gt;Forwarding and &lt;span class=&quot;caps&quot;&gt;POP&lt;/span&gt;/&lt;span class=&quot;caps&quot;&gt;IMAP&lt;/span&gt; &amp;#8211; click &amp;#8220;Enable &lt;span class=&quot;caps&quot;&gt;IMAP&lt;/span&gt;&amp;#8221; and &amp;#8220;Save Changes&amp;#8221;&lt;/li&gt;
+	&lt;li&gt;Change to the &amp;#8220;Accounts and Import&amp;#8221; tab then &amp;#8220;Add POP3 email account&amp;#8221;&lt;/li&gt;
+	&lt;li&gt;Enter your POP3 account info&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Step 3: Setup Account in Mail&lt;/h3&gt;
+&lt;ul&gt;
+	&lt;li&gt;In Mail open preferences (Cmd+,).&lt;/li&gt;
+	&lt;li&gt;Click Accounts&lt;/li&gt;
+	&lt;li&gt;Click the + in the lower-left corner&lt;/li&gt;
+	&lt;li&gt;Enter your gmail address (bill_lambier@gmail.com) and password&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can repeat step 3 on all your devices and you mail will be synchronized.  Plus you can log into the gmail web interface which is good too.  Simple hack, simple pleasures.&lt;/p&gt;
+&lt;h3&gt;Update: Sending Mail isn&amp;#8217;t quite as simple.&lt;/h3&gt;
+&lt;p&gt;I tried configuring gmail to send email as though it were coming from the &lt;span class=&quot;caps&quot;&gt;POP&lt;/span&gt; account.  It works from the gmail web interface but Mail sends from the gmail address.  To work around this I had to configure my gmail proxy account to send mail through the smtp:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Preferences &amp;#8594; Accounts &amp;#8594; Select gmail proxy account.&lt;/li&gt;
+	&lt;li&gt;Outgoing Mail Server (&lt;span class=&quot;caps&quot;&gt;SMTP&lt;/span&gt;): Click Edit &lt;span class=&quot;caps&quot;&gt;SMTP&lt;/span&gt; Server List&lt;/li&gt;
+	&lt;li&gt;Click + to add a new account.  Enter your &lt;span class=&quot;caps&quot;&gt;SMTP&lt;/span&gt; information&lt;/li&gt;
+	&lt;li&gt;choose it for this account.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unfortunately these messages won&amp;#8217;t be stored at gmail&amp;#8230; still looking for a way around this.  Probably overlooking something.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>You have mail.</title>
+   <link href="http://tracyliang.github.com/all/os/2009/11/10/2009-you-have-mail-in-terminal.html"/>
+   <updated>2009-11-10T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/11/10/2009-you-have-mail-in-terminal</id>
+   <content type="html">&lt;h2&gt;You have mail.&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;10 Nov 2009&lt;/p&gt;
+&lt;p&gt;Sometimes I&amp;#8217;m greeted by this message in terminal:&lt;/p&gt;
+&lt;pre name=&quot;code&quot;&gt;
+Last login: Tue Nov 10 21:28:45 on ttys002
+You have mail.
+&lt;/pre&gt;
+&lt;p&gt;One of my projects uses cron to schedule tasks and so some test data got into my crontab file. Ok, I go delete the tasks out of crontab and delete my messages.  This comes up so rarely that I forget how to delete the messages and I usually have trouble opening crontab on my first try since textmate is my default editor.&lt;/p&gt;
+&lt;p&gt;Set nano as my editor by issuing this command:&lt;/p&gt;
+&lt;pre name=&quot;code&quot;&gt;
+$ export EDITOR='nano'
+$ crontab -e
+&lt;/pre&gt;
+&lt;p&gt;Then use Ctrl+K to quickly delete all the lines in the file, Ctrl+O to save the file, Ctrl+X to exit.&lt;/p&gt;
+&lt;p&gt;Now time to delete all the mail:&lt;br /&gt;
+&lt;pre name=&quot;code&quot;&gt;
+$ mail
+Mail version 8.1 6/6/93.  Type ? for help.
+&quot;/var/mail/danhixon&quot;: 720 messages 720 new
+&gt;N  1 danhixon@yMac.local   Tue Nov 10 01:00  19/691   &quot;Cron &lt;danhi...
+ N  2 danhixon@yMac.local   Tue Nov 10 01:00  19/691   &quot;Cron &lt;danhi...
+ N  3 danhixon@yMac.local   Tue Nov 10 01:00  19/690   &quot;Cron &lt;danhi...
+ 	etc.
+? 
+&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;Type &amp;#8216;d *&amp;#8217; return, then q, return. (Do not type x, that will exit without saving.)&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Quitting Parallels for VirtualBox</title>
+   <link href="http://tracyliang.github.com/all/os/2009/11/04/parallels-to-virtualbox.html"/>
+   <updated>2009-11-04T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/11/04/parallels-to-virtualbox</id>
+   <content type="html">&lt;h2&gt;Quitting Parallels for VirtualBox&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;04 Nov 2009&lt;/p&gt;
+&lt;p&gt;I used to love parallels for running windows, now it seems slow and overpriced. I&amp;#8217;d been using VirtualBox for linux instances and it&amp;#8217;s great. I upgraded to snow leopard for $29 and Parallels 3 is unsupported &amp;#8211; they wanted $50 to upgrade to Parallels 4. That&amp;#8217;s not the kind of path I want to be on.  I decided to convert my windows instance to VirtualBox.&lt;/p&gt;
+&lt;h3&gt;Step 1: Convert Image&lt;/h3&gt;
+&lt;p&gt;I followed these steps to use vmware to &lt;a href=&quot;http://benfrain.com/notepad/2009/03/osx-converting-parallels-or-vmware-to.html&quot;&gt;convert hdd into something usable by virtualbox&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Step 2: Fail&lt;/h3&gt;
+&lt;p&gt;I went to boot and it didn&amp;#8217;t work. Hung loading drivers &amp;#8211; boot to safe mode hung after agp440.sys, disable agp440.sys and it hangs on mup.sys.&lt;/p&gt;
+&lt;h3&gt;Step 3: Disable Everything &amp;amp; Enable IO &lt;span class=&quot;caps&quot;&gt;APIC&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;An important tenet to troubleshooting any problem you should be careful to change one thing at a time.  I am not a careful troubleshooter &amp;#8211; I like to take shortcuts first then careful later. In VirtualBox I disabled the following: Audio, Network, Ports (&lt;span class=&quot;caps&quot;&gt;USB&lt;/span&gt;) and under &amp;#8220;System&amp;#8221; I checked the &amp;#8220;Enable IO &lt;span class=&quot;caps&quot;&gt;APIC&lt;/span&gt;&amp;#8221;. I was then able to boot.&lt;/p&gt;
+&lt;p&gt;After installing Guest Add-Ons I started turning things back on one-at-a-time and now everything is back on and when I uncheck &amp;#8220;Enable IO &lt;span class=&quot;caps&quot;&gt;APIC&lt;/span&gt;&amp;#8221; the VM doesn&amp;#8217;t boot, so perhaps that was the problem the whole time but I can&amp;#8217;t tell because I tried a shortcut.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>ImageMagick Montage Command</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/10/30/montage-command.html"/>
+   <updated>2009-10-30T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/10/30/montage-command</id>
+   <content type="html">&lt;h2&gt;ImageMagick Montage Command&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;30 Oct 2009&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve been working on a video upload/encoding feature for spokt.com this past week. For photos we generate thumbnails but I wanted more for video.  I wanted some sort of a film strip so I have the video encoding process spit out a bunch of still frames. I decided I wanted a long strip of frames to run horizontally so in order to optimize for bandwidth and http requests I knew I needed to shrink the frames and combine them into one wide image. Since I learned software the easy-at-first-but-the-ease-ends-soon-after (&lt;span class=&quot;caps&quot;&gt;AKA&lt;/span&gt; Microsoft) way I started thinking about the math that would be required &amp;#8211; widths, and calculating and shrinking and adding&amp;#8230; it wouldn&amp;#8217;t be a complicated algorithm but it would take some time to implement.&lt;/p&gt;
+&lt;p&gt;Luckily for me I&amp;#8217;ve been using open source tools for a while and so before I start doing something I try to find an open source solution.  I started evaluating image libraries like devIL, I&amp;#8217;m already using imagemagick with paperclip so I poked around their documentation.  For a library made for images they have some terribly ugly example artwork. I wasn&amp;#8217;t having much luck because I was asking google to solve my little problems. I asked it to solve the entire problem all at once &amp;#8220;combine multiple images imagemagick&amp;#8221; and boom: the &amp;#8220;montage&amp;#8221; command.&lt;/p&gt;
+&lt;pre style=&quot;width:740px&quot;&gt;
+montage -geometry +2+0 -tile 10x1 -resize x50 -background black thumb_*.png film_strip.png
+&lt;/pre&gt;
+&lt;p&gt;This command combines all the files that match the pattern thumb_*.png into a 10&amp;#215;1 grid, adds a black 2 pixel border to the top and bottom.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/filmstrip.png&quot; title=&quot;10x2 filmstrip of video still frames&quot; alt=&quot;10x2 filmstrip of video still frames&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;All I had to do was download the images from the s3 into my tmp folder, issue this command (with proper paths) then upload the resultant file back to the s3. And then make it scroll back and forth on mouseover &amp;#8211; but that is another story.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Uninitialized Constant Foo</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/10/16/uninitialized_constant.html"/>
+   <updated>2009-10-16T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/10/16/uninitialized_constant</id>
+   <content type="html">&lt;h2&gt;Uninitialized Constant Foo&lt;/h2&gt;
+
+&lt;p class=&quot;publish_date&quot;&gt;16 Oct 2009&lt;/p&gt;
+
+&lt;p&gt;I created this issue twice this week doing the same thing so perhaps this post will keep me from doing it again.&lt;/p&gt;
+
+&lt;pre&gt;
+NameError: uninitialized constant Foo
+&lt;/pre&gt;
+
+&lt;p&gt;The first time I had just installed a gem.  We'll pretend the gem was called Foo. I wanted to try and couldn't seem to use it.  The strange thing was that I could use the gem in irb but not in this script file. Here's my script, lets see if you see the problem right away:&lt;/p&gt;
+
+contents of foo.rb:
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  require 'rubygems'
+  require 'foo'
+	
+  job = Foo::Job.new
+  job.do_stuff(:now)
+  puts job.result
+&lt;/pre&gt;
+
+&lt;p&gt;It would error on line 4: job = Foo::Job.new Do you see the problem? &lt;/p&gt;
+
+&lt;p&gt;It is requiring 'foo' which is the name of the gem library but unfortunately for me and the hairs I pulled out of my head it is also the name of the file (foo.rb). &lt;/p&gt; 
+
+&lt;p&gt;Renaming the file to foo_playground.rb fixed the issue. HEAD SLAP!&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Mount EBS Volume</title>
+   <link href="http://tracyliang.github.com/all/os/2009/10/15/mount-ebs.html"/>
+   <updated>2009-10-15T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/10/15/mount-ebs</id>
+   <content type="html">&lt;h2&gt;Mount &lt;span class=&quot;caps&quot;&gt;EBS&lt;/span&gt; Volume&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Oct 2009&lt;/p&gt;
+&lt;p&gt;I use RightScale to manage my EC2 environment. I recently was unable to create a bundle of one of my servers and discovered the problem was I was running out of disk space.  I was using 2.7GB of 10GB but the bundle image would use up the rest of the disk and fail.  How can you get more space? Elastic Block Storage (&lt;span class=&quot;caps&quot;&gt;ESB&lt;/span&gt;).&lt;/p&gt;
+&lt;h3&gt;Step 1: Create &amp;amp; Attach &lt;span class=&quot;caps&quot;&gt;ESB&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;In RightScale click &amp;#8220;Clouds&amp;#8221; then Navigate to &lt;span class=&quot;caps&quot;&gt;AWS&lt;/span&gt; US &amp;#8594; &lt;span class=&quot;caps&quot;&gt;EBS&lt;/span&gt; Volumes &amp;#8211; New.  Fill out the form (I needed 10GB &amp;#8211; it will also be easier to follow along here if you choose /dev/sdm).  Navigate to the volume you created and click the &amp;#8220;Attach&amp;#8221; button. This will allow you to choose a server.&lt;/p&gt;
+&lt;h3&gt;Step 2: Format &amp;amp; Mount&lt;/h3&gt;
+&lt;p&gt;Follow steps here: &lt;a href=&quot;https://learningspaces.njit.edu/content/how-format-and-mount-ebs-volume&quot;&gt;how format and mount ebs volume&lt;/a&gt;. Except mount to /mnt instead of /data.  If you do mount to data you can also mount to /mnt without issue: mount /dev/sdm /mnt&lt;/p&gt;
+&lt;h3&gt;Step 3: Create Bundle&lt;/h3&gt;
+&lt;p&gt;Navigate to your server in RightScale and click the bundle button.  It should work now.  You can monitor your disk space on your server using the &amp;#8220;df -h&amp;#8221; command.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Handsoap with ASP.Net</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/09/30/hand-soap-with-dot-net.html"/>
+   <updated>2009-09-30T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/09/30/hand-soap-with-dot-net</id>
+   <content type="html">&lt;h2&gt;Handsoap with &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.Net&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;30 Sep 2009&lt;/p&gt;
+&lt;p&gt;Soap4r wasn&amp;#8217;t unusable for me but I didn&amp;#8217;t like using it. When things lined up correctly everything was rosy but trying to debug when a problem occurred was very difficult.  &lt;a href=&quot;http://github.com/troelskn/handsoap&quot;&gt;Handsoap&lt;/a&gt; to the rescue.&lt;/p&gt;
+&lt;p&gt;Handsoap doesn&amp;#8217;t try to do your work for you, it just tries to get out of the way and perform the lower level http calls while providing a toolbox and pattern to help you generate xml requests and parse xml responses.  I&amp;#8217;m not going to give a further description.  I just want to walk through how I use it with &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.Net web services.&lt;/p&gt;
+&lt;h3&gt;Use &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.net Previews&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.net 2.0 &amp;#8220;.asmx&amp;#8221; files get rendered in a browser as a human readable list of &lt;span class=&quot;caps&quot;&gt;SOAP&lt;/span&gt; methods. When you click on a method name it renders a helpful set of &lt;span class=&quot;caps&quot;&gt;SOAP&lt;/span&gt; 1.1 and &lt;span class=&quot;caps&quot;&gt;SOAP&lt;/span&gt; 1.2 sample request and response.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/asmx_method_list.png&quot; title=&quot;List of ASP.Net Methods&quot; alt=&quot;List of ASP.Net Methods&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/asmx_samples.png&quot; title=&quot;List of ASP.Net sample request and response&quot; alt=&quot;List of ASP.Net sample request and response&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;Tests to Parse the Response&lt;/h3&gt;
+&lt;p&gt;I don&amp;#8217;t write tests to ensure my requests are correct.  I should but for now I just test that I am parsing the response correctly.  This example just returns a simple string so I copy the sample response &lt;span class=&quot;caps&quot;&gt;XML&lt;/span&gt; from the web service and paste it into a test like below and replace the place holder &amp;#8220;string&amp;#8221; with a sample value &amp;#8220;jojojo&amp;#8221;:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+    def test_get_user_info_result
+        response_xml = '
+        &lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+          &lt;soap:Body&gt;
+            &lt;GetUserInfoResponse xmlns=&quot;http://spokt.com/&quot;&gt;
+              &lt;GetUserInfoResult&gt;jojojo&lt;/GetUserInfoResult&gt;
+            &lt;/GetUserInfoResponse&gt;
+          &lt;/soap:Body&gt;
+        &lt;/soap:Envelope&gt;'
+
+        api = SpoktApi.new
+        mock_response(api, response_xml)
+        
+        result = api.get_user_info(&quot;dan&quot;)
+        assert_equal('jojojo', result)
+    end
+      
+
+&lt;/pre&gt;&lt;p&gt;The mock_response method is in my test helper:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  def mock_response(api, xml)
+    response = Handsoap::Http::Response.new(200,[],xml)
+    api.expects(:send_http_request).returns(response)
+  end
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Quicksilver for OS X</title>
+   <link href="http://tracyliang.github.com/all/os/2009/09/29/quicksilver.html"/>
+   <updated>2009-09-29T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/09/29/quicksilver</id>
+   <content type="html">&lt;h2&gt;Quicksilver for OS X&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;29 Sep 2009&lt;/p&gt;
+&lt;p&gt;I started using Quicksilver last week and I&amp;#8217;m starting to like it a lot.  In it&amp;#8217;s simplest use case it is an application launcher that doesn&amp;#8217;t require using the mouse.  But it&amp;#8217;s more powerful feature is that it lets me complete common tasks in a direct manner.&lt;/p&gt;
+&lt;h3&gt;Scenario: Email something to somebody&lt;/h3&gt;
+&lt;p&gt;I think the normally accepted steps to email a file to someone as an attachment are:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Open your mail application (Gmail, Apple Mail, Thunderbird)&lt;/li&gt;
+	&lt;li&gt;Compose a new email (Command+N or click &amp;#8220;New&amp;#8221;)&lt;/li&gt;
+	&lt;li&gt;Click attach, browse to file (Or navigate in Finder and drag it in)&lt;/li&gt;
+	&lt;li&gt;Enter a &amp;#8220;to&amp;#8221; address and subject&lt;/li&gt;
+	&lt;li&gt;Click Send&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is application-oriented computing as opposed to task-oriented computing. Task-oriented computing would be using a computer to accomplish tasks&amp;#8230; you shouldn&amp;#8217;t use a computer to use applications you should use it to accomplish tasks.&lt;/p&gt;
+&lt;p&gt;These don&amp;#8217;t need to be &lt;em&gt;useful&lt;/em&gt; tasks, but the goal isn&amp;#8217;t to &amp;#8220;use email&amp;#8221; it&amp;#8217;s to &amp;#8220;read messages&amp;#8221;, the goal isn&amp;#8217;t &amp;#8220;use spokt.com&amp;#8221; it&amp;#8217;s to &amp;#8220;catch up with my family&amp;#8221;, it&amp;#8217;s not &amp;#8220;using Excel&amp;#8221; it&amp;#8217;s &amp;#8220;calculating your monthly budget&amp;#8221;.  The closer computers get to allowing us to think about performing tasks and doing them without thinking in terms of applications the more powerful computers will become to us.&lt;/p&gt;
+&lt;p&gt;Using Quicksilver is true task-oriented computing but I think it is a step in the right direction. The &amp;#8220;tasks&amp;#8221; are kind of like sentences.  In this example I want to email (verb) a document (direct object) to you (indirect object).  Okay I don&amp;#8217;t want to get into the &amp;#8220;grammar&amp;#8221; of it because it might make it seem more difficult than it is.&lt;/p&gt;
+&lt;p&gt;Here is how you would do it using Quicksilver:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Command+Space to launch Quicksilver&lt;/li&gt;
+	&lt;li&gt;type in the file name (it auto completes)&lt;/li&gt;
+	&lt;li&gt;tab to the next box and type what you want to do &amp;#8216;em&amp;#8217; (auto completes: &amp;#8220;Email To&amp;#8230;&amp;#8221;!)&lt;/li&gt;
+	&lt;li&gt;Since this &amp;#8220;verb&amp;#8221; requires a recipient you tab to the third box and it auto completes from your addressbook.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Screenshot of quicksilver about to email a document:&lt;br /&gt;
+&lt;img src=&quot;/images/email_quicksilver.png&quot; title=&quot;Email document in Quicksilver&quot; alt=&quot;Email document in Quicksilver&quot; /&gt;&lt;br /&gt;
+After hitting &amp;#8220;return&amp;#8221;:&lt;br /&gt;
+&lt;img src=&quot;/images/quicksilver_email_result.png&quot; title=&quot;Resulting Mail Message&quot; alt=&quot;Resulting Mail Message&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Total keys pressed: 14&lt;br /&gt;
+Total Mouse movements required: 0&lt;br /&gt;
+Total Number Windows re arranged: 0&lt;br /&gt;
+Total Time: about 10 seconds but I&amp;#8217;ll get faster&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Command+Space (2)&lt;/li&gt;
+	&lt;li&gt;M U L + tab (4)&lt;/li&gt;
+	&lt;li&gt;E M A + tab (4)&lt;/li&gt;
+	&lt;li&gt;D A N H + return (4)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;How long does it take you to email a document?&lt;/p&gt;
+&lt;p&gt;Other Quicksilver tasks I&amp;#8217;ve found useful: moving and copying files, tweeting (&lt;a href=&quot;http://en.deadbeaf.org/2007/12/13/quicksilver-twitter-plugin/&quot;&gt;plugin required&lt;/a&gt;), compressing files, and launching terminal windows to rails folders.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>OS X Snow Leopard Enhancement</title>
+   <link href="http://tracyliang.github.com/all/os/2009/09/23/snow-leopard-digitalcolor-meter.html"/>
+   <updated>2009-09-23T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/09/23/snow-leopard-digitalcolor-meter</id>
+   <content type="html">&lt;h2&gt;OS X Snow Leopard Enhancement&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;23 Sep 2009&lt;/p&gt;
+&lt;p&gt;I recently upgraded to Snow Leopard and its great but day to day use is not very different from Leopard. Today I stumbled on an enhancement that made me giddy.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/colorpicker.png&quot; title=&quot;Snow Leopard Color Picker&quot; alt=&quot;Snow Leopard Color Picker&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I use the DigitalColor Meter to pull colors out of images to use in css styleheets. Open it up, cursor over the color you want, Command+Shift+C to get it on your clip board, and Command+V to paste it into your stylesheet. It works fine but it pastes the colors in quotes with spaces (e.g. &amp;quot;#00 C3 01 &amp;quot;).  So you have to delete the dumb quotes and spaces. (Sure, I dislike them but they are really called &lt;a href=&quot;http://www.fonts.com/aboutfonts/articles/fyti/smartquotes.htm&quot;&gt;&amp;#8216;dumb quotes&amp;#8217;&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I pasted a color today and reached for the delete key when I noticed the hex had been pasted without spaces and quotes. #0490D4 &amp;#8211; Did that really just happen? I tried again and &lt;span class=&quot;caps&quot;&gt;YES&lt;/span&gt;!&lt;/p&gt;
+&lt;p&gt;Could a human really get giddy over such a small change? Yes.&lt;/p&gt;
+&lt;p&gt;In somewhat related Snow Leopard and color trivia I changed my background color here from #212121 to #373737 to compensate for the default gamma change.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Comments in Jekyll with Disqus</title>
+   <link href="http://tracyliang.github.com/all/life/2009/04/27/comments-in-jekyll.html"/>
+   <updated>2009-04-27T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2009/04/27/comments-in-jekyll</id>
+   <content type="html">&lt;h2&gt;Comments in Jekyll with Disqus&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;27 Apr 2009&lt;/p&gt;
+&lt;p&gt;I added the ability to comment with this code from disqus:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;div id=&quot;disqus&quot;&amp;gt;
+    &amp;lt;div id=&quot;disqus_thread&quot;&amp;gt;&amp;lt;/div&amp;gt;
+	&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://disqus.com/forums/dantech/embed.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+	&amp;lt;noscript&amp;gt;
+		&amp;lt;a href=&quot;http://dantech.disqus.com/?url=ref&quot;&amp;gt;View the discussion thread.&amp;lt;/a&amp;gt;
+	&amp;lt;/noscript&amp;gt;
+	&amp;lt;a href=&quot;http://disqus.com&quot; class=&quot;dsq-brlink&quot;&amp;gt;blog comments powered by &amp;lt;span class=&quot;logo-disqus&quot;&amp;gt;Disqus&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;
+  &amp;lt;/div&amp;gt;
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>TDD=One Piece at a time</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/03/19/tdd-one-piece-at-a-time.html"/>
+   <updated>2009-03-19T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/03/19/tdd-one-piece-at-a-time</id>
+   <content type="html">&lt;h2&gt;&lt;span class=&quot;caps&quot;&gt;TDD&lt;/span&gt;=One Piece at a time&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;19 Mar 2009&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/fish-puzzle.jpg&quot; alt=&quot;boy putting puzzle together&quot; style=&quot;float:right; padding:10px; margin-right:-100px;&quot; /&gt;When I give my 20 month-old son all the pieces to his fish puzzle he just mixes them up and flings them around.  When I keep all the pieces and give them to him one at a time he will place them into the hole with the matching color.&lt;/p&gt;
+&lt;p&gt;I think he gets overwhelmed– can a boy that young be &amp;#8220;overwhelmed?&amp;#8221;.  Let&amp;#8217;s say he gets distracted by all his options.  I get overwhelmed/distracted too!&lt;/p&gt;
+&lt;p&gt;One of the reasons test driven development has resonated so strongly with me is that I&amp;#8217;m forced to break problems down into small pieces. Once the problems are small enough I can put the pieces in the right holes.&lt;/p&gt;
+&lt;p&gt;p.s. &amp;#8211; This photo reminds me of how badly I need to bust out my real camera and make some images.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Still Loving Shoulda (macros)</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/03/09/shoulda-macros.html"/>
+   <updated>2009-03-09T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/03/09/shoulda-macros</id>
+   <content type="html">&lt;h2&gt;Still Loving Shoulda (macros)&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;09 Mar 2009&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve been using shoulda for one month and I am still loving it.  Today I created my first macro:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+def self.should_display_error_message()
+  should &quot;do display error message&quot; do
+    assert_tag :tag=&gt;&quot;div&quot;, 
+		:attributes =&gt; {
+						:class =&gt; &quot;errorExplanation&quot;, 
+						:id =&gt; &quot;errorExplanation&quot; 
+						}
+  end
+end
+&lt;/pre&gt;
+&lt;p&gt;&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;context &quot;post to :create with invalid parameters&quot; do
+  setup do 
+    post :create, :segment =&gt; {:name=&gt;&quot;&quot;, :match_type=&gt;&quot; OR &quot;}
+  end
+  should_not_change &quot;Segment.count&quot;
+  should_assign_to :segment
+  should_respond_with :success
+  should_render_a_form
+  should_render_with_layout 'application'
+  should_render_template :new
+  should_display_error_message
+end&lt;/pre&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Import Git Repository into Subversion</title>
+   <link href="http://tracyliang.github.com/all/os/2009/03/05/import-git-into-subversion.html"/>
+   <updated>2009-03-05T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/03/05/import-git-into-subversion</id>
+   <content type="html">&lt;h2&gt;Import Git Repository into Subversion&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;05 Mar 2009&lt;/p&gt;
+&lt;p&gt;This is probably supremely easy to do but all my searches on google yield results on how to import a subversion into a git repository and I need the other way around so I came up with the following.&lt;/p&gt;
+&lt;p&gt;Start by creating the folder in subversion into which you wish to import.  In the directory with the git repository do this:&lt;br /&gt;
+&lt;pre class=&quot;terminal&quot;&gt;~/Sites/slices(master) $ cd ..&lt;br /&gt;
+~/Sites $ git svn clone https://svn/slices/trunk clone_slices&lt;br /&gt;
+~/Sites $ cd clone_slices&lt;br /&gt;
+~/Sites/clone_slices $ git pull ../slices&lt;br /&gt;
+~/Sites/clone_slices $ git svn dcommit&lt;br /&gt;
+# rename the folder if you want:&lt;br /&gt;
+~/Sites/clone_slices $ cd ..&lt;br /&gt;
+~/Sites/clone_slices $ rm -rf slices&lt;br /&gt;
+~/Sites/clone_slices $ mv clone_slices slices&lt;br /&gt;
+&lt;/pre&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Reason #39,922 OS X is Great</title>
+   <link href="http://tracyliang.github.com/all/os/2009/03/03/osx-keyboard-shortcuts.html"/>
+   <updated>2009-03-03T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/03/03/osx-keyboard-shortcuts</id>
+   <content type="html">&lt;h2&gt;Reason #39,922 OS X is Great&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;03 Mar 2009&lt;/p&gt;
+&lt;p&gt;OS X is great.  It might be easy to use but that&amp;#8217;s not why I love it.  I love the &lt;span class=&quot;caps&quot;&gt;POWER&lt;/span&gt;.  A small example of this power is the rich keyboard shortcuts it provides.  You have the standards: Command+Tab for application switching, Command+S for Save, Command+P for Print, Command+W for closing a window, Command+Q for quitting an application.  The list goes on with Command+~ for switching windows within an application and Command+Shift+] or Command+Shift+[ for switching through tabs within a window.&lt;/p&gt;
+&lt;p&gt;Apple publishes standard keyboard shortcuts and application developers are supposed to adhere to them.  Sometimes developers fail to include these keyboard shortcuts in their applications or choose their own non-standard variations.  While I suppose there may be good reasons for straying from the path it is too bad for users who don&amp;#8217;t want to learn a new set of commands.  Lucky for us we are using OS X and can override their non-standard shortcuts with our own using keyboard preferences pane.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/keyboard-shortcut.png&quot; title=&quot;Add keyboard shortcuts for apps that don&amp;#39;t include them&quot; alt=&quot;Add keyboard shortcuts for apps that don&amp;#39;t include them&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Now I can switch tabs in Textmate with the same keys I use in Terminal, Safari, and Firefox.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Safari 4 beta: Inspect the Uninspected</title>
+   <link href="http://tracyliang.github.com/all/os/2009/02/26/safari-4-inspect-inspector.html"/>
+   <updated>2009-02-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/02/26/safari-4-inspect-inspector</id>
+   <content type="html">&lt;h2&gt;Safari 4 beta: Inspect the Uninspected&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;26 Feb 2009&lt;/p&gt;
+&lt;p&gt;The new inspector in Safari 4 is excellent.  It has everything I need so I won&amp;#8217;t need to use firebug anymore.  It seems to render the inspector in &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; which is inspectable! Meta!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/safari-4-inspect-element.png&quot; title=&quot;Safari 4 Inspect Element in Inspector&quot; alt=&quot;Safari 4 Inspect Element in Inspector&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;If you do inspect the element from inside the inspector you get a new inspector frame:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/safari-4-inspect-inspector.png&quot; title=&quot;Safari 4: Nested Inspector frames&quot; alt=&quot;Safari 4: Nested Inspector frames&quot; /&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Comparing Rails Development Environments</title>
+   <link href="http://tracyliang.github.com/all/rails/linux/2009/02/26/ruby-on-rails-development-environments.html"/>
+   <updated>2009-02-26T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/linux/2009/02/26/ruby-on-rails-development-environments</id>
+   <content type="html">&lt;h2&gt;Comparing Rails Development Environments&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;26 Feb 2009&lt;/p&gt;
+&lt;p&gt;I was going through some old slides and I found this gem.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/rails-environments.png&quot; title=&quot;Comparison of Rails development environments&quot; alt=&quot;Comparison of Rails development environments&quot; /&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Safari 4 beta: One Suggestion and One Tip</title>
+   <link href="http://tracyliang.github.com/all/os/2009/02/25/safari-4.html"/>
+   <updated>2009-02-25T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2009/02/25/safari-4</id>
+   <content type="html">&lt;h2&gt;Safari 4 beta: One Suggestion and One Tip&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;25 Feb 2009&lt;/p&gt;
+&lt;p&gt;You can read elsewhere how fast Safari 4 is.  I just have one suggestion regarding the &amp;#8220;Top Sites&amp;#8221; feature: the button should toggle like the booksmark button next to it.  One click: show top sites, click again: show the page you were on before you clicked.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/safari-4-top-sites-engaged.png&quot; title=&quot;Safari 4 top sites engaged&quot; alt=&quot;Safari 4 top sites engaged&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Note: Currently you &lt;em&gt;can&lt;/em&gt; click the back button if you need to get back.&lt;/p&gt;
+&lt;p&gt;Tip: If you want to re-order your tabs you have to grab the tab by the little grippy part:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/safari-4-tab-dragger.png&quot; title=&quot;Safari 4 top sites engaged&quot; alt=&quot;Safari 4 top sites engaged&quot; /&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Ruby on Rails is High Definition</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/02/24/ruby-on-rails-as-hdtv.html"/>
+   <updated>2009-02-24T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/02/24/ruby-on-rails-as-hdtv</id>
+   <content type="html">&lt;h2&gt;Ruby on Rails is High Definition&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;24 Feb 2009&lt;/p&gt;
+&lt;p&gt;Many people&amp;#8217;s first experience with high definition television is somewhat uneventful.  They admit to thinking they see more detail.  They believe they see more detail.  But what is all the fuss about? They say: &amp;#8220;I don&amp;#8217;t think a little improvement in picture quality is worth paying $&lt;span class=&quot;caps&quot;&gt;XXXX&lt;/span&gt;.&amp;#8221; Our brains fill in the details with standard definition and we are satisfied.&lt;/p&gt;
+&lt;p&gt;Going back to a standard definition picture is when eyes open.  That&amp;#8217;s when the better picture quality is finally noticed.  They think &amp;#8220;Was it really this bad before? I can&amp;#8217;t believe we watched TV like this for so long&amp;#8221;&lt;/p&gt;
+&lt;p&gt;Before I started with Ruby on Rails I considered myself skilled in C# and &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.Net. I was confident that RoR wouldn&amp;#8217;t help me much.  As I learned how rails worked I would admit to thinking this or that was better.  Code could be a little cleaner here and there but for a long time I felt I could be more productive in my old tools.  I knew I liked RoR but didn&amp;#8217;t know how much better it was until I recently had to use my old toolset on old projects.  Wow!  What a difference!  I can&amp;#8217;t believe I coded like that for so long.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Please Stop With the Crappy Bonus Features</title>
+   <link href="http://tracyliang.github.com/all/life/2009/02/20/disc-bonus-features.html"/>
+   <updated>2009-02-20T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2009/02/20/disc-bonus-features</id>
+   <content type="html">&lt;h2&gt;Please Stop With the Crappy Bonus Features&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;20 Feb 2009&lt;/p&gt;
+&lt;p&gt;Dear Movie Makers,&lt;/p&gt;
+&lt;p&gt;We don’t want to read a bunch of information, bios, histories, and stories on our movies.  We want to watch the movie and see a blooper reel.  Reading on a television screen is the ocular equivalent to fingernails on a chalkboard.&lt;/p&gt;
+&lt;p&gt;Sincerely,&lt;/p&gt;
+&lt;p&gt;The Public&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Loving Shoulda</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/02/09/loving-shoulda.html"/>
+   <updated>2009-02-09T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/02/09/loving-shoulda</id>
+   <content type="html">&lt;h2&gt;Loving Shoulda&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;09 Feb 2009&lt;/p&gt;
+&lt;p&gt;2 hours with shoulda and I really like it.  I&amp;#8217;ve never been able to figure out how to do 1 assertion per test.  I didn&amp;#8217;t really mind (why not check it all?), so far so good with shoulda:&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot;&gt;
+48 tests, 48 assertions, 0 failures, 0 errors
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Jobless Apple: Take 2</title>
+   <link href="http://tracyliang.github.com/all/life/2009/01/20/jobless-apple.html"/>
+   <updated>2009-01-20T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2009/01/20/jobless-apple</id>
+   <content type="html">&lt;h2&gt;Jobless Apple: Take 2&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;20 Jan 2009&lt;/p&gt;
+&lt;p&gt;I don&amp;#8217;t know Steve Jobs.  I don&amp;#8217;t know how sick he may be but let&amp;#8217;s look at the worst case scenario for Apple investors: Steve Jobs is unable to return to Apple computers.&lt;/p&gt;
+&lt;p&gt;I think the common reasoning goes something like this:&lt;/p&gt;
+&lt;p&gt;Observations:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;Jobs started Apple and it kind of changed the world&lt;/li&gt;
+	&lt;li&gt;Jobs wasn&amp;#8217;t at Apple and it almost died.&lt;/li&gt;
+	&lt;li&gt;Jobs came back and it&amp;#8217;s been amazing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Conclusion: Apple without Steve Jobs sucks.&lt;/p&gt;
+&lt;p&gt;I submit that if Jobs were not healthy enough to return to Apple would be very different than what transpired before.  In 1986 Jobs was ousted.  The company leadership didn&amp;#8217;t agree with him and so they got rid of him.  If Jobs were unable to return Apple would try to continue with his vision.&lt;/p&gt;
+&lt;p&gt;Disclosure: I own some &lt;span class=&quot;caps&quot;&gt;AAPL&lt;/span&gt; and I have no idea what will happen to share prices or the global economy. :)&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Ruby Mixins</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/01/15/ruby-mixins.html"/>
+   <updated>2009-01-15T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/01/15/ruby-mixins</id>
+   <content type="html">&lt;h2&gt;Ruby Mixins&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Jan 2009&lt;/p&gt;
+&lt;p&gt;Q. What happens when you include two modules that define the same method in one class?&lt;/p&gt;
+&lt;p&gt;A. The method in the module added last is called!&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+module Tiger
+  def talk
+    &quot;prrrrr!&quot;
+  end
+end
+module Lion
+  def talk
+    &quot;roar!&quot;
+  end
+end
+
+class Liger
+  include Lion
+  include Tiger
+end
+
+class Tigon
+  include Tiger
+  include Lion
+end
+
+tigon = Tigon.new
+puts &quot;a tigon says #{tigon.talk}&quot;
+
+liger = Liger.new
+puts &quot;a liger says #{liger.talk}&quot;
+&lt;/pre&gt;&lt;pre class=&quot;terminal&quot;&gt;
+$ ruby cats.rb
+a tigon says roar!
+a liger says prrrrr!
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Out of My WAY!</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/01/15/out-of-my-way.html"/>
+   <updated>2009-01-15T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/01/15/out-of-my-way</id>
+   <content type="html">&lt;h2&gt;Out of My &lt;span class=&quot;caps&quot;&gt;WAY&lt;/span&gt;!&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Jan 2009&lt;/p&gt;
+&lt;p&gt;I was just talking with a coworker today telling her about how archaic design patterns seem after working in Ruby On Rails &amp;#8211; how you don&amp;#8217;t need to solve &amp;#8220;coding&amp;#8221; problems, you just write code to solve your business problem&amp;#8230; it gets out of your way so you can do your work.&lt;/p&gt;
+&lt;p&gt;How did I plan to spend my evening? in c# solving business problems.&lt;/p&gt;
+&lt;p&gt;How did I spend my evening? pulling out my hair trying to solve code problems.&lt;/p&gt;
+&lt;p&gt;2AM with nothing but half finished methods to show for it.  How much more will I take before porting spokt to Rails?&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Building dm-core from source</title>
+   <link href="http://tracyliang.github.com/all/rails/linux/2009/01/13/build-dm-core-from-source.html"/>
+   <updated>2009-01-13T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/linux/2009/01/13/build-dm-core-from-source</id>
+   <content type="html">&lt;h2&gt;Building dm-core from source&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;13 Jan 2009&lt;/p&gt;
+&lt;p&gt;In the current gem version of dm-types 0.9.9 the &lt;span class=&quot;caps&quot;&gt;YAML&lt;/span&gt; uses primitive &amp;#8220;String&amp;#8221; with a size of 65535.  This is an issue when using mySQL and utf-8.  The issue was fixed by Tony Mann (&lt;a href=&quot;http://github.com/sam/dm-more/commit/d2925e66ad76db4231f2f79fd465aec75680bc3d&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;So until this 0.9.10 version is released my deployments will need to build dm-types from source.  dm-types 0.9.10 requires dm-core 0.9.10 so that needs to be built from source as well.&lt;/p&gt;
+&lt;p&gt;Here is how to install from the latest source on github:&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot;&gt;
+~/ $ gem install rspec bcrypt-ruby json hoe --no-rdoc --no-ri
+~/ $ mkdir sources
+~/ $ cd sources
+~/sources $ git clone git://github.com/sam/dm-core.git
+~/sources $ git clone git://github.com/sam/dm-more.git
+~/sources $ cd dm-core
+~/sources/dm-core $ rake package &amp;amp;&amp;amp; rake install
+~/sources/dm-core $ cd ../dm-more/dm-types
+~/sources/dm-core/dm-types $ rake package &amp;amp;&amp;amp; rake install
+&lt;/pre&gt;
+&lt;p&gt;I tried freezing the gems into my rails app a few weeks ago but I didn&amp;#8217;t have good success.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>If I had Geeky Friends</title>
+   <link href="http://tracyliang.github.com/all/rails/2009/01/09/if-i-had-geeky-friends.html"/>
+   <updated>2009-01-09T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2009/01/09/if-i-had-geeky-friends</id>
+   <content type="html">&lt;h2&gt;If I had Geeky Friends&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;01 Jan 2009&lt;/p&gt;
+&lt;p&gt;I found a terribly minor bug in the datamapper gemspec file that was causing me an issue.  I got on &lt;span class=&quot;caps&quot;&gt;IRC&lt;/span&gt; and the guys told me to fork, fix, and send a pull request.  I did and then my commit was pushed to github and my picture was on the &lt;a href=&quot;http://github.com/sam/dm-core/tree/master&quot;&gt;sam/dm-core&lt;/a&gt; main page because I was the last &amp;#8220;author.&amp;#8221;  It was like a brush with fame.  I told #datamapper that I wished I had geeky friends so I could tell them.&lt;/p&gt;
+&lt;p&gt;My commit is still immortalized &lt;a href=&quot;http://github.com/sam/dm-core/commit/7a05110be7d59f23eea47161fbbcb66a1fbd2124&quot;&gt;here.&lt;/a&gt; :)&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Blogging with Jekyll</title>
+   <link href="http://tracyliang.github.com/all/life/2009/01/09/blogging-with-jekyll.html"/>
+   <updated>2009-01-09T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2009/01/09/blogging-with-jekyll</id>
+   <content type="html">&lt;h2&gt;Blogging with Jekyll&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;09 Jan 2009&lt;/p&gt;
+&lt;p&gt;The facts were these:&lt;br /&gt;
+&lt;ul&gt;&lt;/p&gt;
+&lt;li&gt;93 days, 4 hours, 11 minutes and 12 seconds ago young Dan started blogging on slicehost with mephisto. His readers didn&amp;#8217;t like tech posts and he didn&amp;#8217;t like paying $20/month.&lt;/li&gt;
+&lt;li&gt;Several months later Dan decided to try heroku which is super cool but when he tried to publish new posts they never were displayed. He could see them in the admin interface but unfortunatly readers could not: &lt;a href=&quot;http://ctopia.heroku.com&quot;&gt;ctopia.heroku.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Meanwhile 769 miles, 356 yards, 2 feet, 8 inches north by north-east Dan&amp;#8217;s friend Ron offered to host a wordpress blog for Dan. Dan greatly appreciated this offer and began to blog but chose not to blog about technology. Dan&lt;/li&gt;
+&lt;li&gt;Exactly 9 days ago Dan read about Jekyll and this very morning decided to try github&amp;#8217;s static site hosting.  So far he likes it very much.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you decide to try Jekyll don&amp;#8217;t skip the readme like I did.  There is a really cool feature &amp;#8220;auto mode&amp;#8221; which watches for any changed files then reprocesses them locally.  This lets you to make changes and preview them locally without having to commit and push.&lt;br /&gt;
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;&lt;br /&gt;
+unibody $ jekyll ../4xflavor &amp;#8212;auto&lt;br /&gt;
+Auto-regenerating enabled: . &amp;#8594; ../dancodes&lt;br /&gt;
+[2009-01-09 11:06:54] regeneration: 16 files changed&lt;br /&gt;
+[2009-01-09 11:10:12] regeneration: 1 files changed&lt;br /&gt;
+[2009-01-09 11:10:43] regeneration: 1 files changed&lt;br /&gt;
+[2009-01-09 11:10:57] regeneration: 1 files changed&lt;br /&gt;
+&lt;/pre&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Debussy & Bartok</title>
+   <link href="http://tracyliang.github.com/all/life/2008/10/23/debussy-and-bartok.html"/>
+   <updated>2008-10-23T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2008/10/23/debussy-and-bartok</id>
+   <content type="html">&lt;h2&gt;Debussy &amp;amp; Bartok&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;23 Oct 2008&lt;/p&gt;
+&lt;p&gt;&amp;#8220;Everything he does is wrong,&amp;#8221; said one of his teachers, &amp;#8220;but he is wrong in a talented way.&amp;#8221; Claude Debussy went to the Paris Conservatory and studied there for eleven contention-filled years, questioning and breaking away from all the rules of the past. &amp;#8220;Why must dissonant chords always be resolved?&amp;#8221; Debussy asked, and when he was not given a satisfactory answer, he began to experiment with a chromaticism, modal technique, the whole tone and pentatonic scales, the avoiding of a definite key, and using chords that tended to produce vagueness of tonality. With his fastidious ear he had a natural affinity for the exotic and old as well as the most avant-garde. He acquired a reputation as an iconoclast, violating all rules, and it is not surprising that some years later the twentieth-century revolution in music began in France with Claude Debussy.&lt;br /&gt;
+One of his professors at the conservatory inquired, &amp;#8220;What rules do you observe?&amp;#8221;&lt;br /&gt;
+Debussy answered, &amp;#8220;None—only my own pleasure!&amp;#8221;&lt;br/&gt;
+&lt;br /&gt;
+&amp;#8220;That&amp;#8217;s all very well,&amp;#8221; came the reply, &amp;#8220;provided you&amp;#8217;re a genius.&amp;#8221; They soon began to suspect that he was.&lt;/p&gt;
+&lt;p&gt;– &lt;a href=&quot;http://books.google.com/books?id=g1OvSuH5JSAC&amp;amp;pg=PA178&amp;amp;lpg=PA178&amp;amp;dq=debussy+rules+genius&amp;amp;source=web&amp;amp;ots=WPRgmsXria&amp;amp;sig=j2TSf8gSzNEt0ncFIe_v1wHOjjg&amp;amp;hl=en&amp;amp;sa=X&amp;amp;oi=book_result&amp;amp;resnum=2&amp;amp;ct=result#PPA178,M1&quot;&gt;The Gift of Music&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Legendary teacher Isidore Philipp offered to introduce the young Hungarian composer Bela Bartok to Camille Saint-Saens, at that time a great celebrity. Bartok declined. Philipp then offered him Charles-Marie Wider. Bartok again declined. &amp;#8216;Well, if you won&amp;#8217;t meet them, who is there that you would like to know?&amp;#8217; &amp;#8216;Debussy,&amp;#8217; said Bartok. &amp;#8216;But he is a horrid man,&amp;#8217; said Philipp. &amp;#8216;He hates everybody and will certainly be rude to you. Do you want to be insulted by Debussy?&amp;#8217; &amp;#8216;Yes,&amp;#8217; said Bartok.&amp;quot;&lt;/p&gt;
+&lt;p&gt;– &lt;a href=&quot;http://www.anecdotage.com/index.php?aid=158&quot;&gt;Anectodage&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>SOAP Console</title>
+   <link href="http://tracyliang.github.com/all/rails/ideas/2008/09/05/soap-console.html"/>
+   <updated>2008-09-05T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/ideas/2008/09/05/soap-console</id>
+   <content type="html">&lt;h2&gt;&lt;span class=&quot;caps&quot;&gt;SOAP&lt;/span&gt; Console&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;05 Sep 2008&lt;/p&gt;
+&lt;p&gt;I think it would be cool to cross the irb with a soap webservice to familiarize one-self with the interface.  I envision something like this:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+$&gt; soap_console http://www.coolservices.com/CustomerAPI.wsdl
+Welcome to the Soap Console for CustomerAPI.wsdl!
+Methods available:
+getCustomer [customer_id]
+getPaymentList [customer_id]
+addPayment [customer_id, amount]
+
+?&amp;gt; customer = getCustomer(8767862)
+Sending Request:
+HTTP HEADERS
+&amp;lt;SOAP:Envelope&amp;gt;
+   ... stuff here ...
+&amp;lt;/SOAP:Envelope&amp;gt;
+
+Response Received:
+HTTP HEADERS
+&amp;lt;SOAP:Envelope&amp;gt;
+   ... stuff here ...
+
+&amp;lt;/SOAP:Envelope&amp;gt;
+
+?&amp;gt; customer.first_name
+=&amp;gt; &quot;yo&quot;
+?&amp;gt;
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>IM Etiquette</title>
+   <link href="http://tracyliang.github.com/all/life/2008/06/08/instant-message-etiquette.html"/>
+   <updated>2008-06-08T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2008/06/08/instant-message-etiquette</id>
+   <content type="html">&lt;h2&gt;IM Etiquette&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;8 Jun 2008&lt;/p&gt;
+&lt;p&gt;We use Instant Messaging at my job.  I don&amp;#8217;t like how some people use it and I wrote this guide a few years ago.  As I re-read it today I realize that my feelings aren&amp;#8217;t quite as strong as they used to be.&lt;/p&gt;
+&lt;h4&gt;General Guidelines for Business IM&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Be specific&lt;/li&gt;
+&lt;li&gt;Be direct and to the point&lt;/li&gt;
+&lt;li&gt;Be courteous but avoid too many pleasantries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;When to IM &amp;amp; When to Email, When to Call&lt;/h4&gt;
+&lt;p&gt;IM can be a great tool for communicating.  It can also be the &lt;span class=&quot;caps&quot;&gt;WRONG&lt;/span&gt; tool.  Here are a list of reasons to use instant messaging:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your message is urgent&lt;/li&gt;
+&lt;li&gt;Your message is brief&lt;/li&gt;
+&lt;li&gt;You expect your request will not take an extended period of time to fulfil&lt;/li&gt;
+&lt;li&gt;Your message does not require followup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reasons to use email:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your message is intended for more than one individual&lt;/li&gt;
+&lt;li&gt;You wish to CC the individual&amp;#8217;s superior to ensure proper priority is set to your request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Initiating a Conversation&lt;/h4&gt;
+&lt;p&gt;When initiating a conversation it&amp;#8217;s best to lead off with what you are contacting the other party for:&lt;/p&gt;
+
+&lt;pre class=&quot;im&quot;&gt;
+Frank: Hey Jane, could you check the fax machine to see if I got a fax?  
+       It's hard for me to make it up the stairs since I broke my ankle.
+Jane: Sure, just a sec
+Jane: Nope, no fax yet
+Frank: Darn. Maybe that African Prince email was a scam after all.  Thanks anyway.
+&lt;/pre&gt;
+&lt;p&gt;Another good example is the following:&lt;/p&gt;
+
+&lt;pre class=&quot;im&quot;&gt;
+(8:32:22)  Jane: Hey Frank, let me know when you are back at your desk, I have a fax to drop by
+(10:15:11) Frank: I'm back Jane- that meeting was murder.
+&lt;/pre&gt;
+&lt;p&gt;Here is an example of what not to do:&lt;/p&gt;
+
+&lt;pre class=&quot;im&quot;&gt;
+(8:12:22) Bill: Hey Ted!
+              (meanwhile Ted sees the message but is very busy on something 
+               and decides to wait to see if Bill wants anything)
+(8:17:51) Bill: Hello? You there?
+(8:17:52) Ted: Yes, I'm here. Do you need something?
+(8:19:43) Bill: Oh, cool. I thought you weren't around because you didn't answer.
+(8:22:23) Bill: So.. hey, could you like do me a favor?
+                (meanwhile Ted waits to see what Bill might need)
+(8:27:01) Bill: Ted! BUZZ! Hey did you go?
+(8:27:35) Ted: No. What do you need?
+(8:28:17) Bill: Ok, good because you didn't respond and I didn't know what happened.  
+                Can you check the report, I think their might be an error on it.
+(8:29:45) Ted: What report are you talking about?
+&lt;/pre&gt;
+&lt;p&gt;You get the point.  Because Bill didn&amp;#8217;t specify his needs clearly and quickly Bill and Ted&amp;#8217;s adventure cost Ted 4 interruptions and about 20 minutes of time that they won&amp;#8217;t be able to get back.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Caching S3 Objects</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/05/22/caching-s3-objects.html"/>
+   <updated>2008-05-22T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/05/22/caching-s3-objects</id>
+   <content type="html">&lt;h2&gt;Caching S3 Objects&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;22 May 2008&lt;/p&gt;
+&lt;p&gt;So I just deployed a new version of Spokt.com with the static content hosted by the Amazon S3.  I underestimated the number of requests that would be generated and &lt;a href=&quot;http://keakaj.com/wisdom/2007/07/27/cache-control-header-for-amazon-s3/&quot;&gt;found a way to reduce it with caching&lt;/a&gt;. I hope it works.&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+require 'rubygems'
+require 'aws/s3'
+
+AWS::S3::Base.establish_connection!(
+:access_key_id =&amp;gt; 'access id not shown',
+:secret_access_key =&amp;gt; 'secret key not shown'
+)
+
+photos = AWS::S3::Bucket.find('media.spokt.us',:prefix=&amp;gt;'images/')
+
+puts &quot;#{photos.size} files found.&quot;
+
+photos.each do |photo|
+    puts &quot;updating #{photo.key}...&quot;
+    photo.cache_control = 'max-age=315360000'
+    photo.save({:access =&amp;gt; :public_read})
+end
+&lt;/pre&gt;
+&lt;p&gt;To ensure the cache-control header was added I ran a curl command to get the headers:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+$ curl -I http://media.spokt.us/images/contentBoxHeader_04.jpg
+
+HTTP/1.1 200 OK
+x-amz-id-2: kEPTZ1ZdNo2nGsUnel5wDwsGi1pXTrkk6XGtSKKzb7zZguJjIwpaUCoUgESYbzkA
+x-amz-request-id: 5DD73A7EEB692C0D
+Date: Fri, 23 May 2008 05:09:53 GMT
+x-amz-meta-s3fox-filesize: 322
+x-amz-meta-s3fox-modifiedtime: 1183963918000
+Cache-Control: max-age=315360000
+Last-Modified: Fri, 23 May 2008 05:05:16 GMT
+ETag: &quot;1db8a1d3cb59acda667de962516c3cef&quot;
+Content-Type: image/jpeg
+Content-Length: 322
+Server: AmazonS3
+&lt;/pre&gt;
+&lt;p&gt;There it is&amp;#8230; now we&amp;#8217;ll see if we see fewer &lt;span class=&quot;caps&quot;&gt;GET&lt;/span&gt; requests tomorrow.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Small Caps in CSS</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/05/20/small-caps-in-css.html"/>
+   <updated>2008-05-20T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/05/20/small-caps-in-css</id>
+   <content type="html">&lt;h2&gt;Small Caps in &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;13 May 2008&lt;/p&gt;
+&lt;p&gt;I created a quick webiste mock up last night&amp;#8230; I&amp;#8217;m not a designer :(&lt;/p&gt;
+&lt;p&gt;I created the mock up in photoshop then copied the design to &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; + &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;.  Photoshop has a feature that makes all letters upper case with the truly capitalized ones bigger and the lower case letters smaller.  I found that &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; allows for this same behavior.&lt;/p&gt;
+&lt;p style=&quot;font-size:1.3em&quot;&gt;Regular: The United States of America&lt;/p&gt;
+&lt;p style=&quot;font-size:1.3em&quot;&gt;Small caps: &lt;span style=&quot;font-variant:small-caps&quot;&gt;The United States of America&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Here is a css class definition for small caps:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;css&quot;&gt;
+font-variant:small-caps;
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>SCP Secure Copy</title>
+   <link href="http://tracyliang.github.com/all/os/2008/05/20/scp-secure-copy.html"/>
+   <updated>2008-05-20T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/os/2008/05/20/scp-secure-copy</id>
+   <content type="html">&lt;h2&gt;&lt;span class=&quot;caps&quot;&gt;SCP&lt;/span&gt; Secure Copy&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;13 May 2008&lt;/p&gt;
+&lt;p&gt;So, I&amp;#8217;m late to the Linux party.  Today I learned how to use ‘scp’ to securely copy files between servers. Very late to the party.  From my macbook pro I type this command:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;terminal&quot;&gt;
+ scp dhixon@communicatopia.com:backups/ctopia.sql ctopia.sql
+&lt;/pre&gt;
+&lt;p&gt;Scp establishes an ssh connection with communicatopia.com and grabs the communicatopia.sql file from the backups folder in my home directory and copies it to the current working directory on my apple.   It is terribly easy.  For my next trick I want to configure a cron job to run a ruby script to mysqldump every night then upload it to my S3 account.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Lesson #6: More AJAX</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/05/13/rails-lesson-6-more-ajax.html"/>
+   <updated>2008-05-13T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/05/13/rails-lesson-6-more-ajax</id>
+   <content type="html">&lt;h2&gt;Rails Lesson #6: More &lt;span class=&quot;caps&quot;&gt;AJAX&lt;/span&gt;&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;13 May 2008&lt;/p&gt;
+&lt;p&gt;In this lesson we&amp;#8217;ll see how partials work and we&amp;#8217;ll add a few more ajax niceties.&lt;/p&gt;
+&lt;p&gt;Partials are just .html.erb files that are useful for reusing “view” (as in Model-View-Controller) elements.  They are easy to make and use &amp;#8211; just add a &amp;#8220;.html.erb&amp;#8221; file to your view directory that starts with an underscore then call the render_partial method.  Let&amp;#8217;s make one for our recipe list items.&lt;/p&gt;
+&lt;p&gt;Create a new file &amp;#8220;_recipe_list_item.html.erb&amp;#8221; in the &amp;#8220;app/views/recipes&amp;#8221; folder.  This is the contents of the new file:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;% recipe = recipe_list_item[:recipe] %&amp;gt;
+
+&amp;lt;li id=&amp;quot;recipe_&amp;lt;%= recipe.id %&amp;gt;&amp;quot;&amp;gt;
+    &amp;lt;%= link_to(recipe.name, cookbook_recipe_path(@cookbook,recipe))  %&amp;gt;
+
+&amp;lt;/li&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;This grabs a recipe out of the rails-built hash and then renders a list item with a link to the recipe.  Now we need to change our app/views/cookbooks/show.html.erb to use this partial.&lt;/p&gt;
+&lt;p&gt;Change this:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;ul id=&amp;quot;recipe_list&amp;quot;&amp;gt;
+&amp;lt;% @cookbook.recipes.each do |recipe| %&amp;gt;
+    &amp;lt;li&amp;gt;
+
+        &amp;lt;%= link_to recipe.name, cookbook_recipe_path(@cookbook,recipe) %&amp;gt;
+    &amp;lt;/li&amp;gt;
+&amp;lt;% end %&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;To this:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;ul id=&amp;quot;recipe_list&amp;quot;&amp;gt;
+
+&amp;lt;% @cookbook.recipes.each do |recipe| %&amp;gt;
+    &amp;lt;%= render_partial &amp;quot;/recipes/recipe_list_item&amp;quot;,:recipe =&amp;gt; recipe %&amp;gt;
+&amp;lt;% end %&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Go ahead and bring up a cookbook in your browser to ensure that nothing looks different.  Now we need to change the create.rjs file that we made in the previous lesson to use this partial.  In the last lesson I referred to the &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; in this file as &amp;#8220;unsightly&amp;#8221; because &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; doesn&amp;#8217;t belong in an rjs file.  I suppose there may be reasons for putting &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; in there but avoid it.&lt;/p&gt;
+&lt;p&gt;So, go ahead and replace this:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+page.insert_html :bottom, &quot;recipe_list&quot;,'&amp;lt;li&amp;gt;' + link_to(@recipe.name, cookbook_recipe_path(@cookbook,@recipe)) + '&amp;lt;/li&amp;gt;'
+&lt;/pre&gt;
+&lt;p&gt;with this that calls render_partial instead:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+page.insert_html :bottom, &quot;recipe_list&quot;,:partial=&amp;gt;'recipe_list_item',:object=&amp;gt;{:recipe=&amp;gt;@recipe}
+&lt;/pre&gt;
+&lt;p&gt;While you have it open go ahead and add this line in there:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+page[&quot;recipe_&quot; + @recipe.id.to_s].highlight
+&lt;/pre&gt;
+&lt;p&gt;Okay &amp;#8211; now go ahead and reload your cookbooks page, then add a recipe.  It works the same (only better because it highlights the new recipe after you add it!)&lt;/p&gt;
+&lt;p&gt;The only thing left to do now is make it so we can delete the recipes from our list– you probably added a bunch of terrible recipes to your cookbook.  I know I did: &amp;#8220;Strawberry Hashmelt&amp;#8221;, &amp;#8220;Boiled Beets&amp;#8221;, &amp;#8220;flashy flashy&amp;#8221;, and of course: &amp;#8220;sammy davis jr.&amp;#8221;  Nobody is going to want these recipes so we need a way to delete them.&lt;/p&gt;
+&lt;p&gt;Open up the recipe&lt;em&gt;list&lt;/em&gt;item partial and add a &amp;#8220;remote&amp;#8221; delete link:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;% recipe = recipe_list_item[:recipe] %&amp;gt;
+
+&amp;lt;li id=&amp;quot;recipe_&amp;lt;%= recipe.id %&amp;gt;&amp;quot;&amp;gt;
+    &amp;lt;%= link_to(recipe.name, cookbook_recipe_path(@cookbook,recipe))  %&amp;gt;
+    &amp;lt;%= link_to_remote &amp;quot;delete&amp;quot;, 
+            :url =&amp;gt; cookbook_recipe_path(@cookbook,recipe), 
+            :confirm =&amp;gt; &amp;#x27;Are you sure?&amp;#x27;, 
+            :method =&amp;gt; :delete %&amp;gt;
+
+&amp;lt;/li&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Because we are using a partial for the main display as well as the &lt;span class=&quot;caps&quot;&gt;AJAX&lt;/span&gt; adds we didn&amp;#8217;t have to add that code twice: hooray!&lt;/p&gt;
+&lt;p&gt;The link&lt;em&gt;to_remote tag will send a javascript request to the server.  When the server receives a request via javascript we want to respond to it correctly.  Open up your recipes controller and add a js format to the respond&lt;/em&gt;to block of the destroy action.  Now just like we did for the create action we need to create an rjs file to define the behavior.  The app/views/recipes/destroy.rjs file is very simple:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+page[&quot;recipe_&quot; + params[:id]].hide
+flash.discard
+&lt;/pre&gt;
+&lt;p&gt;Go ahead and delete some of your lesser recipes.&lt;/p&gt;
+&lt;h2&gt;On your own&lt;/h2&gt;
+&lt;p&gt;Below are some tasks you should try to do on your own.  I&amp;#8217;ll include my code for these next lesson when we get introduced to validations in rails.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrap the delete link in a div or span in order to make some space between the recipe name and the word delete.&lt;/li&gt;
+&lt;li&gt;Add an &amp;#8220;edit&amp;#8221; link to the list for quickly arriving to the edit screen.  You should use a &amp;#8220;cookbook_recipe_path&amp;#8221; method.&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Lesson #5: AJAX</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/05/06/rails-lesson-5-ajax.html"/>
+   <updated>2008-05-06T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/05/06/rails-lesson-5-ajax</id>
+   <content type="html">&lt;h2&gt;Rails Lesson #5: &lt;span class=&quot;caps&quot;&gt;AJAX&lt;/span&gt;&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;6 May 2008&lt;/p&gt;
+&lt;p&gt;Today we want to change our application so we can add recipes to our cookbook right from the cookbooks/show page.  First we&amp;#8217;ll do it without &lt;span class=&quot;caps&quot;&gt;AJAX&lt;/span&gt; (asynchronous javascript and &lt;span class=&quot;caps&quot;&gt;XML&lt;/span&gt;) then we&amp;#8217;ll add it in.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s copy the new recipe form from app/views/recipes/new.html.erb and paste it into app/views/cookbooks/show.html.erb so that it looks like the code below.  I also passed another parameter to the f.text_area methods (:rows=&amp;gt;5) because those text areas were just too tall.&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&lt;%= error_messages_for :recipe %&gt;
+
+&amp;lt;h2&amp;gt;Cookbook: &amp;lt;%=h @cookbook.title %&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;
+  &amp;lt;b&amp;gt;Author:&amp;lt;/b&amp;gt;
+  &amp;lt;%=h @cookbook.author %&amp;gt;
+
+&amp;lt;/p&amp;gt;
+
+&amp;lt;h3&amp;gt;Recipes:&amp;lt;/h3&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;% @cookbook.recipes.each do |recipe| %&amp;gt;
+	&amp;lt;li&amp;gt;&amp;lt;%= link_to recipe.name, cookbook_recipe_path(@cookbook,recipe) %&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;% end %&amp;gt;
+
+&amp;lt;/ul&amp;gt;
+&amp;lt;br /&amp;gt;
+&amp;lt;%= link_to &amp;quot;Add new recipe&amp;quot;, new_cookbook_recipe_path(@cookbook) %&amp;gt;
+
+&amp;lt;!-- =========== BEGIN Form for new recipes =============  --&amp;gt;
+&amp;lt;!-- =========== BEGIN Form for new recipes =============  --&amp;gt;
+
+&amp;lt;%= error_messages_for :recipe %&amp;gt;
+
+&amp;lt;% form_for([@cookbook,@recipe]) do |f| %&amp;gt;
+  &amp;lt;p&amp;gt;
+    &amp;lt;b&amp;gt;Name&amp;lt;/b&amp;gt;&amp;lt;br /&amp;gt;
+    &amp;lt;%= f.text_field :name %&amp;gt;
+  &amp;lt;/p&amp;gt;
+
+  &amp;lt;p&amp;gt;
+    &amp;lt;b&amp;gt;Ingredients&amp;lt;/b&amp;gt;&amp;lt;br /&amp;gt;
+    &amp;lt;%= f.text_area :ingredients,:rows=&gt;5 %&amp;gt;
+  &amp;lt;/p&amp;gt;
+
+  &amp;lt;p&amp;gt;
+    &amp;lt;b&amp;gt;Description&amp;lt;/b&amp;gt;&amp;lt;br /&amp;gt;
+    &amp;lt;%= f.text_area :description,:rows=&gt;5 %&amp;gt;
+  &amp;lt;/p&amp;gt;
+
+  &amp;lt;p&amp;gt;
+
+    &amp;lt;b&amp;gt;Number of servings&amp;lt;/b&amp;gt;&amp;lt;br /&amp;gt;
+    &amp;lt;%= f.text_field :number_of_servings %&amp;gt;
+  &amp;lt;/p&amp;gt;
+
+  &amp;lt;p&amp;gt;
+    &amp;lt;%= f.submit &amp;quot;Create&amp;quot; %&amp;gt;
+
+  &amp;lt;/p&amp;gt;
+&amp;lt;% end %&amp;gt;
+&amp;lt;!-- =============== END Form for new recipes ==================  --&amp;gt;
+&amp;lt;!-- =============== END Form for new recipes ==================  --&amp;gt;
+
+&amp;lt;hr style=&amp;quot;margin-top:25px;&amp;quot;/&amp;gt;
+
+&amp;lt;%= link_to &amp;#x27;Edit&amp;#x27;, edit_cookbook_path(@cookbook) %&amp;gt; |
+
+&amp;lt;%= link_to &amp;#x27;List&amp;#x27;, cookbooks_path %&amp;gt;
+
+&lt;% end %&gt;
+&lt;/pre&gt;
+&lt;p&gt;Notice the form_for passes an array containing @cookbook and a @recipe.  We need to instanciate @recipe.  That code belongs in the cookbooks controller:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+
+  def show
+    @cookbook = Cookbook.find(params[:id])
+    #instanciate @recipe for the form
+    @recipe = Recipe.new
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml =&amp;gt; @cookbook }
+    end
+  end
+
+&lt;/pre&gt;
+&lt;p&gt;At this point you can go ahead and use the form to add a recipe to your cookbook.  After you create the recipe it takes you to the recipe&amp;#8217;s show action.  Let&amp;#8217;s change that to redirect us back to the cookbook page.  This code is in the create action of the recipe&amp;#8217;s controller.  Change the redirect to redirect_to([&lt;code&gt;cookbook,&lt;/code&gt;recipe]) to redirect_to(@cookbook).&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+       format.html { redirect_to(@cookbook) }
+&lt;/pre&gt;
+&lt;p&gt;Now it basically behaves how we will want. We just need to sprinkle some Ajax magic.  Rails makes it pretty easy to do.  We&amp;#8217;ll just include some javascript libraries, change our form tag and then code in Ruby how we want our output.&lt;/p&gt;
+&lt;p&gt;Add this line to your views/layouts/application.html.erb right under the style sheet tag:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+	&amp;lt;%= javascript_include_tag :defaults %&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Now to make a form submit asynchronous we call the form_remote_for method instead of the form_for.  So change views/cookbooks/show.html.erb:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;!-- ============== BEGIN Form for new recipes ================  --&amp;gt;
+
+&amp;lt;%= error_messages_for :recipe %&amp;gt;
+
+&amp;lt;% form_remote_for([@cookbook,@recipe]) do |f| %&amp;gt;
+
+  ...
+&lt;/pre&gt;&lt;p&gt;If we were to fill out the form and click submit at this point it would look as though nothing happened but it would actually send a request to the server to the recipes controller&amp;#8217;s create method and create a record in the database.  That was easy, right?  Now all we have to do is send an &lt;span class=&quot;caps&quot;&gt;XML&lt;/span&gt; response back to the client.&lt;/p&gt;
+&lt;p&gt;Remember that “respond_to do |format|” block we saw a few lessons ago?  We can represent our models as xml  as well as html.  This time we need to respond to a javascript request.  Add “format.js {}” to your create action so that it looks like the following:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+respond_to do |format|
+      if @recipe.save
+        flash[:notice] = 'Recipe was successfully created.'
+        format.html { redirect_to(@cookbook) }
+        format.js   #this will use views/recipes/create.rjs
+        format.xml  { render :xml =&amp;gt; @recipe, :status =&amp;gt; :created, :location =&amp;gt; @recipe }
+      else
+        format.html { render :action =&amp;gt; &quot;new&quot; }
+        format.xml  { render :xml =&amp;gt; @recipe.errors, :status =&amp;gt; :unprocessable_entity }
+      end
+&lt;/pre&gt;
+&lt;p&gt;As you can see from the comment when rails sees the format.js it will look for an rjs file named views/model/action.rjs.  &lt;span class=&quot;caps&quot;&gt;RJS&lt;/span&gt; stands for Rails JavaScript (might be &amp;#8220;Ruby&amp;#8221; or &amp;#8220;Remote&amp;#8221;).  In this case it will be views/recipes/create.rjs.  Go ahead and create an empty create.rjs file.&lt;/p&gt;
+&lt;p&gt;We want the web page to do the following once we click submit:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;Add the recipe to the list&lt;/li&gt;
+	&lt;li&gt;Clear the form&lt;/li&gt;
+	&lt;li&gt;Erase the flash message&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;span class=&quot;caps&quot;&gt;RJS&lt;/span&gt; file will contain ruby code that will be translated into JavaScript by Rails.  In order for us to add dynamic content like an item to the list we need to give the containing &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; element an id. The ul tag in this case (cookbooks/show.html.erb):&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;ul id=&amp;quot;recipe_list&amp;quot;&amp;gt;
+&amp;lt;% @cookbook.recipes.each do |recipe| %&amp;gt;
+	&amp;lt;li&amp;gt;&amp;lt;%= link_to recipe.name, cookbook_recipe_path(@cookbook,recipe) %&amp;gt;&amp;lt;/li&amp;gt;
+
+&amp;lt;% end %&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Now for the rjs file.  We&amp;#8217;ll clean this up a little bit in the next lesson but here is the contents of the create.rjs file which will take care of items 1-3 above in that order:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+page.insert_html :bottom, &quot;recipe_list&quot;,'&amp;amp;lt;li&amp;amp;gt;' + link_to(@recipe.name,cookbook_recipe_path(@cookbook,@recipe)) + '&amp;amp;lt;/li&amp;amp;gt;'
+page[&quot;new_recipe&quot;].reset
+flash.discard
+
+&lt;/pre&gt;
+&lt;p&gt;First we use the insert_html method to add a list item to the &amp;#8220;bottom&amp;#8221; of the &amp;#8220;recipe_list&amp;#8221;.  Then we reset the &amp;#8220;new_recipe&amp;#8221; form and then call flash.discard to erase the flash message.  Next time we&amp;#8217;ll get rid of that unsightly &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; in the create.rjs file by putting the list item into a partial as well as make it possible to delete recipes from cookbooks.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Why Less is More</title>
+   <link href="http://tracyliang.github.com/all/life/2008/05/05/why-less-is-more.html"/>
+   <updated>2008-05-05T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2008/05/05/why-less-is-more</id>
+   <content type="html">&lt;h2&gt;Why Less is More&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;05 May 2008&lt;/p&gt;
+&lt;p&gt;Google Video: The Paradox of Choice why More is Less:&lt;br /&gt;
+&lt;a href=&quot;http://video.google.com/videoplay?docid=6127548813950043200&quot;&gt;http://video.google.com/videoplay?docid=6127548813950043200&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This lecture has given me a vocabulary and &amp;#8220;evidences&amp;#8221; to support my belief that software should be simple and offer fewer features.  I feel that is where spokt.com varies philosophically from myfamily.com.  We concentrate on making our features more powerful and easier to use instead of adding features.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>MD5 Hash in Ruby</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/30/md5-hash-in-ruby.html"/>
+   <updated>2008-04-30T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/30/md5-hash-in-ruby</id>
+   <content type="html">&lt;h2&gt;MD5 Hash in Ruby&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;30 Apr 2008&lt;/p&gt;
+&lt;p&gt;The top three google links I got for this seemed to require a lot of junk I didn&amp;#8217;t think I needed.  I kept searching and found that it is exactly as ridiculously simple as I have come to expect from Ruby:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+require 'md5'
+puts Digest::MD5.hexdigest(&quot;This is what I want to hash&quot;)
+&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Lesson #4: CSS</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/23/rails-lesson-4-css.html"/>
+   <updated>2008-04-23T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/23/rails-lesson-4-css</id>
+   <content type="html">&lt;h2&gt;Rails Lesson #4: &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;22 Apr 2008&lt;/p&gt;
+&lt;p&gt;We aren&amp;#8217;t going to learn much Ruby On Rails here but we will prettify our cookbook application using &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;.  Cascading Style Sheets are very powerful and flexible.&lt;/p&gt;
+&lt;p&gt;To see the power and flexibility of &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; visit: &lt;a href=&quot;http://www.csszengarden.com/&quot;&gt;&lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; Zen Garden&lt;/a&gt;.  The special thing about the &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; Zen Garden is that you can change the style sheets and the look and feel of the site completely changes but the underlying &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; is exactly the same.  The images are brought in with the style sheet and if you view the &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; source you&amp;#8217;ll notice there are no &lt;span class=&quot;caps&quot;&gt;TABLE&lt;/span&gt; tags so the layout is controlled completely by the &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The first step to making our application look a little better is changing the layout.  By default Rails looks in the app/views/layouts/ directory for a layout file that has the same name as the current controller (cookbooks_controller would look for the cookbooks layout).  If it doesn&amp;#8217;t find one it looks for one for the entire application called application.html.erb.  We want our entire application to look the same so we&amp;#8217;ll delete &amp;#8220;app/views/layouts/recipes.html.erb&amp;#8221; and rename &amp;#8220;cookbooks.html.erb&amp;#8221;  to &amp;#8220;application.html.erb&amp;#8221;.  Open up application.html.erb and change the title:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;title&amp;gt;Cookbooks&amp;lt;/title&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;And replace the body with the following:&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;
+&amp;lt;body&amp;gt;
+&amp;lt;div class=&amp;quot;main&amp;quot;&amp;gt;
+    &amp;lt;% if flash[:notice] %&amp;gt;
+            &amp;lt;p class=&amp;quot;flash&amp;quot;&amp;gt;&amp;lt;%= flash[:notice] %&amp;gt;&amp;lt;/p&amp;gt;
+    &amp;lt;% end %&amp;gt;
+
+    &amp;lt;%= yield  %&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;If you refresh your page now it won&amp;#8217;t look much different.  We need to change the css file.  It is located here: public/stylesheets/scaffold.css.  If we were building a real application we would probably create a new style sheet and get rid of scaffold.css but for our purposes we can simply change scaffold.css.&lt;/p&gt;
+&lt;p&gt;replace:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;css&quot;&gt;
+
+body { background-color: #4b7399; color: #222; }
+&lt;/pre&gt;
+&lt;p&gt;add these definitions:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;css&quot;&gt;
+.flash
+{
+    padding:5px;
+    border: dashed 2px #006600;
+    background-color: #99FF99;
+}
+.main {
+    padding: 12px 12px 12px 20px;
+    border: solid 2px #000;
+    background-color: #fff;
+    width: 700px;
+    margin: 20px auto;
+}
+&lt;/pre&gt;
+&lt;p&gt;Now when you reload your page you should see something that looks something like this:&lt;br /&gt;
+&lt;img src=&quot;http://communicatopia.s3.amazonaws.com/images/rails-css.png&quot; alt=&quot;after style&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Feel free to play around with it.  Change the &amp;#8220;.main&amp;#8221; width or the &amp;#8220;body&amp;#8221; &lt;a href=&quot;http://www.w3schools.com/html/html_colors.asp&quot;&gt;&amp;#8220;background-color&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Some general guidelines that have helped me with &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; and &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; should say what it is not what it looks like.&lt;/li&gt;
+&lt;li&gt;Use existing tags if they exist (e.g. h1 for headings, ul for list, em for emphasis)&lt;/li&gt;
+&lt;li&gt;Avoid tables &amp;#8211; but ok for tabular data.&lt;/li&gt;
+&lt;li&gt;use div tags instead of span tags.  I don&amp;#8217;t really know why.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More reading: &lt;a href=&quot;http://www.webdesignfromscratch.com/css-block-and-inline.cfm&quot;&gt; block elements vs. inline elements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; is cool! &lt;/p&gt;
+&lt;p&gt;&lt;/notextile&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Lesson #3: Nested Resources</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/18/rails-lesson-3-nested-resources.html"/>
+   <updated>2008-04-18T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/18/rails-lesson-3-nested-resources</id>
+   <content type="html">&lt;h2&gt;Rails Lesson #3: Nested Resources&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Apr 2008&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;/2008/04/15/rails-lesson-2-the-console.html&quot;&gt;Lesson #2&lt;/a&gt; we established a relationship between our Recipe model and our Cookbook model. We used the rails console to wire up the recipe record so that it belonged to the cookbook record.  In this lesson we&amp;#8217;ll make changes to our UI that will allow us to add recipes to cookbooks.  First let&amp;#8217;s learn a little about controllers.&lt;/p&gt;
+&lt;h4&gt;Controller Actions&lt;/h4&gt;
+&lt;p&gt;Rails uses the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; to direct traffic.  All requests are directed to an action of a controller.  It&amp;#8217;s a good idea to follow RESTful conventions and give your controller a maximum of these 7 actions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;index &amp;#8211; used to list entities&lt;/li&gt;
+&lt;li&gt;show &amp;#8211; used to display a specific entity&lt;/li&gt;
+&lt;li&gt;new &amp;#8211; used to display form to create a new entity&lt;/li&gt;
+&lt;li&gt;edit &amp;#8211; used to display a form to edit a specific entity&lt;/li&gt;
+&lt;li&gt;create &amp;#8211; accessed to create a new entity (No UI)&lt;/li&gt;
+&lt;li&gt;update &amp;#8211; accessed to update an entity (No UI)&lt;/li&gt;
+&lt;li&gt;destroy &amp;#8211; accessed to delete an entity (No UI)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rails will direct a request to http://localhost:3000/cookbooks to the &amp;#8220;index&amp;#8221; action of the cookbooks controller.  If you look in the app/controllers/cookbooks_controller.rb file you&amp;#8217;ll see seven methods defined; one for each action.  The first one is index:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  def index
+    @cookbooks = Cookbook.find(:all)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml =&amp;gt; @cookbooks }
+    end
+  end
+&lt;/pre&gt;
+&lt;p&gt;The default behavior is to grab all the Cookbooks and then pass to the view for rendering.  In a later lesson we&amp;#8217;ll do more with that respond_to part &amp;#8211; it basically lets us represent our entities with more than just &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;.  Visit &lt;a href=&quot;http://localhost:3000/cookbooks.xml&quot;&gt;http://localhost:3000/cookbooks.xml&lt;/a&gt; you&amp;#8217;ll see an &lt;span class=&quot;caps&quot;&gt;XML&lt;/span&gt; representation of the list of cookbooks instead of &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;.  Cool!&lt;/p&gt;
+&lt;p&gt;When we are requesting &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; rails looks in the app/views/{controller_name}/{action_name}.html.erb or /app/views/cookbooks/index.html.erb  If you take a look at that file you&amp;#8217;ll see a heading, and code for generating an &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; table.  While we have it open, let&amp;#8217;s just capitalize the word &amp;#8220;cookbooks&amp;#8221; in the title.&lt;/p&gt;
+&lt;h4&gt;Nested Resources&lt;/h4&gt;
+&lt;p&gt;What we really want to do is add a list of recipes and a link to add more to this page: &lt;a href=&quot;http://localhost:3000/cookbooks/1&quot;&gt;http://localhost:3000/cookbooks/1&lt;/a&gt;.  Rails directs that &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; to the &amp;#8220;show&amp;#8221; action of the cookbooks controller.  The show action retrieves a specific cookbook from the database (id = 1 in our case) and passes control to the app/views/cookbooks/show.html.erb file.  Before we start editing that file we are going to establish a &amp;#8220;route&amp;#8221; relationship between them.  Open up your config/routes.rb file and add this line right above &amp;#8220;map.resources :cookbooks&amp;#8221;&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+map.resources :cookbooks, :has_many =&amp;gt; :recipes
+&lt;/pre&gt;
+&lt;p&gt;Now we are ready to make changes to the app/views/cookbooks/show.html.erb file.  The code above tells rails that &amp;#8220;recipes&amp;#8221; are a nested resource for &amp;#8220;cookbooks&amp;#8221; &amp;#8211; the urls will look like this: /cookbooks/{id}/recipes/{id}.  One nice thing is that we don&amp;#8217;t need to hand code our urls &amp;#8211; rails can do it for us.  Change your show.html.erb file so it looks like the code below.&lt;/p&gt;  
+&lt;pre name=&quot;code&quot; class=&quot;xml&quot;&gt;
+&amp;lt;h2&amp;gt;Cookbook: &amp;lt;%=h @cookbook.title %&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;
+  &amp;lt;b&amp;gt;Author:&amp;lt;/b&amp;gt;
+  &amp;lt;%=h @cookbook.author %&amp;gt;
+&amp;lt;/p&amp;gt;
+
+&amp;lt;h3&amp;gt;Recipes:&amp;lt;/h3&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;% @cookbook.recipes.each do |recipe| %&amp;gt;
+	&amp;lt;li&amp;gt;&amp;lt;%= link_to recipe.name, cookbook_recipe_path(@cookbook,recipe) %&amp;gt;&amp;lt;/li&amp;gt;
+&amp;lt;% end %&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+&amp;lt;br /&amp;gt;
+&amp;lt;%= link_to &amp;quot;Add new recipe&amp;quot;, new_cookbook_recipe_path(@cookbook) %&amp;gt;
+&amp;lt;hr style=&amp;quot;margin-top:25px;&amp;quot;/&amp;gt;
+
+&amp;lt;%= link_to &amp;#x27;Edit&amp;#x27;, edit_cookbook_path(@cookbook) %&amp;gt; |
+&amp;lt;%= link_to &amp;#x27;Back&amp;#x27;, cookbooks_path %&amp;gt;
+&lt;/pre&gt;&lt;p&gt;We&amp;#8217;ve changed the look slightly and added a list of recipes.  We are linking to the recipes using the &amp;#8220;cookbook_recipe_path&amp;#8221; method to create a new recipe using the &amp;#8220;new_cookbook_recipe_path&amp;#8221; method &amp;#8211; these are provided to us because of the change we made to the routes.rb file.  When you click on the recipe name you&amp;#8217;ll be taken to this location: /cookbooks/1/recipes/1 and the &amp;#8220;Add New&amp;#8221; link takes you here: /cookbook/1/recipes/new.&lt;/p&gt;
+&lt;p&gt;
+&lt;p&gt;Now that the recipes are showing up at the correct &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt; we need to make a couple changes so that the new recipes get saved with the correct cookbook ID.  First we need to make two changes to the recipes controller.  At the top under the class definition add &amp;#8220;before_filter :load_parent&amp;#8221; and add the private &amp;#8220;load_parent&amp;#8221; method at the bottom:&lt;/p&gt;
+&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+class RecipesController &amp;lt; ApplicationController
+  before_filter :load_parent
+
+   ... all other actions ...
+
+#all methods defined below &quot;private&quot; are not accessible as actions:
+private
+
+  def load_parent
+    @cookbook = Cookbook.find(params[:cookbook_id])
+  
+  end
+
+end # end of class
+&lt;/pre&gt;
+&lt;p&gt;
+&lt;p&gt;The before_filter method tells rails not to excecute any actions until after running the methods that are passed in as parameters.  That line says &amp;#8220;before you do anything, run the &amp;#8216;load_parent&amp;#8217; method first.&amp;#8221;  The load_parent method simply retrieves the appropriate category from the database.  The &amp;#8220;params&amp;#8221; hash is created by rails and contains all the parameters available.  Rails added the &amp;#8220;cookbook_id&amp;#8221; parameter by parsing the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;.  We don&amp;#8217;t have to deal with the details of passing that ID around &amp;#8211; rails does the work for us.&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;
+&lt;p&gt;We also need to make a small change to the view (recipes/new.html.erb).  Change the &amp;#8220;form_for&amp;#8221; line to the following:&lt;/p&gt;
+&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+&amp;amp;lt;% form_for([@cookbook,@recipe]) do |f| %&amp;amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;
+&lt;p&gt;Before we are able to add new recipes to our cookbook we need to make a change to the &amp;#8220;create&amp;#8221; action of the recipes controller.  You&amp;#8217;ll need to code the association for the cookbook (&lt;code&gt;recipe.cookbook = @cookbook) and after saving instead of redirecting to the @recipe - you'll want to redirect as a nested route (redirect_to([&lt;/code&gt;cookbook,@recipe]).&lt;/p&gt;
+&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+  def create
+    @recipe = Recipe.new(params[:recipe])
+    @recipe.cookbook = @cookbook
+    
+    respond_to do |format|
+      if @recipe.save
+        flash[:notice] = 'Recipe was successfully created.'
+        format.html { redirect_to([@cookbook,@recipe]) }
+        format.xml  { render :xml =&amp;gt; @recipe, :status =&amp;gt; :created, :location =&amp;gt; @recipe }
+      else
+        format.html { render :action =&amp;gt; &quot;new&quot; }
+        format.xml  { render :xml =&amp;gt; @recipe.errors, :status =&amp;gt; :unprocessable_entity }
+      end
+    end
+  end
+&lt;/pre&gt;
+&lt;p&gt;
+&lt;p&gt;We should be all set to add recipes to our cookbook.  Navigate to &lt;a href=&quot;http://localhost:3000/cookbooks/1/&quot;&gt;http://localhost:3000/cookbooks/1/&lt;/a&gt; then click on &amp;#8220;Add new recipe&amp;#8221; Fill out the form and click create.  &lt;span class=&quot;caps&quot;&gt;VOILA&lt;/span&gt;!  You have a added a recipe your cookbook.  Don&amp;#8217;t try clicking the &amp;#8220;Edit&amp;#8221; and &amp;#8220;Back&amp;#8221; links: they won&amp;#8217;t work yet.  That&amp;#8217;s it for lesson #3.  In Lesson #4 we&amp;#8217;ll do some simple &lt;span class=&quot;caps&quot;&gt;AJAX&lt;/span&gt; to remove recipes from our cookbooks.&lt;/p&gt;
+&lt;h4&gt;Misc. Cleanup&lt;/h4&gt;
+&lt;p&gt;There are a few issues with our code that don&amp;#8217;t really belong as part of the lesson.  First let&amp;#8217;s fix the &amp;#8220;Edit&amp;#8221; and &amp;#8220;Back&amp;#8221; links on the recipe&amp;#8217;s show.html.erb.  &lt;br /&gt;
+&lt;ul&gt;&lt;br /&gt;
+&lt;li&gt;Replace edit_recipe_path(&lt;code&gt;recipe) with edit_cookbook_recipe_path(&lt;/code&gt;cookbook,&lt;code&gt;recipe)&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;The back link should go to the cookbook_path(&lt;/code&gt;cookbook) instead of recipes_path.&lt;/li&gt;&lt;br /&gt;
+&lt;li&gt;Copy that back link to replace the back link in recipes/new.html.erb&lt;/li&gt;&lt;br /&gt;
+&lt;li&gt;Make these same changes in recipes/edit.html.erb&lt;/li&gt;&lt;br /&gt;
+&lt;li&gt;We need to change the form_for tag on the recipes/edit.html.erb like we did for the &amp;#8220;new&amp;#8221; view above: form_for([&lt;code&gt;cookbook,&lt;/code&gt;recipe])&lt;/li&gt;&lt;br /&gt;
+&lt;li&gt;In the update action of the recipes controller we need to redirect to the cookbook/recipe:         format.html { redirect_to([&lt;code&gt;cookbook,&lt;/code&gt;recipe]) }&lt;/li&gt;&lt;/p&gt;
+&lt;/ul&gt;
+&lt;p&gt;There!  Now you should be able to click around and add cookbooks and recipes without causing any server errors.&lt;/p&gt;
+&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Visuals Affect</title>
+   <link href="http://tracyliang.github.com/all/life/2008/04/17/visuals-affect.html"/>
+   <updated>2008-04-17T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2008/04/17/visuals-affect</id>
+   <content type="html">&lt;h2&gt;Visuals Affect&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;17 Apr 2008&lt;/p&gt;
+&lt;p&gt;Found &lt;a href=&quot;http://www.toothpastefordinner.com/&quot;&gt;these comics&lt;/a&gt; the other day.  I didn&amp;#8217;t get or like most of them but this one is excellent:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://communicatopia.s3.amazonaws.com/images/didnt-forget-sound-effects.gif&quot; alt=&quot;power point&quot; class=&quot;scoot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I used to think Power Point was evil.  In a way I guess I still do.  I use Keynote instead of Power Point but they both make it way too easy to make a really bad presentation.  Text and bullet points are the path of least resistance and will be travelled most frequently.&lt;/p&gt;
+&lt;p&gt;Whenever I create a presentation I enforce constraints on myself that make it challenging and hopefully less boring for my audiences.  One of them is: No bullet points allowed.  If you have a list of things to say don&amp;#8217;t write them on the slide and read them to me.  Give me something to look at while you &lt;i&gt;tell&lt;/i&gt; me.  &lt;/p&gt;
+&lt;p&gt;I ask &amp;#8220;Is there any word on the slide that I cannot get rid of?&amp;#8221;  It&amp;#8217;s my mouth&amp;#8217;s job to say the words &amp;#8211; my mouth can&amp;#8217;t display pictures, charts, and diagrams.&lt;/p&gt;
+&lt;p&gt;I also don&amp;#8217;t use clipart&amp;#8230; Mostly because I detest it but it&amp;#8217;s nice to know that it isn&amp;#8217;t even part of Keynote.&lt;/p&gt;
+&lt;p&gt;Ok, here are some examples.  I was present an implementation plan for three technologies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cast Iron Integration Appliance&lt;/li&gt;
+&lt;li&gt;Data Warehouse&lt;/li&gt;
+&lt;li&gt;Ruby On Rails&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Instead of the bullet points like you see above here is the slide I created:&lt;br /&gt;
+&lt;img alt=&quot;Cast Iron, DW, Rails&quot; src=&quot;http://communicatopia.s3.amazonaws.com/images/castiron-dw-rails.png&quot; class=&quot;scoot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I was presenting a new architecture plan and got done explaining the problems with our current setup.  The next slide was to describe the consequences.  I could have used this bullet list:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Frustrated users&lt;/li&gt;
+&lt;li&gt;Upset managers&lt;/li&gt;
+&lt;li&gt;Unhappy developers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My slide:&lt;br /&gt;
+&lt;img alt=&quot;Cast Iron, DW, Rails&quot; src=&quot;http://communicatopia.s3.amazonaws.com/images/sadusersetc.png&quot; class=&quot;scoot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;There were three kinds of reports that were going to be migrated to a new environment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All New Reports&lt;/li&gt;
+&lt;li&gt;Problematic Reports&lt;/li&gt;
+&lt;li&gt;Reports which need major enhancements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My Slide:&lt;br /&gt;
+&lt;img alt=&quot;What to move&quot; src=&quot;http://communicatopia.s3.amazonaws.com/images/carslide.png&quot; class=&quot;scoot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I think adding visuals helps a lot.  They get attention, they create memories.  &lt;/p&gt;
+&lt;p&gt;Sometimes you might have a list of abstract elements that can&amp;#8217;t be described pictorially.  I was trying to make a slide for the end of one of my presentations where we discussed a list of requests we have received that were potential candidates to do next in Ruby on Rails.  There were 11 projects to choose from and software that hasn&amp;#8217;t been written yet is very difficult to photograph.  Some projects seemed more likely than others.  Here is what I did:&lt;br /&gt;
+&lt;img alt=&quot;Tag Cloud&quot; src=&quot;http://communicatopia.s3.amazonaws.com/images/rails-candidates.png&quot; class=&quot;scoot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s not a traditional bullet list &amp;#8211; it&amp;#8217;s more like a tag cloud.  The more likely/important names are larger.&lt;/p&gt;
+&lt;p&gt;Presentation software makes it easy for users to make very bad presentations but there are ways to defeat them.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Ruby eats SOAP for Breakfast</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/16/ruby-eats-soap-for-breakfast.html"/>
+   <updated>2008-04-16T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/16/ruby-eats-soap-for-breakfast</id>
+   <content type="html">&lt;h2&gt;Ruby eats &lt;span class=&quot;caps&quot;&gt;SOAP&lt;/span&gt; for Breakfast&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;16 Apr 2008&lt;/p&gt;
+&lt;p&gt;Google &lt;i&gt;is&lt;/i&gt; my friend. I needed to access some &lt;span class=&quot;caps&quot;&gt;SOAP&lt;/span&gt; web services from Ruby.  Our company allows customers to pay their bills with cash at various cash payment centers in throughout the state.  We have an &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.Net web service that accepts a zip code and the maximum miles a person is willing to travel and returns a list of locations within that radius.&lt;/p&gt;
+&lt;p&gt;Here is how I did it:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+require 'soap/wsdlDriver'
+require 'soap/header/simplehandler'
+
+driver = SOAP::WSDLDriverFactory.new(&quot;http://www.domain.com/webservices/PaymentCentersAPI.asmx?WSDL&quot;).create_rpc_driver
+
+class AutheticationHeaderHandler &amp;lt; SOAP::Header::SimpleHandler      
+    #The header is named &quot;SecureHeader&quot; in this web service.
+    @@HEADER_NAME = 'SecureHeader'
+    def initialize(namespace, username, password)       
+      super(XSD::QName.new(namespace, @@HEADER_NAME))
+      #the user field is called &quot;UserName&quot;
+      @user_element = XSD::QName.new(namespace, 'UserName')
+      @password_element = XSD::QName.new(namespace, 'Password')     
+      @username, @password = username, password
+    end
+    def on_simple_outbound
+      # Seems to result in the creation of elements with the proper namespace
+      # abbreviation, e.g. '&amp;lt;ns1:User&amp;gt;JohnDoe&amp;lt;/ns1:User&amp;gt;'
+      {@user_element =&amp;gt; @username, @password_element =&amp;gt; @password}
+    end
+end
+
+# Add the soap header handler for authentication:
+driver.headerhandler &amp;lt;&amp;lt; AutheticationHeaderHandler.new(&quot;http://com.domain/&quot;, &quot;careSystem&quot;,&quot;s3cr37&quot;)
+
+#Call The SOAP method:
+soapResponse = driver.FindNearestCenters(:ZipCode =&amp;gt; 90210, :MaximumMiles =&amp;gt; 15)
+
+# Print the payment location centers:
+soapResponse.findNearestCentersResult.cashPaymentCenter.each do |center|
+  puts &quot;store name: #{center.storeName}, Miles from 90210: #{center.milesToStore}&quot;
+
+end
+
+driver.reset_stream
+
+&lt;/pre&gt;
+&lt;p&gt;thanks to these articles/posts:&lt;br /&gt;
+&lt;a href=&quot;http://webgambit.com/blog/calling-a-net-web-service-from-rails-original/&quot;&gt;http://webgambit.com/blog/calling-a-net-web-service-from-rails-original/&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/222966&quot;&gt;http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/222966&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Download a list of images over https in Ruby</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/16/download-images-over-https.html"/>
+   <updated>2008-04-16T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/16/download-images-over-https</id>
+   <content type="html">&lt;h2&gt;Download a list of images over https in Ruby&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Apr 2008&lt;/p&gt;
+&lt;p&gt;Long post title.&lt;br/&gt;
+&lt;br /&gt;
+Today I found myself with a text file of image names that needed to be downloaded from a site.  This is how I did it:&lt;/p&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+require 'net/http'
+require &quot;net/https&quot;
+
+@http=Net::HTTP.new('www.domain.com', 443)
+@http.use_ssl = true
+
+# open file with file names for reading only - my file names were one per line
+image_list = File.new(&quot;imagenames.txt&quot;, &quot;r&quot;)  
+
+#start our web session:
+@http.start() do |http|
+  image_list.each do |file_name|
+    # remove any extra \r or \n chars
+    file_name.chomp!
+
+    #only download if we don't already have it:
+    unless File.exists? &quot;images/#{file_name}&quot;
+      # status message:
+      print &quot;downloading #{file_name}...&quot;
+
+      # set up the request
+      req = Net::HTTP::Get.new(&quot;/images/#{file_name}&quot;)
+      response = http.request(req)
+      # write the binary data to the local file of the same name:
+      open(&quot;images/#{file_name}&quot;,&quot;wb&quot;).write( response.body )
+
+      puts &quot;DONE!&quot;
+    else
+      puts &quot;skipping: #{file_name}&quot;
+    end
+  end
+
+end
+&lt;/pre&gt;
+&lt;p&gt;Many thanks to these articles:&lt;br /&gt;
+http://www.rubynoob.com/articles/2006/8/21/how-to-download-files-with-a-ruby-script&lt;br /&gt;
+http://railsruby.blogspot.com/2006/02/https-open-uri-basic-authentication.html&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Lesson #2: The Console</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/15/rails-lesson-2-the-console.html"/>
+   <updated>2008-04-15T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/15/rails-lesson-2-the-console</id>
+   <content type="html">&lt;h2&gt;Rails Lesson #2: The Console&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;14 Apr 2008&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;/2008/04/14/yet-another-rails-tutorial.html&quot;&gt;Lesson #1&lt;/a&gt; We had a cookbook and a recipe but they weren't related to each other.  First we'll add a key to the recipes table then we'll use the console to relate the entities.&lt;/p&gt;
+
+&lt;p&gt;When creating new objects we use the script/generate scaffold command.  Here we only want to change the existing recipes table so we generate a migration:&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot;&gt;
+$ script/generate migration add_cookbook_id_to_recipes
+&lt;/pre&gt;
+&lt;p&gt;
+This will create a file in the db/migrate folder called 003_add_cookbook_id_to_recipes.rb
+&lt;/p&gt;
+&lt;p&gt;
+Open this file using your editor of choice and add the add_column and remove_column lines so that your file looks like the code below:
+&lt;/p&gt;
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+class AddCookBookIdToRecipes &lt; ActiveRecord::Migration
+  def self.up
+    add_column :recipes, :cookbook_id, :integer
+  end
+
+  def self.down
+    remove_column :recipes, :cookbook_id
+  end
+end
+&lt;/pre&gt;
+
+Now rake the migration:
+&lt;pre class=&quot;terminal&quot;&gt;$ rake db:migrate&lt;/pre&gt;
+
+Now that we have a foreign key in the table we need to tell the CookBook model that it has many Recipes and the Recipe model that it belongs to a CookBook.  So we open the model files in the app/model directory and add the lines shown below.
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+class Cookbook &lt; ActiveRecord::Base
+  has_many :recipes
+end
+&lt;/pre&gt;
+
+&lt;pre name=&quot;code&quot; class=&quot;ruby&quot;&gt;
+class Recipe &lt; ActiveRecord::Base
+  belongs_to :cookbook 
+end
+&lt;/pre&gt;
+
+Now the models are all wired up and ready for action.  Let's start by associating the recipe record we created with the cookbook record.  We could access the database and populate the field but it's a lot more fun to use the rails console.  Go back to your terminal window and type:
+
+
+&lt;pre class=&quot;terminal&quot;&gt;
+$ ruby script/console
+Loading development environment (Rails 2.0.2)
+&gt;&gt; []
+&lt;/pre&gt;
+
+What is now staring you in the face is called the rails console which is a special version of the IRB (Interactive Ruby Prompt.)  This prompt will accept any valid ruby code.  Go ahead and write a hello world command:
+&lt;notextile&gt;
+&lt;pre class=&quot;terminal&quot;&gt;Loading development environment (Rails 2.0.2)
+&gt;&gt; puts &quot;hello world&quot;
+hello world
+=&gt; nil
+&gt;&gt; []&lt;/pre&gt;
+&lt;p&gt;Try typing these commands just for fun:&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot;&gt;
+&amp;gt;&amp;gt; 50.times { |n| puts &quot;ruby is #{n} times better!&quot; }
+&amp;gt;&amp;gt; 6+49
+&amp;gt;&amp;gt; 5*5
+&lt;/pre&gt;
+&lt;p&gt;The &lt;span class=&quot;caps&quot;&gt;IRB&lt;/span&gt; is cool but what is special about the rails console is that it loads all your code and makes your models (and everything else) accessible for you to play with.  So let&amp;#8217;s take a look at what is in the database.&lt;/p&gt;
+&lt;pre class=&quot;terminal&quot;&gt;
+&amp;gt;&amp;gt; CookBook.find(:all)
+=&amp;gt; [ an array containing any cookbooks you've created ]
+&amp;gt;&amp;gt; Recipe.find(:all)
+=&amp;gt; [ an array containing any recipes you've created ]
+&lt;/pre&gt;
+&lt;p&gt;Assuming you only have one cookbook and one recipe we can use the following commands to retrieve the recipe from the database and store it in the variable r, then fetch the cookbook into variable c, and finally tell r that it belongs to c:&lt;br /&gt;
+&lt;pre class=&quot;terminal&quot;&gt;&gt;&gt; r = Recipe.find(1)
+&gt;&gt; c = CookBook.find(1)
+&gt;&gt; r.cookbook = c
+&gt;&gt; r.save&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;The console is a very cool tool for quickly manually testing things or nudging data this way or that.&lt;br /&gt;
+&lt;/notextile&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>YART</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/14/yet-another-rails-tutorial.html"/>
+   <updated>2008-04-14T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/14/yet-another-rails-tutorial</id>
+   <content type="html">&lt;h2&gt;&lt;span class=&quot;caps&quot;&gt;YART&lt;/span&gt;&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Apr 2008&lt;/p&gt;
+&lt;p&gt;Yet another rails tutorial.  There are tons of these but I felt like making my own.  My rails version at time of writing is 2.0.2.  In this tutorial series we&amp;#8217;ll be creating a basic cookbook website.  The objective is to give the reader an introduction to software development in Ruby on Rails.&lt;br /&gt;
+&lt;br /&gt;
+For windows be sure to change all slashes / to backslashes \.&lt;/p&gt;
+&lt;p&gt;First we start by creating the project:&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot;&gt;
+$ rails cookbook
+ ...
+ ... bunch of files generated ...
+ ...
+$  cd cookbook
+
+&lt;/pre&gt;
+&lt;p&gt;Let&amp;#8217;s create the scaffold for the Cookbooks.  A &amp;#8220;scaffold&amp;#8221; is the bare bones you need for functionality.  A model, a migration script, a controller, 4 views and a layout.  It also creates tests and fixtures.&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot;&gt;
+$ ruby script/generate scaffold Cookbook title:string author:string
+&lt;/pre&gt;
+&lt;p&gt;This command will use the migration script generated above and create the database table &amp;#8220;cookbooks&amp;#8221; &amp;#8211; Table names are plural.&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot;&gt;
+$ rake db:migrate
+&lt;/pre&gt;
+&lt;p&gt;Open new terminal window and navigate to cookbook directory and start the server: &lt;/p&gt;
+
+&lt;pre class =&quot;terminal&quot;&gt;
+$ ruby script/server
+&lt;/pre&gt;
+&lt;p&gt;Point Browser to &lt;a href=&quot;http://localhost:3000/cookbooks&quot;&gt;http://localhost:3000/cookbooks&lt;/a&gt;. You should see an empty list of all cookbooks.  Create a new cookbook by clicking the &lt;a href=&quot;http://localhost:3000/cookbooks/new&quot;&gt;New Cookbook&lt;/a&gt; link.&lt;/p&gt;
+&lt;p&gt;Okay, now let&amp;#8217;s create the scaffold for the Recipes and migrate the database:&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot;&gt;
+
+$ ruby script/generate scaffold Recipe name:string ingredients:text description:text number_of_servings:integer
+&lt;/pre&gt;
+&lt;p&gt;Now update the database:&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot;&gt;
+$ rake db:migrate
+&lt;/pre&gt;
+&lt;p&gt;Point Browser to &lt;a href=&quot;http://localhost:3000/recipes&quot;&gt;http://localhost:3000/recipes&lt;/a&gt; and create a new recipe.&lt;/p&gt;
+&lt;p&gt;Great!  Now we have a functional Cookbook and Recipe model.  But now we realize that we need to make recipes belong to cookbooks.  We&amp;#8217;ll do that in &lt;a href=&quot;/2008/04/15/rails-lesson-2-the-console.html&quot;&gt;Rails Lesson #2.&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Forum Help</title>
+   <link href="http://tracyliang.github.com/all/life/2008/04/14/amazon-forum-help.html"/>
+   <updated>2008-04-14T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2008/04/14/amazon-forum-help</id>
+   <content type="html">&lt;h2&gt;Forum Help&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;15 Apr 2008&lt;/p&gt;
+&lt;p&gt;I just saw this in &lt;a href=&quot;http://developer.amazonwebservices.com/connect/message.jspa?messageID=79952&quot;&gt;Amazon&amp;#8217;s web service forum&lt;/a&gt; and it made me chuckle.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://communicatopia.s3.amazonaws.com/amazon_tech_help.png&quot; alt=&quot;spelling&quot; /&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Rails Shock</title>
+   <link href="http://tracyliang.github.com/all/rails/2008/04/12/rails-shock.html"/>
+   <updated>2008-04-12T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/rails/2008/04/12/rails-shock</id>
+   <content type="html">&lt;h2&gt;Rails Shock&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;12 Apr 2008&lt;/p&gt;
+&lt;p&gt;I learned software development on the job.  The technology was all MS: &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt; Classic and &lt;span class=&quot;caps&quot;&gt;SQL&lt;/span&gt; Server.  I took a class on object oriented programming and along came .Net.  It was great.  I would attend training classes and it seemed nobody was interested in OO or elegance or writing short specific methods or Web Services.  They were interested in drag-and-drop.  I knew more .Net than my teachers.&lt;/p&gt;
+&lt;p&gt;I got a job somewhere else.  Business automation and reporting using &lt;span class=&quot;caps&quot;&gt;ASP&lt;/span&gt;.Net.  Life was good.  Life quality at work slowly deteriorated over the years.  The code base got bigger, the staff remained the same, simple changes were a thing of the past: every change broke something else.  Then my eyes were opened to something called Unit Testing and Test Driven Development.  This stuff rocks! There was hope&amp;#8230; NUnit would save us because we&amp;#8217;d catch the bugs sooner. But how?  We can&amp;#8217;t test the button click event that sends the exec &lt;span class=&quot;caps&quot;&gt;SQL&lt;/span&gt; to the database&amp;#8230;  the TableAdapter classes are, for all intents and purposes, attached to the database.  We can&amp;#8217;t test that stuff&amp;#8230; Here&amp;#8217;s how: you learn something called &lt;a href=&quot;http://www.codeproject.com/KB/architecture/NHibernateBestPractices.aspx&quot;&gt;&lt;span class=&quot;caps&quot;&gt;MVP&lt;/span&gt; (Model View Presenter) and NHibernate.&lt;/a&gt;  If I remember correctly if you want a web page to display something simple&amp;#8230; let&amp;#8217;s say a blog post.  Here is what you do:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You&amp;#8217;ll need to establish separate projects as discussed in Martin Fowler&amp;#8217;s best practice article (link above).  .Core, .Web, .Presenters, .Data, .Tests, and a few others.  I found that in practice I ended up creating .Core, .Core.PersistenceTests, .Core.Tests, .Data, .Facade, .Presenters, .WebServices, .WebServices.Tests, .Utils, and a ConsoleApp (for WebService integration tests).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  Then you can start coding!
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Write the tests for the Model (the Blog business object) while you develop the properties of the blog post (ID,Title,BodyText,DatePosted)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Write a data access interface as well as a data access interface factory&lt;/li&gt;
+&lt;li&gt;You&amp;#8217;ll need to write an implementation for each of those interfaces.  Lucky for us we can use generics so it&amp;#8217;s not a ton of code to write.&lt;/li&gt;
+&lt;li&gt;Don&amp;#8217;t forget to write your persistence tests &amp;#8211; and be sure to wrap each test in a transaction (SetUp and TearDown) and roll it back because you don&amp;#8217;t want to change the state of the database.  I never found a good way to write rigorous persistence tests because of the database dependancy so basically they were just to make sure the fields were mapped.&lt;/li&gt;
+&lt;li&gt;Make your persistence tests pass by writing the NHibernate &lt;span class=&quot;caps&quot;&gt;XML&lt;/span&gt; file that maps the relational database to your business object.&lt;/li&gt;
+&lt;li&gt;Now you can start writing your presenter class with the tests that go along with it.  &lt;/li&gt;
+&lt;li&gt;Once that is in place you can spend a lot of time wiring up the properties of your view to the presenter and actually build your UI.&lt;/li&gt;
+&lt;li&gt;Manually test your UI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This was the only hope for writing large code bases.  I learned this and felt like I had mastered it all.  I had found an established pattern for software creation and I just needed to follow it in order to have success.&lt;/p&gt;
+&lt;h4&gt;Along came Ruby&amp;#8230;&lt;/h4&gt;
+&lt;p&gt;Ruby on Rails is a full stack web application framework which is said to be &amp;#8220;A bunch of stuff that makes developers happy.&amp;#8221;  &amp;#8220;Rails&amp;#8221; is the web framework part and &amp;#8220;Ruby&amp;#8221; is the programming language.  To a .Net guy Ruby is like a magician of a language.  You can tell it to do things that you wouldn&amp;#8217;t even dream of considering to think about wondering about with regard to other languages.  I didn&amp;#8217;t learn software development by hacking perl or python or bash or &amp;#8230; any other *nix type technology.  When you only know one technology, only one technology exists.&lt;/p&gt;
+&lt;p&gt;In Ruby on Rails you don&amp;#8217;t really do any of the above.  When you learn this you don&amp;#8217;t know how it can be possible and you don&amp;#8217;t know what to do. You were standing on a solid balcony of software development and it slid out from under you &amp;#8211; you have to cling to the bricks that are jutting out of the wall to keep from falling.  Everything I &amp;#8220;needed&amp;#8221; to know about writing software was now rendered unnecessary.  I&amp;#8217;m starting over.&lt;/p&gt;
+&lt;p&gt;In Rails you don&amp;#8217;t think &amp;#8220;I want the app to do X. I will write the code to do X.&amp;#8221;  Instead you need to start thinking something like this &amp;#8220;I want the app to do X. What existing function or plugin already does this? I shall look for it.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s a huge paradigm shift but as I realize these things I get better at finding solutions.  It is a very fun journey &amp;#8211; and I have only just begun.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Why Performance Matters</title>
+   <link href="http://tracyliang.github.com/all/life/2008/04/10/why-performance-matters.html"/>
+   <updated>2008-04-10T00:00:00+08:00</updated>
+   <id>http://tracyliang18.github.com/all/life/2008/04/10/why-performance-matters</id>
+   <content type="html">&lt;h2&gt;Why Performance Matters&lt;/h2&gt;
+&lt;p class=&quot;publish_date&quot;&gt;10 Apr 2008&lt;/p&gt;
+&lt;p&gt;I just watched &lt;a href=&quot;http://www.youtube.com/watch?v=4XpnKHJAok8&quot;&gt;this presentation on git* by Linus Torvalds&lt;/a&gt;.   The highlight for me:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;#8220;A lot of people seem to think that performance is about doing the same thing just doing it faster and that&amp;#8217;s not true.  That&amp;#8217;s not what performance is all about.  If you can do something really really fast, really well, people start using it different.&amp;#8221;&lt;/blockquote&gt;&lt;/p&gt;
+&lt;p&gt;The thing that matters most about performance isn&amp;#8217;t the time saved by doing the same thing faster it is the resulting change in behavior.  If I did took me 3 minutes to do and I did it a few times a day I might not think to automate it and or optimize it so that it took 1 second.  What would that save me? 6-9 minutes every day?  Insignificant.&lt;/p&gt;
+&lt;p&gt;What might happen is that instead of doing this 3 minute task 3 times per day, I might decide to do it more.  In the days of dial up how long would it take to check your email?  5 minutes?  How often do you check your email today? My mail program is open all day and continuously checking.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m not trying to suggest that there is a correlation between well being and the number of times we check our email per day.  I know there are people out there that spend time in amazingly complicated spreadsheets.   You know them too: the need-to-upgrade-to-Office-2007-because-they- ran-out-of-room people.  Spreadsheets are fine tools but if I could build a tool that would allow you to manage your monthly monster-spreadsheet task in minutes instead of hours you might do that task more often.  You might do that task better.  You might be more thourough.  You might be more creative.  You might be more &lt;em&gt;gasp&lt;/em&gt; productive.&lt;/p&gt;
+&lt;div style=&quot;width:450px;border-bottom: solid 2px #dadada&quot;&gt;&amp;nbsp;&lt;/div&gt;
+&lt;p&gt;*Git is a source control management system which is used by the Linux kernel team and is quickly gaining a lot of popularity. &lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>

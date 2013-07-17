@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"  />
+<meta name="description" content="Tracyliang's Codes" />
+<meta name="keywords" content="life,code,software,development,photography" />
+<meta name="author" content="tracyliang" />
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
+<link rel="stylesheet" type="text/css" href="/css/pretty_code.css" />
+<link rel="alternate" type="application/atom+xml" href="http://tracyliang18.github.com/atom.xml" />
+
+<title>You may say I am a dreamer, but I am not the only one. - tracyliang's tech blog</title>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="header">
+		<p id="toplinks">
+
+		</p>
+
+		<h1><a href="/"><div id="logo"></div>Dreamer<span class="fade">Museum</span></a></h1>
+		<div class="slogan">
+				<a href="/Coder.html" class="pink">Coder</a> :|: 
+				<a href="/Cser.html" class="green">Cser</a> :|: 
+                <a href="/Lifer.html" class="orange">Lifer</a>
+		</div>
+
+</div>
+
+<div id="content">  
+  <div id="post">
+<h2>Ruby eats <span class="caps">SOAP</span> for Breakfast</h2>
+<p class="publish_date">16 Apr 2008</p>
+<p>Google <i>is</i> my friend. I needed to access some <span class="caps">SOAP</span> web services from Ruby.  Our company allows customers to pay their bills with cash at various cash payment centers in throughout the state.  We have an <span class="caps">ASP</span>.Net web service that accepts a zip code and the maximum miles a person is willing to travel and returns a list of locations within that radius.</p>
+<p>Here is how I did it:</p>
+
+<pre name="code" class="ruby">
+require 'soap/wsdlDriver'
+require 'soap/header/simplehandler'
+
+driver = SOAP::WSDLDriverFactory.new("http://www.domain.com/webservices/PaymentCentersAPI.asmx?WSDL").create_rpc_driver
+
+class AutheticationHeaderHandler &lt; SOAP::Header::SimpleHandler      
+    #The header is named "SecureHeader" in this web service.
+    @@HEADER_NAME = 'SecureHeader'
+    def initialize(namespace, username, password)       
+      super(XSD::QName.new(namespace, @@HEADER_NAME))
+      #the user field is called "UserName"
+      @user_element = XSD::QName.new(namespace, 'UserName')
+      @password_element = XSD::QName.new(namespace, 'Password')     
+      @username, @password = username, password
+    end
+    def on_simple_outbound
+      # Seems to result in the creation of elements with the proper namespace
+      # abbreviation, e.g. '&lt;ns1:User&gt;JohnDoe&lt;/ns1:User&gt;'
+      {@user_element =&gt; @username, @password_element =&gt; @password}
+    end
+end
+
+# Add the soap header handler for authentication:
+driver.headerhandler &lt;&lt; AutheticationHeaderHandler.new("http://com.domain/", "careSystem","s3cr37")
+
+#Call The SOAP method:
+soapResponse = driver.FindNearestCenters(:ZipCode =&gt; 90210, :MaximumMiles =&gt; 15)
+
+# Print the payment location centers:
+soapResponse.findNearestCentersResult.cashPaymentCenter.each do |center|
+  puts "store name: #{center.storeName}, Miles from 90210: #{center.milesToStore}"
+
+end
+
+driver.reset_stream
+
+</pre>
+<p>thanks to these articles/posts:<br />
+<a href="http://webgambit.com/blog/calling-a-net-web-service-from-rails-original/">http://webgambit.com/blog/calling-a-net-web-service-from-rails-original/</a><br />
+<a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/222966">http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/222966</a></p>
+<p></p>
+</div>
+
+<div id="related">
+  <h3>Possibly Related Posts</h3>
+  <ul class="posts">
+    
+      <li><span>15 Jun 2013</span> &raquo; <a href="/all/os/2013/06/15/Python-Attributes-and-Methods.html">python attributes and methods</a></li>
+    
+      <li><span>13 Jun 2013</span> &raquo; <a href="/all/rails/2013/06/13/prose-io.html">Prose Io</a></li>
+    
+      <li><span>30 May 2013</span> &raquo; <a href="/all/os/2013/05/30/the-nature-of-code.html">the nature of code learning</a></li>
+    
+  </ul>
+</div>
+
+<link rel="stylesheet" href="/css/styles/default.css">
+<script src="/javascript/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<!-- This is for code colorization which doesn't seem to work very well in IE... i guess I don't care very much -->
+<link rel="stylesheet" href="/css/styles/default.css">                        
+<script src="/javascript/highlight.pack.js"></script>                                                  <script>hljs.initHighlightingOnLoad();</script> 
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shCore.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushRuby.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushPhp.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushXml.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushCss.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushBash.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushJScript.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushPython.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushC.js"></script>
+<script language="javascript">
+dp.SyntaxHighlighter.ClipboardSwf = 'http://communicatopia.s3.amazonaws.com/js/clipboard.swf';
+//name, showGutter, showControls, collapseAll, firstLine , showColumns
+dp.SyntaxHighlighter.HighlightAll('code',false, false,false,1,false);
+</script>
+
+</div>
+
+<div id="footer">
+
+    <a href="http://www.facebook.com/tracyliang">facebook</a> ||
+    <a href="http://www.renren.com/347806128/">renren</a>
+
+<p>&copy; 2013 <a href="/about.html">tracyliang</a>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4105222-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
+

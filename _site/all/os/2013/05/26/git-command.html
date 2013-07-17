@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"  />
+<meta name="description" content="Tracyliang's Codes" />
+<meta name="keywords" content="life,code,software,development,photography" />
+<meta name="author" content="tracyliang" />
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
+<link rel="stylesheet" type="text/css" href="/css/pretty_code.css" />
+<link rel="alternate" type="application/atom+xml" href="http://tracyliang18.github.com/atom.xml" />
+
+<title>You may say I am a dreamer, but I am not the only one. - tracyliang's tech blog</title>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="header">
+		<p id="toplinks">
+
+		</p>
+
+		<h1><a href="/"><div id="logo"></div>Dreamer<span class="fade">Museum</span></a></h1>
+		<div class="slogan">
+				<a href="/Coder.html" class="pink">Coder</a> :|: 
+				<a href="/Cser.html" class="green">Cser</a> :|: 
+                <a href="/Lifer.html" class="orange">Lifer</a>
+		</div>
+
+</div>
+
+<div id="content">  
+  <div id="post">
+<p>git 版本控制命令</p>
+
+<ol>
+<li>
+<p>git checkout -b iss53</p>
+
+<p>等价与两条命令：git branch iss53 //先创建分支</p>
+
+<pre><code>            git checkout iss53 </code></pre>
+</li>
+
+<li>
+<p>git commit -a -m &#8216;修改的说明&#8217;</p>
+
+<p>等价于两条命令：git add <strong><em>.</em></strong> //</p>
+
+<pre><code>            git commit -m &#39;修改的说明&#39;</code></pre>
+</li>
+
+<li>
+<p>git branch //显示有哪些分支</p>
+</li>
+
+<li>
+<p>git checkout master //切换到master分支</p>
+</li>
+
+<li>
+<p>git merge **** //合并分支</p>
+</li>
+
+<li>
+<p>git status //显示信息</p>
+</li>
+
+<li>
+<p>git fetch origin //同步远程服务器上的数据到本地</p>
+</li>
+
+<li>
+<p>git push origin serverfix //将serverfix的分支上传到origin中，格式：git push （远程仓库名） （分支名）</p>
+</li>
+
+<li>
+<p>git push origin serverfix:serferfix //上传我本地的 serverfix 分支到远程仓库中去，仍旧称它为 serverfix 分支</p>
+</li>
+
+<li>
+<p>git push origin serverfix:awesomebranch //你可以把本地分支推送到某个命名不同的远程分支，可以把远程分支称之为 awesomebranch</p>
+</li>
+
+<li>
+<p>上传code的步骤：</p>
+
+<pre><code>     （1） git clone jessica@githost:simplegit.git
+
+     （2） git commit -a -m ‘变化的信息’
+
+     （3） git push origin master
+
+          当push出错时：
+
+          git fetch origin //更新资源
+
+          git merge origin/master //合并分支
+
+          git push master</code></pre>
+</li>
+
+<li>
+<p>本地的分支是master，服务器的分支名是origin/master</p>
+</li>
+
+<li>
+<p>git log //显示提交历史</p>
+
+<p>等价与gitk</p>
+</li>
+
+<li>
+<p>git diff 13432 23hu //比较两次提交的不同</p>
+
+<p>其中图形化安装方法： （1）下载P4Merge：</p>
+
+<pre><code>                    http://www.perforce.com/perforce/downloads/component.html</code></pre>
+
+<p>（2） 在/usr/local/bin/目录下新建一个extMerge的脚本：</p>
+
+<pre><code>                        $ sudo vim /usr/local/bin/extMerge
+
+                    在脚本中输入以下内容：
+
+                        #!/bin/sh
+
+                        /home/amlogic/p4v-2011.1.428988/bin/p4merge $*
+
+                (3) 在/usr/local/bin/目录下新建一个extDiff的脚本：
+
+                       $ sudo vim /usr/local/bin/extDiff 
+
+                    脚本输入以下内容：
+
+                       #!/bin/sh
+
+                       [ $# -eq 7 ] &amp;&amp; /usr/local/bin/extMerge &quot;$2&quot; &quot;$5&quot;
+
+                （4）确认这两个脚本是可执行的：
+
+                       $ sudo chmod +x /usr/local/bin/extMerge 
+
+                       $ sudo chmod +x /usr/local/bin/extDiff
+
+                （5）现在来配置使用你自定义的比较和合并工具吧。这需要许多自定义设置：merge.tool通知 Git 使用哪个合并工具；mergetool.*.cmd规定命令运行的方式；       
+
+                    mergetool.trustExitCode 会通知 Git 程序的退出是否指示合并操作成功；diff.external通知 Git 用什么命令做比较。因此，你能运行以下4条配置命令：
+
+                      $ git config --global merge.tool extMerge
+
+                      $ git config --global mergetool.extMerge.cmd \
+
+                        &#39;extMerge &quot;$BASE&quot; &quot;$LOCAL&quot; &quot;$REMOTE&quot; &quot;$MERGED&quot;&#39;
+
+                      $ git config --global mergetool.trustExitCode false
+
+                      $ git config --global diff.external extDiff
+
+                    或者直接编辑~/.gitconfig文件如下：
+
+                      [merge]
+
+                           tool = extMerge
+
+                      [mergetool &quot;extMerge&quot;]
+
+                       cmd = extMerge &quot;$BASE&quot; &quot;$LOCAL&quot; &quot;$REMOTE&quot; &quot;$MERGED&quot;
+
+                       trustExitCode = false
+
+                      [diff]
+
+                           external = extDiff
+
+                 （6） 设置完毕后，运行diff命令：
+
+                      $ git diff 32d1776b1^ 32d1776b1</code></pre>
+</li>
+</ol>
+</div>
+
+<div id="related">
+  <h3>Possibly Related Posts</h3>
+  <ul class="posts">
+    
+      <li><span>15 Jun 2013</span> &raquo; <a href="/all/os/2013/06/15/Python-Attributes-and-Methods.html">python attributes and methods</a></li>
+    
+      <li><span>13 Jun 2013</span> &raquo; <a href="/all/rails/2013/06/13/prose-io.html">Prose Io</a></li>
+    
+      <li><span>30 May 2013</span> &raquo; <a href="/all/os/2013/05/30/the-nature-of-code.html">the nature of code learning</a></li>
+    
+  </ul>
+</div>
+
+<link rel="stylesheet" href="/css/styles/default.css">
+<script src="/javascript/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<!-- This is for code colorization which doesn't seem to work very well in IE... i guess I don't care very much -->
+<link rel="stylesheet" href="/css/styles/default.css">                        
+<script src="/javascript/highlight.pack.js"></script>                                                  <script>hljs.initHighlightingOnLoad();</script> 
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shCore.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushRuby.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushPhp.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushXml.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushCss.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushBash.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushJScript.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushPython.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushC.js"></script>
+<script language="javascript">
+dp.SyntaxHighlighter.ClipboardSwf = 'http://communicatopia.s3.amazonaws.com/js/clipboard.swf';
+//name, showGutter, showControls, collapseAll, firstLine , showColumns
+dp.SyntaxHighlighter.HighlightAll('code',false, false,false,1,false);
+</script>
+
+</div>
+
+<div id="footer">
+
+    <a href="http://www.facebook.com/tracyliang">facebook</a> ||
+    <a href="http://www.renren.com/347806128/">renren</a>
+
+<p>&copy; 2013 <a href="/about.html">tracyliang</a>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4105222-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
+

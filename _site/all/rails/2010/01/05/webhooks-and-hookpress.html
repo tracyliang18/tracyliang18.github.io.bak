@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"  />
+<meta name="description" content="Tracyliang's Codes" />
+<meta name="keywords" content="life,code,software,development,photography" />
+<meta name="author" content="tracyliang" />
+<link rel="stylesheet" type="text/css" href="/css/default.css" />
+<link rel="stylesheet" type="text/css" href="/css/pretty_code.css" />
+<link rel="alternate" type="application/atom+xml" href="http://tracyliang18.github.com/atom.xml" />
+
+<title>You may say I am a dreamer, but I am not the only one. - tracyliang's tech blog</title>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="header">
+		<p id="toplinks">
+
+		</p>
+
+		<h1><a href="/"><div id="logo"></div>Dreamer<span class="fade">Museum</span></a></h1>
+		<div class="slogan">
+				<a href="/Coder.html" class="pink">Coder</a> :|: 
+				<a href="/Cser.html" class="green">Cser</a> :|: 
+                <a href="/Lifer.html" class="orange">Lifer</a>
+		</div>
+
+</div>
+
+<div id="content">  
+  <div id="post">
+<h2>Webhooks and Hookpress</h2>
+<p class="publish_date">05 Jan 2010</p>
+<blockquote>
+<p>Webhooks: so simple you&#8217;ll think they&#8217;re stupid.<br />
+<span class="attributed">&#8212; Jeff Lindsay</span></p>
+</blockquote>
+<p>A couple weeks ago we launched blog.spokt.com and we wanted to have links to recent blog posts in the footer at spokt.com (hosted on different servers):</p>
+<p><img src="/images/posts-in-footer.png" title="recent blog posts listed in spokt.com footer" alt="recent blog posts listed in spokt.com footer" /></p>
+<p>To accomplish this I created a url at spokt which when accessed would download the blog&#8217;s rss feed, parse it, and store it for later listing.  I then used my nearly-zero wordpress &amp; php experience to create plugin that just curl&#8217;d the url.  Here&#8217;s the plugin code:</p>
+<pre name="code" class="php">
+	&lt;?php
+
+	function notify_spokt() {
+		$ch = curl_init('http://spokt.com/blog_update');
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt( $ch, CURLOPT_HEADER, 0 );
+		$page = curl_exec($ch);
+		curl_close($ch);
+	}
+
+	add_filter('publish_post','notify_spokt');
+
+	?&gt;
+</pre>
+<p>I thought that this kind of functionality might be useful and considered investigating how to make the url configurable.</p>
+<p>Yesterday I learned about <a href="http://www.webhooks.org/">webhooks</a> and thought about how I might go about creating a wordpress plugin using the &#8220;hooks&#8221; already built in and exposing them as webhooks. I figured someone probably already had and sure enough: the <a href="http://wordpress.org/extend/plugins/hookpress/">hookpress plugin</a> by Michael 芳貴 Erlewine</p>
+<p>Once installed Click &#8220;Settings&#8221; in the wp admin then the &#8220;Webhooks&#8221; link. That will bring up an easy-to-use admin interface. Click &#8220;Add webhook&#8221; then choose your action, any fields you want to pass, and enter the url.</p>
+<p>See Also: <a href="http://mitcho.com/code/hookpress/">Useful hookpress screencast by Michael 芳貴 Erlewine</a></p>
+<p><img src="/images/hookpress-screenshot.png" title="easy to use admin interface" alt="easy to use admin interface" /></p>
+</div>
+
+<div id="related">
+  <h3>Possibly Related Posts</h3>
+  <ul class="posts">
+    
+      <li><span>15 Jun 2013</span> &raquo; <a href="/all/os/2013/06/15/Python-Attributes-and-Methods.html">python attributes and methods</a></li>
+    
+      <li><span>13 Jun 2013</span> &raquo; <a href="/all/rails/2013/06/13/prose-io.html">Prose Io</a></li>
+    
+      <li><span>30 May 2013</span> &raquo; <a href="/all/os/2013/05/30/the-nature-of-code.html">the nature of code learning</a></li>
+    
+  </ul>
+</div>
+
+<link rel="stylesheet" href="/css/styles/default.css">
+<script src="/javascript/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<!-- This is for code colorization which doesn't seem to work very well in IE... i guess I don't care very much -->
+<link rel="stylesheet" href="/css/styles/default.css">                        
+<script src="/javascript/highlight.pack.js"></script>                                                  <script>hljs.initHighlightingOnLoad();</script> 
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shCore.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushRuby.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushPhp.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushXml.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushCss.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushBash.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushJScript.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushPython.js"></script>
+<script language="javascript" src="http://communicatopia.s3.amazonaws.com/js/shBrushC.js"></script>
+<script language="javascript">
+dp.SyntaxHighlighter.ClipboardSwf = 'http://communicatopia.s3.amazonaws.com/js/clipboard.swf';
+//name, showGutter, showControls, collapseAll, firstLine , showColumns
+dp.SyntaxHighlighter.HighlightAll('code',false, false,false,1,false);
+</script>
+
+</div>
+
+<div id="footer">
+
+    <a href="http://www.facebook.com/tracyliang">facebook</a> ||
+    <a href="http://www.renren.com/347806128/">renren</a>
+
+<p>&copy; 2013 <a href="/about.html">tracyliang</a>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4105222-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
+
