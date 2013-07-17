@@ -3,7 +3,10 @@ layout: post
 title: the nature of code learning
 ---
 
-###The nature of code###
+h2. {{ page.title }}
+p(publish_date). {{site.time | date_to_string}}
+
+##The nature of code##
 今天想动手开始动手课程论文《自然里的数据结构》，不经意间找到了这本好书
 
 《the nature of code》
