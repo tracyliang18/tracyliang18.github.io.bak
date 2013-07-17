@@ -4,7 +4,7 @@
  <title>4xFlavor</title>
  <link href="http://tracyliang.github.com/atom.xml" rel="self"/>
  <link href="http://tracyliang.github.com/"/>
- <updated>2013-07-17T15:34:57+08:00</updated>
+ <updated>2013-07-17T16:05:55+08:00</updated>
  <id>http://danhixon.github.com/</id>
  <author>
    <name>tracyliang-(jiajun liang)</name>
@@ -67,6 +67,18 @@ print &quot;hello&quot;
 cd abc
 echo avc
 diff a, v
+&lt;/pre&gt;
+
+&lt;pre&gt;
+&lt;code&gt;
+#include &quot;stdio.h&quot;
+int main()
+{
+    printf(&quot;hello world\n&quot;);
+
+    return 0;
+}
+&lt;/code&gt;
 &lt;/pre&gt;
 vistor 模式，举个好理解的例子：
 习总要到不同国家访问，所用的外交策略肯定是不一样的，在美国面前就是小熊维尼，在日本面前就是绿巨人。不同国家有相应的一套东西迎接中国来访。
