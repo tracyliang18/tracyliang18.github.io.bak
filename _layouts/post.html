@@ -2,7 +2,9 @@
 layout: default
 ---
 <div id="post">
-{{ content }}
+    <h2>{{page.title}}</h2>
+    {{ content }}
+    <h4>{{page.date | date_to_string}}</h4>
 </div>
 
 <div id="related">

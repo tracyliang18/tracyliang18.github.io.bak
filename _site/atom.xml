@@ -4,7 +4,7 @@
  <title>4xFlavor</title>
  <link href="http://tracyliang.github.com/atom.xml" rel="self"/>
  <link href="http://tracyliang.github.com/"/>
- <updated>2013-07-17T16:15:29+08:00</updated>
+ <updated>2013-07-24T21:29:05+08:00</updated>
  <id>http://danhixon.github.com/</id>
  <author>
    <name>tracyliang-(jiajun liang)</name>
@@ -58,38 +58,17 @@ visitor.visit(a)
 visitor.visit(b)
 visitor.visit(c)
  &lt;/pre&gt;
-
-&lt;pre class=&quot;python&quot; name=&quot;code&quot;&gt;&lt;code&gt;
-print &quot;hello&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre class=&quot;bash&quot; name=&quot;code&quot;&gt;
-cd abc
-echo avc
-diff a, v
-&lt;/pre&gt;
-
-&lt;pre&gt;
-&lt;code&gt;
-#include &quot;stdio.h&quot;
-int main()
-{
-    printf(&quot;hello world\n&quot;);
-
-    return 0;
-}
-&lt;/code&gt;
-&lt;/pre&gt;
-vistor 模式，举个好理解的例子：
+&lt;p&gt;
+  vistor 模式，举个好理解的例子：
 习总要到不同国家访问，所用的外交策略肯定是不一样的，在美国面前就是小熊维尼，在日本面前就是绿巨人。不同国家有相应的一套东西迎接中国来访。
-
-从程序设计的角度去理解，习总这个对象，拥有访问不同国家的方法，而各国有一个名为accpet的方法去接待习总，当然具体实现肯定不一样啦。把各个国家对象合并到一个对象集，把习总这个对象传到这个对象集里，即实现visitor模式。
-
+                                                                                                                                           从程序设计的角度去理解，习总这个对象，拥有访问不同国家的方法，而各国有一个名为accpet的方法去接待习总，当然具体实现肯定不一样啦。把各个国家对象合并到一个对象集，把习总这个对象传到这个对象集里，即实现visitor模式。
+ 
 其实上述的东西很好理解，（设计模式的东西都很好理解，只是在恰当的时机恰好地选择运用恰当的模式，很难），但我看到诸如node.__class__.__mro__，cls.__name__这样的设计到python自带属性和方法，就感觉自己真的一点都不懂python。。
 
 ( python attributes and methods)[http://www.cafepy.com/article/python_attributes_and_methods/python_attributes_and_methods.html]
 
 看上去是个不错的教程，先看看。。稍后更新
+&lt;/p&gt;
 </content>
  </entry>
  
@@ -98,9 +77,7 @@ vistor 模式，举个好理解的例子：
    <link href="http://tracyliang.github.com/all/os/2013/05/30/the-nature-of-code.html"/>
    <updated>2013-05-30T00:00:00+08:00</updated>
    <id>http://tracyliang18.github.com/all/os/2013/05/30/the-nature-of-code</id>
-   <content type="html">&lt;p&gt;h2. the nature of code learning p(publish_date). 17 Jul 2013&lt;/p&gt;
-
-&lt;h2 id='the_nature_of_code'&gt;The nature of code&lt;/h2&gt;
+   <content type="html">&lt;h2 id='the_nature_of_code'&gt;The nature of code&lt;/h2&gt;
 
 &lt;p&gt;今天想动手开始动手课程论文《自然里的数据结构》，不经意间找到了这本好书&lt;/p&gt;
 
@@ -118,51 +95,11 @@ vistor 模式，举个好理解的例子：
    <link href="http://tracyliang.github.com/all/os/2013/05/28/open-source-game.html"/>
    <updated>2013-05-28T00:00:00+08:00</updated>
    <id>http://tracyliang18.github.com/all/os/2013/05/28/open-source-game</id>
-   <content type="html">&lt;p&gt;在hacker news上看到这个post&lt;a href='http://osgameclones.com/'&gt;open source game&lt;/a&gt;, 各种语言的开源游戏都有涉及，其中不乏经典游戏如超级玛丽、Quake3等，游戏迷&amp;amp;code farmer 实在不容错过。&lt;/p&gt;</content>
- </entry>
- 
- <entry>
-   <title>mdtest</title>
-   <link href="http://tracyliang.github.com/all/os/2013/05/26/mdtest.html"/>
-   <updated>2013-05-26T00:00:00+08:00</updated>
-   <id>http://tracyliang18.github.com/all/os/2013/05/26/mdtest</id>
-   <content type="html">&lt;h3 id='vim_history_config'&gt;vim history config&lt;/h3&gt;
+   <content type="html">&lt;p&gt; 在hacker news上看到这个post, &lt;a href=http://osgameclones.com/&gt;open source game&lt;/a&gt;, 各种语言的开源游戏都有涉及，其中不乏经典游戏如超级玛丽、Quake3等，游戏迷&amp;code farmer 实在不容错过。
+&lt;/p&gt;
 
-&lt;h2 id='ctrlr'&gt;相对于ctrl+r,我觉得这个命令历史配置更好用&lt;/h2&gt;
 
-&lt;p&gt;在home下创建.inputrc, 内容如下： &lt;script src='https://gist.github.com/5641543.js'&gt; &lt;/script&gt;&lt;/p&gt;
-
-&lt;h4 id='26_may_2013'&gt;26 May 2013&lt;/h4&gt;</content>
- </entry>
- 
- <entry>
-   <title>jeklly-note</title>
-   <link href="http://tracyliang.github.com/all/os/2013/05/26/jeklly-note.html"/>
-   <updated>2013-05-26T00:00:00+08:00</updated>
-   <id>http://tracyliang18.github.com/all/os/2013/05/26/jeklly-note</id>
-   <content type="html">&lt;p&gt;date 17 Jul 2013&lt;/p&gt;
-
-&lt;p&gt;number of words&lt;/p&gt;
-
-&lt;p&gt;67&lt;/p&gt;
-
-&lt;p&gt;listing tags&lt;/p&gt;
-
-&lt;p&gt;#&lt;/p&gt;
-
-&lt;h4 id='small_tags'&gt;small tags&lt;/h4&gt;
-
-&lt;p&gt;note that sig.md should be in the main_dir/_include&lt;/p&gt;
-
-&lt;p&gt;programming language highlight&lt;/p&gt;
-&lt;div&gt;
-    &lt;pre&gt;&lt;code class='ruby'&gt;def foo
-  puts 'foo'
-end&lt;/code&gt;&lt;/pre&gt;
-  &lt;/div&gt;
-&lt;p&gt;note that linenos is optional, which will force the highlighted code to include line numbers&lt;/p&gt;
-
-&lt;p&gt;post url &lt;span&gt;Name of Link&lt;/span&gt;&lt;/p&gt;</content>
+</content>
  </entry>
  
  <entry>
@@ -170,166 +107,9 @@ end&lt;/code&gt;&lt;/pre&gt;
    <link href="http://tracyliang.github.com/all/os/2013/05/26/hello-world.html"/>
    <updated>2013-05-26T00:00:00+08:00</updated>
    <id>http://tracyliang18.github.com/all/os/2013/05/26/hello-world</id>
-   <content type="html">&lt;h2&gt;你好，世界&lt;/h2&gt;
+   <content type="html">&lt;p&gt;我的第一篇文章&lt;/p&gt;
 
-&lt;p&gt;我的第一篇文章&lt;/p&gt;
-
-&lt;p&gt;26 May 2013&lt;/p&gt;
 </content>
- </entry>
- 
- <entry>
-   <title>git-command</title>
-   <link href="http://tracyliang.github.com/all/os/2013/05/26/git-command.html"/>
-   <updated>2013-05-26T00:00:00+08:00</updated>
-   <id>http://tracyliang18.github.com/all/os/2013/05/26/git-command</id>
-   <content type="html">&lt;p&gt;git 版本控制命令&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;git checkout -b iss53&lt;/p&gt;
-
-&lt;p&gt;等价与两条命令：git branch iss53 //先创建分支&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;            git checkout iss53 &lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git commit -a -m &amp;#8216;修改的说明&amp;#8217;&lt;/p&gt;
-
-&lt;p&gt;等价于两条命令：git add &lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt; //&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;            git commit -m &amp;#39;修改的说明&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git branch //显示有哪些分支&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git checkout master //切换到master分支&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git merge **** //合并分支&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git status //显示信息&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git fetch origin //同步远程服务器上的数据到本地&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git push origin serverfix //将serverfix的分支上传到origin中，格式：git push （远程仓库名） （分支名）&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git push origin serverfix:serferfix //上传我本地的 serverfix 分支到远程仓库中去，仍旧称它为 serverfix 分支&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git push origin serverfix:awesomebranch //你可以把本地分支推送到某个命名不同的远程分支，可以把远程分支称之为 awesomebranch&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;上传code的步骤：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;     （1） git clone jessica@githost:simplegit.git
-
-     （2） git commit -a -m ‘变化的信息’
-
-     （3） git push origin master
-
-          当push出错时：
-
-          git fetch origin //更新资源
-
-          git merge origin/master //合并分支
-
-          git push master&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;本地的分支是master，服务器的分支名是origin/master&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git log //显示提交历史&lt;/p&gt;
-
-&lt;p&gt;等价与gitk&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;git diff 13432 23hu //比较两次提交的不同&lt;/p&gt;
-
-&lt;p&gt;其中图形化安装方法： （1）下载P4Merge：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;                    http://www.perforce.com/perforce/downloads/component.html&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;（2） 在/usr/local/bin/目录下新建一个extMerge的脚本：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;                        $ sudo vim /usr/local/bin/extMerge
-
-                    在脚本中输入以下内容：
-
-                        #!/bin/sh
-
-                        /home/amlogic/p4v-2011.1.428988/bin/p4merge $*
-
-                (3) 在/usr/local/bin/目录下新建一个extDiff的脚本：
-
-                       $ sudo vim /usr/local/bin/extDiff 
-
-                    脚本输入以下内容：
-
-                       #!/bin/sh
-
-                       [ $# -eq 7 ] &amp;amp;&amp;amp; /usr/local/bin/extMerge &amp;quot;$2&amp;quot; &amp;quot;$5&amp;quot;
-
-                （4）确认这两个脚本是可执行的：
-
-                       $ sudo chmod +x /usr/local/bin/extMerge 
-
-                       $ sudo chmod +x /usr/local/bin/extDiff
-
-                （5）现在来配置使用你自定义的比较和合并工具吧。这需要许多自定义设置：merge.tool通知 Git 使用哪个合并工具；mergetool.*.cmd规定命令运行的方式；       
-
-                    mergetool.trustExitCode 会通知 Git 程序的退出是否指示合并操作成功；diff.external通知 Git 用什么命令做比较。因此，你能运行以下4条配置命令：
-
-                      $ git config --global merge.tool extMerge
-
-                      $ git config --global mergetool.extMerge.cmd \
-
-                        &amp;#39;extMerge &amp;quot;$BASE&amp;quot; &amp;quot;$LOCAL&amp;quot; &amp;quot;$REMOTE&amp;quot; &amp;quot;$MERGED&amp;quot;&amp;#39;
-
-                      $ git config --global mergetool.trustExitCode false
-
-                      $ git config --global diff.external extDiff
-
-                    或者直接编辑~/.gitconfig文件如下：
-
-                      [merge]
-
-                           tool = extMerge
-
-                      [mergetool &amp;quot;extMerge&amp;quot;]
-
-                       cmd = extMerge &amp;quot;$BASE&amp;quot; &amp;quot;$LOCAL&amp;quot; &amp;quot;$REMOTE&amp;quot; &amp;quot;$MERGED&amp;quot;
-
-                       trustExitCode = false
-
-                      [diff]
-
-                           external = extDiff
-
-                 （6） 设置完毕后，运行diff命令：
-
-                      $ git diff 32d1776b1^ 32d1776b1&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;</content>
  </entry>
  
  

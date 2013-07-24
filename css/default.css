@@ -110,11 +110,19 @@ text-transform:none;
 h1 a:hover { color:#fba919 ;}
 
 #logo {
-	margin: -65px 10px -30px -50px;
+	margin: -65px 10px -30px -150px;
 	float:right;
-	background: url('/images/gems-15.png');
-	height: 213px; width:204px;
+	background: url('/images/s24453767.jpg');
+	height: 213px; width:190px;
 }
+
+#logo1 {
+        margin: -65px 10px -30px -50px;
+        float:left;
+        background: url('/images/gems-15.png');
+        height: 213px; width:204px;
+     }
+
 
 .publish_date {
 	margin-top:-8px;
