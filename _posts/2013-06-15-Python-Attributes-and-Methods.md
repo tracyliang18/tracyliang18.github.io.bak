@@ -7,7 +7,7 @@ title: python attributes and methods
 
 最近在看python实现的design pattern代码，上述的缺点马上无所遁形。上一个visitor模式代码：
 </P>
-``` python
+```
 class Node(object): pass
 class A(Node): pass
 class B(Node): pass
@@ -43,7 +43,7 @@ visitor.visit(a)
 visitor.visit(b)
 visitor.visit(c)
 ```
-``` C
+``` 
 #include <stdio.h>
 int main()
 {
