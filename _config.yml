@@ -1,0 +1,7 @@
+# Jekyll
+permalink: /:year/:title/
+paginate: 10
+exclude: []
+name: I'm Genius , assnd I know it.
+baseurl: 
+markdown: redcarpet
