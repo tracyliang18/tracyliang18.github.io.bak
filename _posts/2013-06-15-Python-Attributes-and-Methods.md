@@ -1,6 +1,7 @@
 ---
 layout: default
 title: python attributes and methods
+permalink: python attributes and methods
 ---
 <p>
 一直以来用python都是边查边用，而且都是用在日常的小脚本而已，用过写过一个计算机网络的课程设计，感觉蛮爽，但一直都是感觉处于这种不熟练、不精通的感觉。

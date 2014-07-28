@@ -1,6 +1,7 @@
 ---
 layout: default
 title: the nature of code learning
+permalink:   the nature of code learning
 ---
 
 
